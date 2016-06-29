@@ -15,7 +15,7 @@ def index(request):
     # i = random.randint(1, 4)
     # print(request.GET.get("user-input", ""))
     if request.GET.get("count"):
-        
+        pass
     else:
         if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
             # worker hasn't accepted the HIT (Task_timestamp) yet
