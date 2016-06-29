@@ -3,7 +3,6 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from blog.models import Task_timestamp
 from django.views.decorators.csrf import csrf_exempt
 import random
 
