@@ -187,6 +187,7 @@ function setup() {
 	setupSegment();
 
 	$('#end').hide();
+	$('#instruction').hide();
 	$('#clear').hide();
 	$('#items').hide();
 	$('#segment').hide();
@@ -199,7 +200,8 @@ function setupSegment() {
 }
 
 function setupItem() {
-	var out = '<ul>';
+	var out = '<p>Please select the item details corresponding '
+	+'to the boxes you drew in the image above</p><ul>';
 	
 	for (var segment in features) {
 		// console.log(segment);
@@ -329,6 +331,9 @@ function nextstep() {
 			str_result+=cur_tag+" ";
 			window.scrollTo(0, 0);
 			$('#tag'+(step-1)).hide();
+			$('#instruction').show();
+		} else if (step == tagNum+2) {
+			$('#instruction').hide();
 			$('#clear').show();
 			$('#next').show();
 			$('#items').show();

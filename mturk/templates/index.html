@@ -38,6 +38,7 @@
 
          <h3>Notes:</h3>
          <p>Please remember to accept the task before you do it; otherwise, we cannot pay you!</p>
+         <p>The task would auto submit when reached the end.</p>
          <p>Rejection: <br>
             We will have trick questions in this task. If you give out inconsistent answers, we will reject your submission.
          </p>
@@ -48,7 +49,16 @@
       
       <div id= "task"></div>
       <button class="pure-button" name="clear" id="clear" type="button" onClick="clearBox()">Clear</button>
-      <div id="instruction"></div>
+      <div id="instruction">
+         <h3>Instruction for body segment and item detail</h3>
+         <p>First, draw item box on the image, i.e. box top, bottom, dress, 
+            accessories if applicable.
+         </p>
+         <img src="segment.png" >
+         <p>Then describe each item using the list we offer below</p>
+         <img src="item.png" >
+         <button class="pure-button" name="next" onclick="$('#next').click()" type="button">Next</button>
+      </div>
       <div id= "segment" class="col_two"></div>
       <div id= "items" class="css-treeview"></div>
       <button class="pure-button" name="next" id="next" type="button">Next</button>
