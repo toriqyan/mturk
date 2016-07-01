@@ -418,6 +418,7 @@ function nextstep() {
 			
 			document.getElementsByTagName('textarea')[0].value=str_result;
 			console.log(document.getElementsByTagName('textarea')[0].value);
+			$("#amazon").submit();
 		}
 		step++;
 	});
