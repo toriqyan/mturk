@@ -19,9 +19,9 @@ def index(request):
         pass
 
     worker_id = request.GET.get("workerId", "")
-    if worker_id in get_worker_ids_past_tasks():
-        # you might want to guard against this case somehow
-        pass
+    # if worker_id in get_worker_ids_past_tasks():
+    #     # you might want to guard against this case somehow
+    #     pass
 
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
@@ -30,7 +30,7 @@ def index(request):
         "hit_id": request.GET.get("hitId", ""),
     }
 
-    response = render_to_response("base.html", render_data)
+    response = render_to_response("index.html", render_data)
     # without this header, your iFrame will not render in Amazon
     response['x-frame-options'] = 'this_can_be_anything'
     return response
