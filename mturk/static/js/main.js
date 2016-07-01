@@ -283,9 +283,15 @@ function setupTag() {
 				out+='<li><img src=\"'+ references[category][option][reference] +'\"></li>';
 			}
 			out+='</ul>';
-			button_sec+='<div class="radio"><label><input name=\"'
-				+category+'Answer\" type=\"radio\" value=\"'+option
-				+'\" />'+option+'</label></div>';
+			if (category != "season") {
+				button_sec+='<div class="radio"><label><input name=\"'
+					+category+'Answer\" type=\"radio\" value=\"'+option
+					+'\" />'+option+'</label></div>';
+			} else {
+				button_sec+='<div class="checkbox"><label><input name=\"'
+					+category+'Answer\" type=\"checkbox\" value=\"'+option
+					+'\" />'+option+'</label></div>';
+			}
 		}
 		button_sec+='<button style="float: right;" class="pure-button" name="next" onclick="$(\'#next\').click()" type="button">Next</button></fieldset>';
 		out+='</div><div id=\"images\"><img src=\"'+images+'\">'+button_sec+'</div></div>';

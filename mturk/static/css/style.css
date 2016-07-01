@@ -50,6 +50,10 @@ input[type="radio"]
   margin:10px;
 }
 
+#images input {
+  margin:10px;
+}
+
 .imagewrap {
    /*top: 400px;
    left: 450px ;*/
