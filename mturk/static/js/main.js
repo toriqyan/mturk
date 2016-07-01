@@ -7,15 +7,16 @@ var posx;
 var posy;
 var initx=false;
 var inity=false;
-var tags = ["event", "style", "season", "ethnicity", "body_shape"]
+var boxNum = 0;
+var tags = ["event", "style", "season", "ethnicity", "body-shape"];
 var global_feature = {
 	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow"],
 	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet"],
 	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots"],
 	"Length": ["Short","Medium","Long"],
 	"Pockets": ["None", "1", "2", "3+"],
-	"End Treatment": ["None","Peplum","Flare","Rolled-up","Cutoffs","Asymmetric","Scallop"],
-	"Front Enclosure": ["Open","Buttons","Zip","Wraparound","Drawstring","Bow"]
+	"End-Treatment": ["None","Peplum","Flare","Rolled-up","Cutoffs","Asymmetric","Scallop"],
+	"Front-Enclosure": ["Open","Buttons","Zip","Wraparound","Drawstring","Bow"]
 };
 var features={
 	"Top":{
@@ -30,7 +31,7 @@ var features={
 	"Bottom":{
 		"category": ["Jeans","Pants","Leggings/Tights","Skirts","Capris","Shorts"],
 		"feature": {
-			"Style": ["Skinny","Straight","Flare","Relaxed","Wild-Leg","Pleated","Pencil","Low-high","Flare","Maxi","mini","Bubble"]
+			"Style": ["Skinny","Straight","Flare","Relaxed","Wild-Leg","Pleated","Pencil","Low-high","Flare","Maxi","Mini","Bubble"]
 		}
 		
 	},
@@ -41,14 +42,14 @@ var features={
 			"Hood": ["Yes", "No"]
 		}
 	},
-	"Set Wear":{
+	"Set-Wear":{
 		"category": ["Dress","Suit-Pant","Suit-Skirt","Romper","Jumper"],
-		"Dress_style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll"]
+		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll"]
 	},
 	"Accessories":{
 		"category": ["Watch","Tie","Earrings","Glasses","Sunglasses","Necklace","Clutches","Ring","Bracelet","Belt","Hat","Shoes","Gloves","Handbag","Scarf","Stockings","Socks"],
-		"Shoes_style": ["Mules","Platforms","Heels","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges"],
-		"Handbag_style": ["Backpacks","Beach-Bags","Bucket Bags","Cross-Body","Diaper-Bags","Fringe-Bags","Hobo","Mini","Saddle","Satchels","Shoulder-Bags","Totes","Wallets","Wristlets","Work-Bags"]
+		"Shoes-style": ["Mules","Platforms","Heels","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges"],
+		"Handbag-style": ["Backpacks","Beach-Bags","Bucket Bags","Cross-Body","Diaper-Bags","Fringe-Bags","Hobo","Mini","Saddle","Satchels","Shoulder-Bags","Totes","Wallets","Wristlets","Work-Bags"]
 	}
 };
 var references = {
@@ -59,7 +60,7 @@ var references = {
 				"https://s-media-cache-ak0.pinimg.com/564x/22/e9/23/22e92317f45f648e3d8800594331e696.jpg",
 				"https://s-media-cache-ak0.pinimg.com/564x/39/71/4e/39714ea8960bcda1628fe350a8271ca4.jpg",
 				"https://s-media-cache-ak0.pinimg.com/564x/87/42/07/874207c4577bd0662aa63e6ac68cc49d.jpg"], 
-		"Special Occassion":["https://s-media-cache-ak0.pinimg.com/564x/42/42/8f/42428fe2f1bbc44cc9c7e12e5d6ae694.jpg",
+		"Special-Occassion":["https://s-media-cache-ak0.pinimg.com/564x/42/42/8f/42428fe2f1bbc44cc9c7e12e5d6ae694.jpg",
 							 "https://s-media-cache-ak0.pinimg.com/564x/df/d9/76/dfd976d8df98b7b4f63511d8856dd40f.jpg",
 							 "https://s-media-cache-ak0.pinimg.com/564x/32/87/00/328700f5ddd082323bc59c630b0b2bbe.jpg",
 							 "https://s-media-cache-ak0.pinimg.com/564x/e3/a3/eb/e3a3eb61b505391acfbf99f0830bb290.jpg",
@@ -70,7 +71,7 @@ var references = {
 				   "https://s-media-cache-ak0.pinimg.com/564x/c5/fc/d6/c5fcd6e1947647b26769c933357e68e2.jpg",
 				   "https://s-media-cache-ak0.pinimg.com/564x/2c/47/8e/2c478e60081c220e63640bdc944d2971.jpg",
 				   "https://s-media-cache-ak0.pinimg.com/564x/d2/ac/81/d2ac8174781d2f7cfdceec76661824a6.jpg"], 
-		"Date Night":["https://s-media-cache-ak0.pinimg.com/564x/4e/7e/84/4e7e849cb5dbe7ec38d1356db6eb5513.jpg",
+		"Date-Night":["https://s-media-cache-ak0.pinimg.com/564x/4e/7e/84/4e7e849cb5dbe7ec38d1356db6eb5513.jpg",
 					  "https://s-media-cache-ak0.pinimg.com/564x/80/65/b3/8065b3b327eaa9cf3d05c6e0a165703f.jpg",
 					  "https://s-media-cache-ak0.pinimg.com/564x/b9/29/6d/b9296dd3af7068bc500ed1e19b83c317.jpg",
 					  "https://s-media-cache-ak0.pinimg.com/564x/36/34/6d/36346d0ce8d953c7a07fc703d41795bd.jpg",
@@ -156,7 +157,7 @@ var references = {
 				 "https://s-media-cache-ak0.pinimg.com/564x/8d/93/49/8d93494f14526af35ce830832951ab4e.jpg",
 				 "https://s-media-cache-ak0.pinimg.com/564x/2b/09/27/2b0927d33113a7367ca89392b46c3860.jpg",
 				 "https://s-media-cache-ak0.pinimg.com/564x/c8/53/39/c8533980b67f68a5e335ff50b12cdbdc.jpg"]},
-	"body_shape":
+	"body-shape":
 		{"Slim":["http://www.wendyslookbook.com/wp-content/uploads/2016/06/NYC-MW-15-433x650.jpg",
 				"http://i2.wp.com/chicstreetstyle.me/wp-content/uploads/2016/06/IMG_0571.jpg?resize=683%2C1024",
 				"http://www.bittersweetcolours.com/wp-content/uploads/2016/06/P1010049-1.jpg",
@@ -186,6 +187,7 @@ function setup() {
 	setupSegment();
 
 	$('#end').hide();
+	$('#clear').hide();
 	$('#items').hide();
 	$('#segment').hide();
 	$('#task').hide();
@@ -193,7 +195,7 @@ function setup() {
 }
 
 function setupSegment() {
-	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'+images[0]+'\">';
+	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'+images+'\">';
 }
 
 function setupItem() {
@@ -201,29 +203,32 @@ function setupItem() {
 	
 	for (var segment in features) {
 		// console.log(segment);
-		var seg_fea = '<li><input type=\"checkbox\" id=\"'+segment
-		+'\"><label for=\"'+segment+'\" />'+segment+'</label><ul>';
+		var seg_fea = '<li style="float: none;"><input type=\"checkbox\" id=\"'+segment
+		+'\" value=\"'+segment
+		+'\" name="item" /><label for=\"'+segment+'\" >'+segment+'</label><ul>';
 		
 
 		for (var i= 0; i < features[segment]['category'].length; i++) {
 			var item = features[segment]['category'][i];
 			// console.log(item);
-			seg_fea+='<li><input type=\"checkbox\" id=\"'+segment+item
-			+'\"/><label for=\"'+segment+item
-			+'\" />'+item+'</label><ul>';
+			seg_fea+='<li style="float: none;"><input type=\"checkbox\" name=\"'+segment
+			+'\" id=\"'+segment+'_'+item
+			+'\" value=\"'+segment+'_'+item
+			+'\" /><label for=\"'+segment+'_'+item
+			+'\" >'+item+'<input type="text" name=\"'+segment+'_'+item +'\"/></label><ul style="" >';
 			if (segment != "Accessories") {
 				for (var feature in global_feature) {
 					// console.log(feature);
-					seg_fea+=appendFeature(segment+item, feature, global_feature[feature]);
+					seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
 				}
 			}
 			if (segment == "Top" || segment == "Bottom" || segment == "Outwear") {
 				for (var feature in features[segment]['feature']) {
 					// console.log(feature);
-					seg_fea+=appendFeature(segment+item, feature, features[segment]['feature'][feature]);
+					seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
 				}
 			} else if (item == "Dress" || item == "Shoes" || item == "Handbag") {
-				seg_fea+=appendFeature(segment+item, "Style", features[segment][item+'_style']);
+				seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
 			}
 			seg_fea+='</ul></li>';
 		}
@@ -238,23 +243,28 @@ function setupItem() {
 // item: string; feature: string; options: list
 // example: item: TopBlouse, feature: Color, options: ["White", "Red",...]
 function appendFeature(item, feature, options) { 
-	var res = '<li><input type=\"checkbox\" id=\"'+item+feature
-	+'\" /><label for=\"'+item+feature+'\" />'+feature+'</label><ul>';
+	var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
+	+'</legend><ul style="float:none; ">';
 	for (var i = 0; i < options.length; i++) {
-		var id = item+feature+options[i];
-		res+='<li><input type=\"checkbox\" id=\"'+id
-		+'\" /><label for=\"'+id+'\" />'+options[i]+'</label></li>';
+		var id = item+'_'+feature+'_'+options[i];
+		res+='<li style="float: left; "><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
+		+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+		+'</label></li>';
 	}
 	res+='</ul></li>';
 	return res;
 }
 
+function clickCheckBox(check_id) {
+	document.getElementById(check_id).checked = true;
+}
+
 function setupTag() {
 	var task = document.getElementById('task');
 	var i = 0;
-	for (i = 0; i < taskNum; i++) {
-		result.push({key:images[i], value:[]});
-	}
+	// for (i = 0; i < taskNum; i++) {
+		// result.push({key:images[i], value:[]});
+	// }
 	var out = "";
 	tagNum = 0;
 	for (var category in references) {
@@ -275,12 +285,12 @@ function setupTag() {
 				+category+'Answer\" type=\"radio\" value=\"'+option
 				+'\" />'+option+'</label></div>';
 		}
-		button_sec+='</fieldset>';
-		out+="</div><ul id=\"images\">";
-		for (var image in images) {
-			out+='<li><img src=\"'+images[image]+'\">'+button_sec+'</li>';
-		}
-		out+='</ul></div>';
+		button_sec+='<button style="float: right;" class="pure-button" name="next" onclick="$(\'#next\').click()" type="button">Next</button></fieldset>';
+		out+='</div><div id=\"images\"><img src=\"'+images+'\">'+button_sec+'</div></div>';
+		// for (var image in images) {
+		// 	out+='<li><img src=\"'+images[image]+'\">'+button_sec+'</li>';
+		// }
+		// out+='</ul></div>';
 
 	}
 	task.innerHTML = out;
@@ -289,8 +299,10 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == 1) {
+			str_result+=images+" ";
 			$('#description').hide();
 			$('#task').show();
+			$('#next').hide();
 			$('#tag1').show();
 			var i = 2;
 			for (i = 2; i <= tagNum; i++) {
@@ -307,14 +319,34 @@ function nextstep() {
 			$('#tag'+step).show();
 			$('#tag'+(step-1)).hide();
 		} else if (step == tagNum+1) {
+			var cur_tag = $('input[name="'+tags[step-2]+'Answer"]:checked').val();
+			console.log(tags[step-2]);
+			console.log(cur_tag);
+			if (typeof(cur_tag) == "undefined") {
+				alert("You have to select a tag.");
+				return;
+			}
+			str_result+=cur_tag+" ";
+			window.scrollTo(0, 0);
 			$('#tag'+(step-1)).hide();
+			$('#clear').show();
+			$('#next').show();
 			$('#items').show();
+			$('input[type=checkbox]').click(function(){
+			    if(this.checked){ // if checked - check all parent checkboxes
+			        $(this).parents('li').children('input[type=checkbox]').prop('checked',true);
+			    } else {
+				    // children checkboxes depend on current checkbox
+				    $(this).parent().find('input[type=checkbox]').prop('checked',this.checked); 
+				}
+			});
+
 			$('#segment').show();
-			jQuery(function($) {
+			$(function() {
 
 			    var main_content = $('.col_two'),
-			        gen_box = null,
-			        i  = 1;
+			        gen_box = null;
+			    boxNum = 1;
 
 			    //make .col_two selectable and...
 			    main_content.selectable({ 
@@ -345,12 +377,13 @@ function nextstep() {
 		            }
 		            
 		            //append a new div and increment the class and turn it into jquery selector
-		            $(this).append('<div class="gen_box_' + i + '"></div>');
-		            gen_box = $('.gen_box_' + i);
+		            $(this).append('<div class="gen_box_' + boxNum + '"><p>'
+		            	+ boxNum +'</p></div>');
+		            gen_box = $('.gen_box_' + boxNum);
 
 		            //add css to generated div and make it resizable & draggable
 		            $(gen_box).css({
-		                'background' : 'none',
+		                 'background' : 'none',
 		                 'width'     : width,
 		                 'height'    : height,
 		                 'position'  : 'absolute',
@@ -358,26 +391,96 @@ function nextstep() {
 		                 'top'         : y_begin,
 		                 'border'    : '2px dashed red'
 		            })
-		            .draggable({ grid: [20, 20] })
+		            // .draggable({ grid: [20, 20] })
 		            .resizable();
 
 		            //if the mouse was dragged left, offset the gen_box position 
 		            drag_left ? $(gen_box).offset({ left: x_end, top: y_begin }) : false;
 		            console.log( 'width: ' + width + 'px');
 		            console.log( 'height: ' + height + 'px' );
-		            console.log( 'x: ' + $(gen_box).css("left"));
-		            console.log( 'y: ' + $(gen_box).css("top") + 'px');
+		            console.log( 'x: ' + $(gen_box).position().left);
+		            console.log( 'y: ' + $(gen_box).position().top);
+		            console.log(boxNum);
 		            //add thr styles of generated div into .inner_col_one
-		            i++;
+		            boxNum++;
 		        }});
 			});
 		} else {
+			if (!recordResult()) {
+				alert("Input illegal");
+				return;
+			}
 			$('#items').hide();
 			$('#next').hide();
 			$('#segment').hide();
+			$('#clear').hide();
 			$('#end').show();
-			console.log(str_result);
+			
+			document.getElementsByTagName('textarea')[0].value=str_result;
+			console.log(document.getElementsByTagName('textarea')[0].value);
 		}
 		step++;
 	});
+}
+
+function clearBox() {
+	for (var i = 1; i < boxNum; i++) {
+		$('.gen_box_' + i).remove();
+	}
+	boxNum = 1;
+}
+
+function recordResult() {
+	var cleft = $($('#Canvas')).position().left;
+	var ctop = $($('#Canvas')).position().top;
+	console.log(cleft);
+	var i = 1;
+	var result = [];
+	for (i = 1; i < boxNum; i++) {
+		result[i] = [];
+		var gen_box = $('.gen_box_' + i);
+		var left = $(gen_box).position().left;
+		var top = $(gen_box).position().top;
+		var res = "{"+i+": (" + (left - cleft)
+			+ ", "+ (top - ctop) + ", "
+			+ $(gen_box).css("width") + ", " 
+			+ $(gen_box).css("height") + ")} ";
+		console.log(res);
+		str_result+=res;
+	}
+
+	
+	$('#items input:checked[type="checkbox"]').each(function() {
+	    var checkVal = $(this).val();
+	    var intVal = -1;
+	    $('input:text[name=\"'+$(this).attr("id")+'\"]').each(function() {
+	        var textVal = $(this).val();
+	        intVal = parseInt(textVal);
+	        // if (!(intVal in result)) {
+	        // 	return false;
+	        // }
+	        if (intVal != -1) {
+	        	result[intVal].push(checkVal);
+	        }
+	    });
+	    // console.log(checkVal);
+	    // console.log(intVal);
+	    // console.log($('input[name~=\"'+checkVal+'\"]'));
+	    // $('input:checked[name~=\"'+checkVal+'\"]').each(function() {
+	    // 	if (intVal != -1) {
+	    // 		result[intVal].push($(this).val());
+	    // 	}
+	    // 	console.log($(this).val());
+	    // 	console.log(result[intVal]);
+	    // });
+		str_result+=(checkVal+"("+intVal+") ");
+	});
+	for (var i in result) {
+		if (result[i].length == 0) {
+			return false;
+		} 
+			// str_result+=(i+result[i]);
+		// }
+	}
+	return true;
 }
