@@ -317,24 +317,30 @@ function nextstep() {
 				$('#tag'+i).hide();
 			}
 		} else if(step <= tagNum) {
-			var cur_tag = $('input[name="'+tags[step-2]+'Answer"]:checked').val();
-			if (typeof(cur_tag) == "undefined") {
-				alert("You have to select a tag.");
-				return;
-			}
-			str_result+=cur_tag+" ";
+			$('input[name="'+tags[step-2]+'Answer"]:checked').each(function() {
+				var cur_tag = $(this).val();
+				console.log(tags[step-2]);
+				console.log(cur_tag);
+				if (typeof(cur_tag) == "undefined") {
+					alert("You have to select a tag.");
+					return;
+				}
+				str_result+=cur_tag+" ";
+			});
 			window.scrollTo(0, 0);
 			$('#tag'+step).show();
 			$('#tag'+(step-1)).hide();
 		} else if (step == tagNum+1) {
-			var cur_tag = $('input[name="'+tags[step-2]+'Answer"]:checked').val();
-			console.log(tags[step-2]);
-			console.log(cur_tag);
-			if (typeof(cur_tag) == "undefined") {
-				alert("You have to select a tag.");
-				return;
-			}
-			str_result+=cur_tag+" ";
+			$('input[name="'+tags[step-2]+'Answer"]:checked').each(function() {
+				var cur_tag = $(this).val();
+				console.log(tags[step-2]);
+				console.log(cur_tag);
+				if (typeof(cur_tag) == "undefined") {
+					alert("You have to select a tag.");
+					return;
+				}
+				str_result+=cur_tag+" ";
+			});
 			window.scrollTo(0, 0);
 			$('#tag'+(step-1)).hide();
 			$('#instruction').show();
