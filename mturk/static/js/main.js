@@ -133,7 +133,6 @@ function setup() {
 	$('#task').hide();
 	$('#rejection').hide();
 	$('#description').show();
-	console.log(item_feature);
 }
 
 function setupReject() {
@@ -145,9 +144,11 @@ function reject() {
 	images=urls[ran];
 	document.getElementById("target").src = images;
 	document.getElementById("Canvas").src = images;
-	$('#images').each(function() {
-		$(this).children('img').attr('src', images);
-	});
+	for (var i = 1; i <= tagNum; i++) {
+		$('#images'+i).each(function() {
+			$(this).children('img').attr('src', images);
+		});
+	}
 	str_result += ("reject; "+images);
 	window.scrollTo(0, 0);
 }
@@ -166,8 +167,9 @@ function setupItem() {
 	
 	for (var segment in features) {
 		var seg_fea = '<div style="float: none;" id="'+ segment
-		+'"><p>First, if there\'s a draw a box around the '+ segment
-		+'. Then describe each item using the list we offer below:</p><legend style="float:none; display:block;">'
+		+'"><p>If there\'s a '+segment
+		+' in the image, draw a box around the '+ segment
+		+', and then describe this item using the list we offer below. If not, click Next button to proceed.</p><legend style="float:none; display:block;">'
 		+segment+'</legend>';
 		if (segment != "Handbag") {
 			for (var i= 0; i < features[segment]['category'].length; i++) {
@@ -258,7 +260,7 @@ function setupTag() {
 			}
 		}
 		button_sec+='<button style="float: right;" class="pure-button" name="next" onclick="$(\'#next\').click()" type="button">Next</button></fieldset>';
-		out+='</div><div id=\"images\"><img src=\"'+images+'\">'+button_sec+'</div></div>';
+		out+='</div><div class="images" id=\"images'+tagNum+'\"><img src=\"'+images+'\">'+button_sec+'</div></div>';
 	}
 	task.innerHTML = out;
 }
