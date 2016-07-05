@@ -48,20 +48,27 @@
       </div>
       
       <div id= "task"></div>
-      <button class="pure-button" name="clear" id="clear" type="button" onClick="clearBox()">Clear</button>
+      <div id="rejection">
+         <h3>
+            Below is your target image. If the image does not include a full-body look (except feet), please hit the reject button. Otherwise, proceed with next button.
+         </h3>
+         <img id="target" src="">
+         <button class="pure-button" name="reject" id="reject" type="reject" onClick="reject()">Reject</button>
+      </div>
       <div id="instruction">
          <h3>Instruction for body segment and item detail</h3>
          <p>First, draw item box on the image, i.e. box top, bottom, dress, 
             accessories if applicable.
          </p>
-         <img src="/static/js/segment.png" alt="img">
+         <img src="segment.png" >
          <p>Then describe each item using the list we offer below</p>
-         <img src="/static/js/item.png" alt="img">
+         <img src="item.png" >
          <button class="pure-button" name="next" onclick="$('#next').click()" type="button">Next</button>
       </div>
       <div id= "segment" class="col_two"></div>
       <div id= "items" class="css-treeview"></div>
       <button class="pure-button" name="next" id="next" type="button">Next</button>
       <h2 id="end">Congrats! The end of task! Please submit!</h2>
+      <button class="pure-button" name="submit" id="submit" onclick="$('#amazon').submit()" type="button">Submit</button>
    </div><!--end wrap-->
 </body>

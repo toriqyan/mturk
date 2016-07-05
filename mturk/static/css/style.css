@@ -41,8 +41,22 @@ a:hover { color: #eee; }
 #content .cv-section p { font-size: 14px; color: #555; letter-spacing: 0; }
 #content .cv-section-item { padding: 0 0 15px 0; }
 
-form {
+#amazon {
    display: none;
+}
+
+#target {
+  width:500px;
+  display: block;
+}
+
+#reject {
+  float:left;
+}
+
+fieldset {
+  margin-top: 20px;
+  width:300px;
 }
 
 input[type="radio"]
@@ -50,8 +64,19 @@ input[type="radio"]
   margin:10px;
 }
 
-#images input {
-  margin:10px;
+button {
+   width: 65px;
+   height: 30px;
+   margin: 20px;
+   /*margin-top: 20px;*/
+   /*margin-bottom: 20px;*/
+   display: inline-block;
+   /*border: 1px solid #006;*/
+   background-color: transparent;
+   background-repeat: no-repeat;
+   font-size: 100%;
+   text-align: center;
+   vertical-align: center;
 }
 
 .imagewrap {
@@ -80,26 +105,13 @@ input[type="radio"]
    transition: all 1s ease;
 }
 
-button {
-   width: 60px;
-   height: 30px;
-   margin-right: 20px;
-   margin-top: 20px;
-   margin-bottom: 20px;
-   display: inline-block;
-   /*border: 1px solid #006;*/
-   background-color: transparent;
-   background-repeat: no-repeat;
-   font-size: 100%;
-   text-align: center;
-   vertical-align: center;
-}
 .imagewrap ul {
    list-style-type: none;
    display: inline;
 }
 .imagewrap li {
-   display: inline-block;
+   display: inline;
+   float:left;
 }
 
 #images img {
@@ -107,6 +119,11 @@ button {
    padding-right: 20px;
    display: inline-block;
    /*float:left;*/
+   /*clear: left;*/
+}
+
+#images input {
+  margin:10px;
 }
 
 #images fieldset {
@@ -117,13 +134,19 @@ button {
    /*display: block;*/
 }
 
-.css-treeview ul,
-.css-treeview li
+.css-treeview ul
 {
    padding: 0;
    margin: 0;
    list-style: none;
    display:block;
+}
+
+.css-treeview li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display:inline;
 }
 
 .css-treeview input:checked + label + ul > li
@@ -140,7 +163,6 @@ button {
 
 .css-treeview
 {
-   /*font: normal 11px "Segoe UI", Arial, Sans-serif;*/
    -moz-user-select: none;
    -webkit-user-select: none;
    user-select: none;
@@ -152,11 +174,11 @@ button {
    margin: 0 0 0 22px;
 }
 
-.css-treeview input[type="text"]
+/*.css-treeview input[type="text"]
 {
    margin-left: 10px;
    width: 20px;
-}
+}*/
 
 .css-treeview input + label + ul
 {
@@ -188,6 +210,7 @@ button {
 {
   margin-left: 20px;
   margin-right: 0px;
+  clear:both;
 }
 
 .css-treeview label::before
@@ -204,11 +227,17 @@ button {
    background-position: 0 -16px;
 }
 
+#Handbag li {
+  display: inline-block;
+  padding: 5px;
+}
+
 .ui-resizable.ui-resizable-resizing,
 .ui-resizable.ui-draggable-dragging
 { border:2px dashed red !important; }
 
 .selected { background:#ffffff; }
+
 #segment p {
     width: 18px;
     height: 18px;
