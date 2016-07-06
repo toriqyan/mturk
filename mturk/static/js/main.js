@@ -1,4 +1,4 @@
-var step = -1;
+var step = 6;
 var tagNum = 0;
 var result = [];
 var str_result = "";
@@ -10,12 +10,12 @@ var inity=false;
 var boxNum = 0;
 var tags = ["occasion", "style", "season", "ethnicity", "body-shape"];
 var global_feature = {
-	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Other"],
-	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet","Other"],
-	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Other"],
-	"Length": ["Short","Medium","Long"],
-	"Pockets": ["None", "1", "2", "3+"]
+	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
+	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet","Don't-know/Other"],
+	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Don't-know/Other"],
+	"Pockets": ["None", "1", "2", "3+", "Don't-know/Other"]
 };
+var radios = ["Pockets", "Collar", "Hood", "Sleeve", "Heel", "Size"];
 var features={
 	"Top":{
 		"category":["Bralet","Blouse","Buttoned-Shirt","T-Shirt","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
@@ -23,7 +23,7 @@ var features={
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
 			"Sleeve": ["None","Short","Medium","Long"],
-			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Other"]
+			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Don't-know/Other"]
 		}
 	},
 	"Bottom":{
@@ -42,18 +42,13 @@ var features={
 	"Set-Wear":{
 		"category": ["Dress","Suit-Pant","Suit-Skirt","Romper","Jumper"],
 		"feature": {},
-		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll"]
+		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll", "Don't-know/Other"]
 	},
-	// "Accessories":{
-	// 	"category": ["Watch","Tie","Earrings","Glasses","Sunglasses","Necklace","Clutches","Ring","Bracelet","Belt","Hat","Shoes","Gloves","Handbag","Scarf","Stockings","Socks"],
-	// 	"Shoes-style": ["Mules","Platforms","Heels","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges"],
-	// 	"Handbag-style": ["Backpacks","Beach-Bags","Bucket Bags","Cross-Body","Diaper-Bags","Fringe-Bags","Hobo","Mini","Saddle","Satchels","Shoulder-Bags","Totes","Wallets","Wristlets","Work-Bags"]
-	// }
 	"Shoes":{
-		"category":["Mules","Platforms","Heels","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges","Other"],
+		"category":["Mules","Platforms","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges","Don't-know/Other"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
-			"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Other"],
+			"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
 		}
 	},
 	"Handbag":{
@@ -83,8 +78,9 @@ var references = {
 					"https://s-media-cache-ak0.pinimg.com/564x/98/6d/83/986d836f9ef731b51097e45fcb08697d.jpg"], 
 		"Feminine":["https://s-media-cache-ak0.pinimg.com/564x/db/ba/27/dbba27380a7e6e137a12bbd788daf0a9.jpg",
 					"https://s-media-cache-ak0.pinimg.com/564x/9c/8b/8f/9c8b8ffa2441c1184eed2a3c9d33522a.jpg"], 
-		"Edgy":["https://s-media-cache-ak0.pinimg.com/564x/ff/dc/09/ffdc099b20c4876a5a12722d6a0e5e4b.jpg",
-				"https://s-media-cache-ak0.pinimg.com/564x/fa/86/26/fa8626c0d15e88ef71bcdde9b8699fd8.jpg"]
+		"Punk-Rock":["https://s-media-cache-ak0.pinimg.com/564x/ff/dc/09/ffdc099b20c4876a5a12722d6a0e5e4b.jpg",
+				"https://s-media-cache-ak0.pinimg.com/564x/fa/86/26/fa8626c0d15e88ef71bcdde9b8699fd8.jpg"],
+		"Don't-Know/Other":[]
 	}, 
 	"season":
 		{"Spring":[], 
@@ -169,8 +165,11 @@ function setupItem() {
 		var seg_fea = '<div style="float: none;" id="'+ segment
 		+'"><p>If there\'s a '+segment
 		+' in the image, draw a box around the '+ segment
-		+', and then describe this item using the list we offer below. If not, click Next button to proceed.</p><legend style="float:none; display:block;">'
+		+', and then describe this item using the list we offer below. If you are not sure whether there\'s a '+segment
+		+' in the image, click Don\'t Know/Can\'t Tell. If there does not exist a '
+		+segment+ ' in the image, click Not Applicable.</p><legend style="float:none; display:block;">'
 		+segment+'</legend>';
+
 		if (segment != "Handbag") {
 			for (var i= 0; i < features[segment]['category'].length; i++) {
 				var item = features[segment]['category'][i];				
@@ -192,17 +191,33 @@ function setupItem() {
 				}
 				seg_fea+='</ul></li>';
 			}
+			seg_fea+='<input type=\"radio\" name=\"'+segment
+				+'\" id=\"'+segment+'_NA'
+				+'\" value=\"NA\" /><label for=\"'
+				+segment+'_NA\" >Not Applicable</label>';
+			seg_fea+='<input type=\"radio\" name=\"'+segment
+				+'\" id=\"'+segment+'_DK'
+				+'\" value=\"DK\" /><label for=\"'+segment
+				+'_DK\" >Don\'t Know/Can\'t Tell</label>';
 		} else {
 			seg_fea+='<ul>';
 			seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
+			seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
 			seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
 			seg_fea+='</ul>';
-			// item_feature['Handbag']=['Color', 'Size'];
+			seg_fea+='<input type=\"radio\" name=\"'+segment
+				+'\" id=\"'+segment+'_NA'
+				+'\" value=\"NA\" /><label for=\"'
+				+segment+'_NA\" >Not Applicable</label>';
+			seg_fea+='<input type=\"radio\" name=\"'+segment
+				+'\" id=\"'+segment+'_DK'
+				+'\" value=\"DK\" /><label for=\"'+segment
+				+'_DK\" >Don\'t Know/Can\'t Tell</label>';
 		}
 		seg_fea+='</ul></div>';
 		out+=seg_fea;
 	}
-	out+='';
+	// out+='';
 	document.getElementById("items").innerHTML = out;
 }
 
@@ -212,18 +227,20 @@ function appendFeature(item, feature, options) {
 	if (typeof item_feature[item] == "undefined") {
 		item_feature[item] = [];
 	}
-	// console.log(item+'_'+feature);
 	item_feature[item].push(item+'_'+feature); 
 	var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
 	+'</legend><form style="float:none; ">';
 	for (var i = 0; i < options.length; i++) {
 		var id = item+'_'+feature+'_'+options[i];
-		// res+='<li style="float: left; "><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
-		// +'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-		// +'</label></li>';
-		res+='<input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
-		+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-		+'</label>';
+		if (radios.indexOf(feature)>0) {
+			res+='<input type=\"radio\" id=\"'+id+'\" value=\"'+id
+			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+			+'</label>';
+		} else {
+			res+='<input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
+			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+			+'</label>';
+		}
 	}
 	res+='</form></li>';
 	return res;
@@ -237,13 +254,16 @@ function setupTag() {
 	for (var category in references) {
 		tagNum++;
 		out+='<div class="tag" id="tag'+tagNum
-			+'"><div class="reference"><h3>For reference: </h3><p>'+ inst[category] 
+			+'"><div class="reference"><p>'+ inst[category] 
 			+'</p>';
+		if (references[category].length >0) {
+			out+='<h3>For reference: </h3>';
+		}
 		var button_sec = '<fieldset class=\"'+category +'\">';
 
 		for (var option in references[category]) {
 			if (references[category][option].length != 0) {
-				out+='<p>'+option+': </p><ul class=\"imagewrap\">';
+				out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
 				for (var reference in references[category][option]) {
 					out+='<li><img src=\"'+ references[category][option][reference] +'\"></li>';
 				}
@@ -359,8 +379,10 @@ function nextstep() {
 }
 
 function clearBox() {
-	$('.gen_box_' + boxNum).remove();
-	boxNum -= 1;
+	if (boxNum > 0) {
+		$('.gen_box_' + boxNum).remove();
+		boxNum -= 1;
+	}
 	$('#items input:checked').each(function(){
 		$(this).prop('checked', false);
 	});
@@ -457,20 +479,21 @@ function recordResult(segment) {
 			}
 			res+=item;
 			// console.log(item);
-
-			for (var i = 0; i < item_feature[item].length; i++) {
-				console.log(item_feature[item][i]);
-				var item_fea="";
-				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-					item_fea+=($(this).val()+', ');
-					// console.log(item_fea);
-				});
-				if (item_fea=="") {
-					alert("Please tag "+item_feature[item][i]+"!");
-					return false;
+			if (item!='DK' && item!='NA') {
+				for (var i = 0; i < item_feature[item].length; i++) {
+					console.log(item_feature[item][i]);
+					var item_fea="";
+					$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
+						item_fea+=($(this).val()+', ');
+						// console.log(item_fea);
+					});
+					if (item_fea=="") {
+						alert("Please tag "+item_feature[item][i]+"!");
+						return false;
+					}
+					res+=item_fea;
 				}
-				res+=item_fea;
-			} 
+			}
 		} else {
 			for (var i = 0; i < item_feature[segment].length; i++) {
 				var item_fea="";
@@ -488,9 +511,13 @@ function recordResult(segment) {
 		str_result+=res;
 		clearBox();
 	} else if (boxNum==0) {
-		console.log($('input[name="'+segment+'"]:checked').val());
-		if (typeof $('input[name="'+segment+'"]:checked').val() != 'undefined') {
-			alert("Please draw a box around the item you tagged!");
+		var item = $('input[name="'+segment+'"]:checked').val();
+		if (typeof item == 'undefined') {
+			alert("If you are not sure whether there's a "+segment+" in the image, click Don't Know/Can't Tell. If there does not exist a "+segment+ " in the image, click Not Applicable.");
+			return false;
+		}
+		if (item != 'DK' && item !='NA') {
+			alert('Please draw a box around the item you tagged!');
 			return false;
 		}
 	} else {
