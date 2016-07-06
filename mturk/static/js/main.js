@@ -31,8 +31,8 @@ var features={
 			"Style": ["Skinny","Straight","Flare","Relaxed","Wild-Leg","Pleated","Pencil","Low-high","Flare","Maxi","Mini","Bubble"]
 		}		
 	},
-	"Outwear":{
-		"category":["Vest","Cape","Blazer","Jacket","Coat","Cardigan"],
+	"Outer-Wear":{
+		"category":["Vest","Cape","Blazer","Jacket","Coat","Sweaters","Cardigan"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"]
@@ -54,7 +54,7 @@ var features={
 		"Size":["Small", "Medium", "Large"]
 	}
 };
-var segments = ["Top", "Bottom", "Outwear", "Set-Wear", "Shoes", "Handbag"];
+var segments = ["Top", "Bottom", "Outer-Wear", "Set-Wear", "Shoes", "Handbag"];
 var references = {
 	"occasion":{
 		"Work":["https://s-media-cache-ak0.pinimg.com/564x/08/aa/9b/08aa9b5f175459550a3770fa748a884b.jpg",
