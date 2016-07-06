@@ -94,7 +94,7 @@ var references = {
 		"Other":[]},
 	"body-shape":
 		{"Slim":["http://i2.wp.com/chicstreetstyle.me/wp-content/uploads/2016/06/IMG_0571.jpg?resize=683%2C1024"],
-		"Full":["http://i246.photobucket.com/albums/gg111/jadorecoutureblog/jadorecoutureblog005/jadore-couture-sleeveless-vest-dress.jpg~original"],
+		"Full":["https://i246.photobucket.com/albums/gg111/jadorecoutureblog/jadorecoutureblog005/jadore-couture-sleeveless-vest-dress.jpg~original"],
 		"Plus":["https://s-media-cache-ak0.pinimg.com/564x/bc/c6/96/bcc696467a3b588b8e8897ed0c483001.jpg"]}
 };
 var inst = 
@@ -144,7 +144,7 @@ function reject() {
 			$(this).children('img').attr('src', images);
 		});
 	}
-	str_result += ("reject; \n"+images);
+	str_result += (" reject\n"+images);
 	window.scrollTo(0, 0);
 }
 
@@ -287,7 +287,7 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == -1) {
-			str_result+=images+" ";
+			str_result+=images+"";
 			$('#description').hide();
 			$('#rejection').show();
 		} else if (step == 0) {
@@ -299,7 +299,9 @@ function nextstep() {
 			for (i = 2; i <= tags.length; i++) {
 				$('#tag'+i).hide();
 			}
+			str_result+="\n";
 		} else if(step < tags.length) {
+			str_result+=(tags[step-1]+": ");
 			$('input[name="'+tags[step-1]+'Answer"]:checked').each(function() {
 				var cur_tag = $(this).val();
 				// console.log(tags[step]);
@@ -308,27 +310,27 @@ function nextstep() {
 					alert("You have to select a tag.");
 					return;
 				}
-				str_result+=cur_tag+",";
+				str_result+=cur_tag+" ";
 			});
+			str_result+="\n";
 			window.scrollTo(0, 0);
 			$('#tag'+(step+1)).show();
 			$('#tag'+(step)).hide();
 		} else if (step == tags.length) {
+			str_result+=(tags[step-1]+": ");
 			$('input[name="'+tags[step-1]+'Answer"]:checked').each(function() {
 				var cur_tag = $(this).val();
-				// console.log(tags[step]);
-				// console.log(cur_tag);
 				if (typeof(cur_tag) == "undefined") {
 					alert("You have to select a tag.");
 					return;
 				}
-				str_result+=cur_tag+"\n";
+				str_result+=cur_tag+" ";
 			});
+			str_result+="\n";
 			window.scrollTo(0, 0);
 			$('#tag'+(step)).hide();
 			$('#instruction').show();
 		} else if (step == tags.length+1) { //features[0] show
-			// console.log(step);
 			$('#instruction').hide();
 			$('#clear').show();
 			$('#next').show();
@@ -367,13 +369,13 @@ function nextstep() {
 			$('#clear').hide();
 			$('#end').show();
 			$('#submit').show();
-			
+			console.log(str_result);
 			document.getElementsByTagName('textarea')[0].value=str_result;
 			console.log(document.getElementsByTagName('textarea')[0].value);
 			// $("#amazon").submit();
 		}
-		console.log(step);
 		step++;
+		console.log(str_result);
 	});
 }
 
@@ -446,16 +448,16 @@ function boundingBox() {
 
 	            //if the mouse was dragged left, offset the gen_box position 
 	            drag_left ? $(gen_box).offset({ left: x_end, top: y_begin }) : false;
-	            console.log( 'width: ' + width + 'px');
-	            console.log( 'height: ' + height + 'px' );
-	            console.log( 'x: ' + $(gen_box).position().left);
-	            console.log( 'y: ' + $(gen_box).position().top);
-	            console.log( 'x: ' + $(gen_box).offset().left);
-	            console.log( 'y: ' + $(gen_box).offset().top);
-	            console.log($($('#Canvas')).position().left);
-	            console.log($($('#Canvas')).position().top);
-	            console.log($($('#Canvas')).offset().left);
-	            console.log($($('#Canvas')).offset().top);
+	            // console.log( 'width: ' + width + 'px');
+	            // console.log( 'height: ' + height + 'px' );
+	            // console.log( 'x: ' + $(gen_box).position().left);
+	            // console.log( 'y: ' + $(gen_box).position().top);
+	            // console.log( 'x: ' + $(gen_box).offset().left);
+	            // console.log( 'y: ' + $(gen_box).offset().top);
+	            // console.log($($('#Canvas')).position().left);
+	            // console.log($($('#Canvas')).position().top);
+	            // console.log($($('#Canvas')).offset().left);
+	            // console.log($($('#Canvas')).offset().top);
 	            // console.log(boxNum);
 	            //add thr styles of generated div into .inner_col_one
             }
@@ -464,49 +466,50 @@ function boundingBox() {
 }
 
 function recordResult(segment) {
-	console.log(segment);
 	if(boxNum==1) {
 		var cleft = $($('#Canvas')).position().left;
 		var ctop = $($('#Canvas')).position().top;
 		var gen_box = $('.gen_box_1');
 		var left = $(gen_box).position().left;
 		var top = $(gen_box).position().top;
-		var res = segment+": (" + (left - cleft)
+		var res = segment+"=Location: (" + (left - cleft)
 			+ ", "+ (top - ctop) + ", "
 			+ $(gen_box).css("width") + ", " 
-			+ $(gen_box).css("height") + ") ";
-		console.log(res);
+			+ $(gen_box).css("height") + ")";
 		if (segment != 'Handbag') {
 			var item = $('input[name="'+segment+'"]:checked').val();
 			if (typeof item == 'undefined') {
 				alert('Please tag the item you marked out!');
 				return false;
 			}
-			res+=(item + ": ");
-			// console.log(item);
+			res+=(", Item: "+item.replace(segment+"_",""));
 			if (item!='DK' && item!='NA') {
 				for (var i = 0; i < item_feature[item].length; i++) {
-					console.log(item_feature[item][i]);
-					var item_fea="";
+					// console.log(item_feature[item][i]);
+					var item_fea=", "+item_feature[item][i].replace(item+"_", "")+": [";
 					$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-						item_fea+=($(this).val()+', ');
-						// console.log(item_fea);
+						item_fea+=($(this).val().replace(item_feature[item][i]+"_", "")+' ');
 					});
+					item_fea+="]";
 					if (item_fea=="") {
 						alert("Please tag "+item_feature[item][i]+"!");
 						return false;
 					}
 					res+=item_fea;
 				}
+			} else if (item=='NA') {
+				alert("Please select Don't Know/Can't Tell if you are not sure about the item you marked!");
+				return false;
 			}
 		} else {
-			res+=(segment+": ");
+			res+=(", ");
 			for (var i = 0; i < item_feature[segment].length; i++) {
-				var item_fea="";
+				var item_fea=item_feature[segment][i]+": [";
 				$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-					item_fea+=($(this).val()+', ');
+					item_fea+=($(this).val()+' ');
 					console.log(item_fea);
 				});
+				item_fea+="] ";
 				if (item_fea=="") {
 					alert("Please tag "+item_feature[segment][i]+"!");
 					return false;
@@ -531,6 +534,6 @@ function recordResult(segment) {
 	} else {
 		alert("Please just tag one item at a time!");
 	}
-	console.log(str_result);
+	
 	return true;
 }
