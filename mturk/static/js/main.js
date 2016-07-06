@@ -144,7 +144,7 @@ function reject() {
 			$(this).children('img').attr('src', images);
 		});
 	}
-	str_result += ("reject; "+images);
+	str_result += ("reject; \n"+images);
 	window.scrollTo(0, 0);
 }
 
@@ -308,7 +308,7 @@ function nextstep() {
 					alert("You have to select a tag.");
 					return;
 				}
-				str_result+=cur_tag+" ";
+				str_result+=cur_tag+",";
 			});
 			window.scrollTo(0, 0);
 			$('#tag'+(step+1)).show();
@@ -322,7 +322,7 @@ function nextstep() {
 					alert("You have to select a tag.");
 					return;
 				}
-				str_result+=cur_tag+" ";
+				str_result+=cur_tag+"\n";
 			});
 			window.scrollTo(0, 0);
 			$('#tag'+(step)).hide();
@@ -446,10 +446,16 @@ function boundingBox() {
 
 	            //if the mouse was dragged left, offset the gen_box position 
 	            drag_left ? $(gen_box).offset({ left: x_end, top: y_begin }) : false;
-	            // console.log( 'width: ' + width + 'px');
-	            // console.log( 'height: ' + height + 'px' );
-	            // console.log( 'x: ' + $(gen_box).position().left);
-	            // console.log( 'y: ' + $(gen_box).position().top);
+	            console.log( 'width: ' + width + 'px');
+	            console.log( 'height: ' + height + 'px' );
+	            console.log( 'x: ' + $(gen_box).position().left);
+	            console.log( 'y: ' + $(gen_box).position().top);
+	            console.log( 'x: ' + $(gen_box).offset().left);
+	            console.log( 'y: ' + $(gen_box).offset().top);
+	            console.log($($('#Canvas')).position().left);
+	            console.log($($('#Canvas')).position().top);
+	            console.log($($('#Canvas')).offset().left);
+	            console.log($($('#Canvas')).offset().top);
 	            // console.log(boxNum);
 	            //add thr styles of generated div into .inner_col_one
             }
@@ -465,7 +471,7 @@ function recordResult(segment) {
 		var gen_box = $('.gen_box_1');
 		var left = $(gen_box).position().left;
 		var top = $(gen_box).position().top;
-		var res = "(" + (left - cleft)
+		var res = segment+": (" + (left - cleft)
 			+ ", "+ (top - ctop) + ", "
 			+ $(gen_box).css("width") + ", " 
 			+ $(gen_box).css("height") + ") ";
@@ -476,7 +482,7 @@ function recordResult(segment) {
 				alert('Please tag the item you marked out!');
 				return false;
 			}
-			res+=item;
+			res+=(item + ": ");
 			// console.log(item);
 			if (item!='DK' && item!='NA') {
 				for (var i = 0; i < item_feature[item].length; i++) {
@@ -494,6 +500,7 @@ function recordResult(segment) {
 				}
 			}
 		} else {
+			res+=(segment+": ");
 			for (var i = 0; i < item_feature[segment].length; i++) {
 				var item_fea="";
 				$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
@@ -507,7 +514,7 @@ function recordResult(segment) {
 				res+=item_fea;
 			}
 		}
-		str_result+=res;
+		str_result+=res+"\n";
 		clearBox();
 	} else if (boxNum==0) {
 		var item = $('input[name="'+segment+'"]:checked').val();
@@ -518,9 +525,12 @@ function recordResult(segment) {
 		if (item != 'DK' && item !='NA') {
 			alert('Please draw a box around the item you tagged!');
 			return false;
+		} else {
+			str_result+=(segment+": "+item+"\n");
 		}
 	} else {
 		alert("Please just tag one item at a time!");
 	}
+	console.log(str_result);
 	return true;
 }
