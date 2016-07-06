@@ -1,4 +1,4 @@
-var step = 6;
+var step = -1;
 var tagNum = 0;
 var result = [];
 var str_result = "";
