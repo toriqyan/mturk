@@ -10,7 +10,7 @@ var inity=false;
 var boxNum = 0;
 var tags = ["occasion", "style", "season", "ethnicity", "body-shape"];
 var global_feature = {
-	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
+	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Nude","Brown","Taupe","Yellow","Don't-know/Other"],
 	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet","Don't-know/Other"],
 	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Don't-know/Other"],
 };
@@ -47,7 +47,7 @@ var features={
 		"category":["Mules","Platforms","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges","Don't-know/Other"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
-			"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
+			"Color": ["White","Black","Red","Aqua","Nude","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
 		}
 	},
 	"Handbag":{
