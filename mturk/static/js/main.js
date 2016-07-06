@@ -13,9 +13,8 @@ var global_feature = {
 	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
 	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet","Don't-know/Other"],
 	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Don't-know/Other"],
-	"Pockets": ["None", "1", "2", "3+", "Don't-know/Other"]
 };
-var radios = ["Pockets", "Collar", "Hood", "Sleeve", "Heel", "Size"];
+var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size"];
 var features={
 	"Top":{
 		"category":["Bralet","Blouse","Buttoned-Shirt","T-Shirt","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
@@ -62,7 +61,7 @@ var references = {
 				"https://s-media-cache-ak0.pinimg.com/564x/39/71/4e/39714ea8960bcda1628fe350a8271ca4.jpg"], 
 		"Special-Occassion":["https://s-media-cache-ak0.pinimg.com/564x/04/02/37/0402374f759aceb225014cd6e6894ee9.jpg",
 							 "https://s-media-cache-ak0.pinimg.com/564x/ff/6e/92/ff6e927061032deb9021d13a7ebb03b8.jpg"], 
-		"Weekend":["https://s-media-cache-ak0.pinimg.com/564x/28/1b/4b/281b4b506ddae7454bab56cf27962f8d.jpg",
+		"Weekend-Casual":["https://s-media-cache-ak0.pinimg.com/564x/28/1b/4b/281b4b506ddae7454bab56cf27962f8d.jpg",
 				   "https://s-media-cache-ak0.pinimg.com/564x/d2/ac/81/d2ac8174781d2f7cfdceec76661824a6.jpg"], 
 		"Date-Night":["https://s-media-cache-ak0.pinimg.com/564x/80/65/b3/8065b3b327eaa9cf3d05c6e0a165703f.jpg",
 					  "https://s-media-cache-ak0.pinimg.com/564x/16/14/95/161495ee2e632a35e07357802b14bf63.jpg"]
