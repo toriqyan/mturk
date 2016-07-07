@@ -270,7 +270,7 @@ function setupTag() {
 				if (category != "style") {
 					out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
 				} else {
-					out+='<ul class=\"imagewrap\"><legend>'+option+': '+tag_exp[option]+'</legend>';
+					out+='<ul class=\"imagewrap\" style="width:300px;"><legend>'+option+': '+tag_exp[option]+'</legend>';
 				}
 				
 				for (var reference in references[category][option]) {
