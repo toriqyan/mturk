@@ -44,7 +44,7 @@ var features={
 		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll", "Don't-know/Other"]
 	},
 	"Shoes":{
-		"category":["Mules","Platforms","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges","Don't-know/Other"],
+		"category":["Mules","Platforms","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
 			"Color": ["White","Black","Red","Aqua","Nude","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
@@ -474,8 +474,8 @@ function recordResult(segment) {
 		var top = $(gen_box).position().top;
 		var res = segment+"=Location: (" + (left - cleft)
 			+ ", "+ (top - ctop) + ", "
-			+ $(gen_box).css("width") + ", " 
-			+ $(gen_box).css("height") + ")";
+			+ $(gen_box).css("width").replace('px','') + ", " 
+			+ $(gen_box).css("height").replace('px','') + ")";
 		if (segment != 'Handbag') {
 			var item = $('input[name="'+segment+'"]:checked').val();
 			if (typeof item == 'undefined') {
