@@ -85,7 +85,7 @@ button {
    /*border:2px solid #CCC;*/
    margin: 10px;
    /*height: 200px;*/
-   /*width: 650px;*/
+   width: 300px;
    padding: 20px;
    /*float: left;*/
    display: inline-block;
@@ -249,8 +249,13 @@ button {
     background-color: black;
 }
 
+#segment {
+  margin-bottom: 50px;
+  width:500px;
+  display: inline-block;
+}
+
 #Canvas {
   display: inline-block;
-  margin-bottom: 50px;
   width:500px;
 }

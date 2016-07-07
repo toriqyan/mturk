@@ -64,7 +64,10 @@
          <p>If the category is not applicable, directly click on Next Button. If you made an mistake, the Clear button could erase everything you put in.</p>
          <button class="pure-button" name="next" onclick="$('#next').click()" type="button">Next</button>
       </div>
-      <div id= "segment" class="col_two"></div>
+      <h3 class="segment">In this task we need you to identify the individual clothing items by drawing boxes around them, then tag the individual clothing items accordingly.</h3>
+      <label for="clear" class="segment">This button would allow you to clear the last box you drew:</label>
+      <button class="segment" name="clear" id="clear" type="button" onClick="clearBox()">Clear</button>
+      <div id= "segment" class="segment col_two"></div>
       <div id= "items" class="css-treeview"></div>
       <button class="pure-button" name="next" id="next" type="button">Next</button>
       <h2 id="end">Congrats! The end of task! Please submit!</h2>

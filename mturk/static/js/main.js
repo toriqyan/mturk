@@ -99,12 +99,21 @@ var references = {
 };
 var inst = 
 {
-	"occasion":"Please tag which occasion(s) this outfit is appropriate for:  Work, Casual Weekend, Date night/Dining out, or formal special occasions like weddings.  You can select all that applies.",
-	"style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Dramatic, Feminine, Edgy.  Select all that applies.",
+	"occasion":"Please tag which occasion(s) this outfit is appropriate for: Work, Casual Weekend, Date night/Dining out, or formal special occasions like weddings.  You can select all that applies.",
+	"style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Dramatic, Feminine, Punk Rock. Select all that applies.",
 	"season":"Please tag which season(s) this outfit is good for: Spring, Summer, Fall, Winter.",
 	"ethnicity":"Please specify the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian, Other",
 	"body-shape":"Please tag the model’s body size: Slim, Full, Plus.",
 };
+var tag_exp = 
+{
+	"Classic": "a timeless style with tailored looks",
+    "Trendy": "a style that keeps up with the latest trends",
+    "Bohemian": "a \"free spirit\" style, prints, fringes, maxi dresses, cowboy boots, loose and flowy",
+    "Dramatic": "a theatric style, bold color, patterns and accessories",
+    "Feminine": "a \"lady-like\" style, floral prints, full skirts, lace, bows and ruffles",
+    "Punk-Rock": "a \"rock star\" style, leather, studs, and ripped jeans"
+}
 var item_feature = new Array();
 var next;
 $(document).ready(function() {
@@ -122,9 +131,8 @@ function setup() {
 	$('#end').hide();
 	$('#submit').hide();
 	$('#instruction').hide();
-	$('#clear').hide();
 	$('#items').hide();
-	$('#segment').hide();
+	$('.segment').hide();
 	$('#task').hide();
 	$('#rejection').hide();
 	$('#description').show();
@@ -149,11 +157,7 @@ function reject() {
 }
 
 function setupSegment() {
-	document.getElementById("segment").innerHTML = '<h3>In this task we need you to identify the individual '+
-	'clothing items by drawing boxes around them, then tag the individual '+
-	'clothing items accordingly.</h3><label for="clear">This button would allow '+
-	'you to clear the last box you drew:</label><button class="pure-button" name="clear" '+
-	'id="clear" type="button" onClick="clearBox()">Clear</button><img id=\"Canvas\" src=\"'
+	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'
 	+images+'\">';
 }
 
@@ -253,7 +257,8 @@ function setupTag() {
 	for (var category in references) {
 		tagNum++;
 		out+='<div class="tag" id="tag'+tagNum
-			+'"><div class="reference"><p>'+ inst[category] 
+			+'"><h3>Part One: '+ category +
+			'</h3><div class="reference"><p>'+ inst[category] 
 			+'</p>';
 		if (references[category].length >0) {
 			out+='<h3>For reference: </h3>';
@@ -262,7 +267,12 @@ function setupTag() {
 
 		for (var option in references[category]) {
 			if (references[category][option].length != 0) {
-				out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
+				if (category != "style") {
+					out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
+				} else {
+					out+='<ul class=\"imagewrap\"><legend>'+option+': '+tag_exp[option]+'</legend>';
+				}
+				
 				for (var reference in references[category][option]) {
 					out+='<li><img src=\"'+ references[category][option][reference] +'\"></li>';
 				}
@@ -332,23 +342,20 @@ function nextstep() {
 			$('#instruction').show();
 		} else if (step == tags.length+1) { //features[0] show
 			$('#instruction').hide();
-			$('#clear').show();
 			$('#next').show();
 			$('#items').show();
 			for (var i= 1; i < segments.length; i++) {
 				// console.log(segments[i]);
 				$('#'+segments[i]).hide();
 			}
-			$('input').click(function(){
+			$('input:radio[name="'+segments[step-tagNum-1]+'"]').click(function(){
 			    if(this.checked){ // if checked - check all parent checkboxes
-			        $(this).parents('li').children('input[type=checkbox]').prop('checked',true);
-			    } else {
-				    // children checkboxes depend on current checkbox
-				    $(this).parent().find('input[type=checkbox]').prop('checked',this.checked); 
-				}
+			        $(this).parents('div').find('input').prop('checked',false);
+			        $(this).prop('checked',true);
+			    } 
 			});
 			boundingBox();
-			$('#segment').show();
+			$('.segment').show();
 		} else if (step <=tags.length+segments.length) {
 			if (!recordResult(segments[step-tagNum-2])) {
 				// alert("Input illegal");
@@ -356,6 +363,12 @@ function nextstep() {
 			}
 			$('#'+segments[step-tagNum-2]).hide();
 			$('#'+segments[step-tagNum-1]).show();
+			$('input:radio[name="'+segments[step-tagNum-1]+'"]').click(function(){
+			    if(this.checked){ // if checked - check all parent checkboxes
+			        $(this).parents('div').find('input').prop('checked',false);
+			        $(this).prop('checked',true);
+			    } 
+			});
 			boundingBox();
 		} else {
 			if (!recordResult(segments[step-tagNum-2])) {
@@ -365,8 +378,7 @@ function nextstep() {
 			$('#'+segments[step-tagNum-2]).hide();
 			$('#items').hide();
 			$('#next').hide();
-			$('#segment').hide();
-			$('#clear').hide();
+			$('.segment').hide();
 			$('#end').show();
 			$('#submit').show();
 			console.log(str_result);
@@ -448,18 +460,6 @@ function boundingBox() {
 
 	            //if the mouse was dragged left, offset the gen_box position 
 	            drag_left ? $(gen_box).offset({ left: x_end, top: y_begin }) : false;
-	            // console.log( 'width: ' + width + 'px');
-	            // console.log( 'height: ' + height + 'px' );
-	            // console.log( 'x: ' + $(gen_box).position().left);
-	            // console.log( 'y: ' + $(gen_box).position().top);
-	            // console.log( 'x: ' + $(gen_box).offset().left);
-	            // console.log( 'y: ' + $(gen_box).offset().top);
-	            // console.log($($('#Canvas')).position().left);
-	            // console.log($($('#Canvas')).position().top);
-	            // console.log($($('#Canvas')).offset().left);
-	            // console.log($($('#Canvas')).offset().top);
-	            // console.log(boxNum);
-	            //add thr styles of generated div into .inner_col_one
             }
         }});
 	});
