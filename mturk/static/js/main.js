@@ -297,6 +297,7 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == -1) {
+			console.log($('#workerId').val());
 			str_result+=images+"";
 			$('#description').hide();
 			$('#rejection').show();
