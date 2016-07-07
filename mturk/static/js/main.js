@@ -297,7 +297,10 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == -1) {
-			console.log($('#workerId').val());
+			if($('#workerId').val() == "") {
+				alert("Please accept the HIT before proceeding!");
+				return;
+			}
 			str_result+=images+"";
 			$('#description').hide();
 			$('#rejection').show();
