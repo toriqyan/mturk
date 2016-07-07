@@ -502,14 +502,14 @@ function recordResult(segment) {
 				return false;
 			}
 		} else {
-			res+=(", ");
+			// res+=(", ");
 			for (var i = 0; i < item_feature[segment].length; i++) {
-				var item_fea=item_feature[segment][i]+": [";
+				var item_fea=", "+item_feature[segment][i].replace(segment+'_', '')+": [";
 				$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-					item_fea+=($(this).val()+' ');
+					item_fea+=($(this).val().replace(item_feature[segment][i]+'_', '')+' ');
 					console.log(item_fea);
 				});
-				item_fea+="] ";
+				item_fea+="]";
 				if (item_fea=="") {
 					alert("Please tag "+item_feature[segment][i]+"!");
 					return false;
