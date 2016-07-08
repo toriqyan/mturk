@@ -16,7 +16,7 @@ var global_feature = {
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress"];
-var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size"];
+var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
 		"category":["Dress","Romper","Jumper","Blouse","Buttoned-Shirt","T-Shirt","Suit-Jacket","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
@@ -26,16 +26,16 @@ var features={
 			"Sleeve": ["None","Short","Medium","Long"],
 			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Don't-know/Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length"],
+		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"],
 		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll", "Don't-know/Other"]
 	},
 	"Bottom":{
 		"category": ["Jeans","Pants","Suit-Pant","Suit-Skirt","Leggings/Tights","Skirts","Capris","Shorts"],
 		"feature": {},
-		"Pants-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg"],
-		"Jeans-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg"],
-		"Skirts-style": ["Pleated","Pencil","Low-high","A-line","Maxi","Mini","Bubble"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length"]
+		"Pants-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
+		"Jeans-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
+		"Skirts-style": ["Pleated","Pencil","Low-high","A-line","Maxi","Mini","Bubble", "Don't-know/Other"],
+		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"]
 	},
 	"Outer-Wear":{
 		"category":["Suit-Jacket","Vest","Cape","Blazer","Jacket","Coat","Sweaters","Cardigan"],
@@ -178,10 +178,12 @@ function setupItem() {
 		+segment+'</legend>';
 
 		if (segment != "Handbag") {
-			seg_fea+='<input type=\"radio\" name=\"'+segment
-				+'\" id=\"'+segment+'_NA'
-				+'\" value=\"NA\" /><label for=\"'
-				+segment+'_NA\" >Not Applicable</label>';
+			if (segment != "Top") {
+				seg_fea+='<input type=\"radio\" name=\"'+segment
+					+'\" id=\"'+segment+'_NA'
+					+'\" value=\"NA\" /><label for=\"'
+					+segment+'_NA\" >Not Applicable</label>';
+				}
 			for (var i= 0; i < features[segment]['category'].length; i++) {
 				var item = features[segment]['category'][i];				
 				seg_fea+='<input type=\"radio\" name=\"'+segment
