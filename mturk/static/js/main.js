@@ -23,7 +23,7 @@ var features={
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
-			"Sleeve": ["None","Short","Medium","Long"],
+			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
 			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Don't-know/Other"]
 		},
 		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"],
@@ -436,7 +436,7 @@ function boundingBox() {
         stop: function(e) {
         	
         	if (boxNum==1) {
-        		alert("Only one box at a time!");
+        		alert("You can draw only one box at one step! Click Clear first, then draw again.");
         	} else {
         		boxNum++;
 	            //get the mouse position on stop
