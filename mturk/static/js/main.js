@@ -1,4 +1,4 @@
-var step = -1;
+var step = 6;
 var tagNum = 0;
 var result = [];
 var str_result = "";
@@ -179,14 +179,14 @@ function setupItem() {
 
 		if (segment != "Handbag") {
 			if (segment != "Top") {
-				seg_fea+='<input type=\"radio\" name=\"'+segment
+				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 					+'\" id=\"'+segment+'_NA'
 					+'\" value=\"NA\" /><label for=\"'
-					+segment+'_NA\" >Not Applicable</label>';
+					+segment+'_NA\" >Not Applicable</label></div>';
 				}
 			for (var i= 0; i < features[segment]['category'].length; i++) {
 				var item = features[segment]['category'][i];				
-				seg_fea+='<input type=\"radio\" name=\"'+segment
+				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 				+'\" id=\"'+segment+'_'+item
 				+'\" value=\"'+segment+'_'+item
 				+'\" /><label for=\"'+segment+'_'+item
@@ -205,7 +205,7 @@ function setupItem() {
 				if (extra_length.indexOf(item) >= 0) {
 					seg_fea+=appendFeature(segment+'_'+item, "Length", features[segment][item+'-length']);
 				}
-				seg_fea+='</ul></li>';
+				seg_fea+='</ul></div></li>';
 			}
 			
 			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
