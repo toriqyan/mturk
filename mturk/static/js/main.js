@@ -99,11 +99,11 @@ var references = {
 };
 var inst = 
 {
-	"occasion":"Please tag which occasion(s) this outfit is appropriate for: Work, Casual Weekend, Date night/Dining out, or formal special occasions like weddings.  You can select all that applies.",
-	"style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Dramatic, Feminine, Punk Rock. Select all that applies.",
-	"season":"Please tag which season(s) this outfit is good for: Spring, Summer, Fall, Winter.",
-	"ethnicity":"Please specify the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian, Other",
-	"body-shape":"Please tag the model’s body size: Slim, Full, Plus.",
+	"occasion":"Please tag which occasion(s) this outfit is appropriate for: Work, Special Occasion, Weekend Casual, or Date night/Dining out. Select all that applies.",
+	"style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Dramatic, Feminine, Punk Rock or Other. Select all that applies.",
+	"season":"Please tag which season(s) this outfit is good for: Spring, Summer, Fall or Winter. Select all that applies.",
+	"ethnicity":"Please tag the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian or Other.",
+	"body-shape":"Please tag the model’s body size: Slim, Full or Plus.",
 };
 var tag_exp = 
 {
@@ -236,13 +236,13 @@ function appendFeature(item, feature, options) {
 	for (var i = 0; i < options.length; i++) {
 		var id = item+'_'+feature+'_'+options[i];
 		if (radios.indexOf(feature)>0) {
-			res+='<input type=\"radio\" id=\"'+id+'\" value=\"'+id
+			res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-			+'</label>';
+			+'</label></div>';
 		} else {
-			res+='<input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
+			res+='<div style="display:inline-block;"><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-			+'</label>';
+			+'</label></div>';
 		}
 	}
 	res+='</form></li>';
