@@ -12,7 +12,7 @@ h3 { font-size: 24px; margin: 30px 0 20px 0; }
 h4 { font-size: 20px; margin: 30px 0 10px 0;}
 h5 { font-size: 18px; margin: 30px 0 5px 0;}
 h6 { font-size: 18px; margin: 10px 0 0 0;}
-p { font-size: 18px; line-height: 22px; margin: 0 0 15px 0; }
+p { font-size: 20px; line-height: 25px; margin: 0 0 15px 0; }
 a { text-decoration: none; color: #0b8bbb; }
 a:hover { color: #eee; }
 .line { clear: both; border-bottom: 2px #eee solid; }
@@ -172,16 +172,6 @@ button {
 .css-treeview input + label + ul
 {
    margin: 0 0 0 22px;
-}
-
-/*.css-treeview input[type="text"]
-{
-   margin-left: 10px;
-   width: 20px;
-}*/
-
-.css-treeview input + label + ul
-{
    display: none;
 }
 
@@ -198,7 +188,6 @@ button {
 .css-treeview input:checked:not(:disabled) + label + ul
 {
    display: block;
-   /*border: 1px red solid; */
 }
 
 .css-treeview label
