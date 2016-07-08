@@ -1,4 +1,4 @@
-var step = 6;
+var step = -1;
 var tagNum = 0;
 var result = [];
 var str_result = "";
@@ -305,6 +305,13 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == -1) {
+			if($('#workerId').val() == "") {
+				alert("Please accept the HIT before proceeding!");
+				return;
+			}
+			str_result+=("workerId: "+$('#workerId').val()+"\n");
+			str_result+=("assignmentId: "+$('#assignmentId').val()+"\n");
+			str_result+=("hitId: "+$('#hitId').val()+"\n");
 			str_result+=images+"";
 			$('#description').hide();
 			$('#rejection').show();
