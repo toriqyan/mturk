@@ -15,7 +15,7 @@ var global_feature = {
 	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid/Checks","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Don't-know/Other"],
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
-var extra_length = ["Jacket","Coat","Cardigan","Dress"];
+var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
 var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
@@ -26,7 +26,7 @@ var features={
 			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
 			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Don't-know/Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"],
+		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"],
 		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll", "Don't-know/Other"]
 	},
 	"Bottom":{
@@ -35,7 +35,7 @@ var features={
 		"Pants-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
 		"Jeans-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
 		"Skirts-style": ["Pleated","Pencil","Low-high","A-line","Maxi","Mini","Bubble", "Don't-know/Other"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"]
+		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"]
 	},
 	"Outer-Wear":{
 		"category":["Suit-Jacket","Vest","Cape","Blazer","Jacket","Coat","Sweaters","Cardigan"],
