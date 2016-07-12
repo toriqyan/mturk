@@ -19,22 +19,22 @@ var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
 var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
-		"category":["Dress","Romper","Jumper","Blouse","Buttoned-Shirt","T-Shirt","Suit-Jacket","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
+		"category":["Dress","Jumpsuit","Blouse","Buttoned-Shirt","T-Shirt","Suit-Jacket","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
 			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
-			"Neckline": ["Strap","Strapless","V-neck","Crew-neck","Boat-neck","U-neck","Cow-neck","Turtle-neck","One-shoulder","Asymmetric","Don't-know/Other"]
+			"Neckline": ["Round","Strapless","V-neck","Crew","Boat","Halter","Cowl","Turtleneck","Mock-turtle","Pussy-bow","Off-the-shoulder","Scoop","Spaghetti","Square","Grecian","Asymmetric","Don't-know/Other"]
 		},
 		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"],
-		"Dress-style":["Swing","Body-conscious","Maxi","Shirt","Low-high","Baby-Doll", "Don't-know/Other"]
+		"Dress-style":["Ball-Gown","A-line","Sheath","Tent","Empire","Strapless","Halter-dress","One-shoulder","Qi-Pao","Bodycon","Maxi","Shift","Shirt-dress","Low-high","Baby-Doll", "Don't-know/Other"]
 	},
 	"Bottom":{
 		"category": ["Jeans","Pants","Suit-Pant","Suit-Skirt","Leggings/Tights","Skirts","Capris","Shorts"],
 		"feature": {},
-		"Pants-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
-		"Jeans-style": ["Skinny","Straight","Flare","Relaxed","Wild-leg", "Don't-know/Other"],
-		"Skirts-style": ["Pleated","Pencil","Low-high","A-line","Maxi","Mini","Bubble", "Don't-know/Other"],
+		"Pants-style": ["Skinny","Straight","Flare","Boot-cut","Wild-leg", "Don't-know/Other"],
+		"Jeans-style": ["Skinny","Straight","Flare","Boot-cut","Wild-leg", "Don't-know/Other"],
+		"Skirts-style": ["Straight","Pleat","Pencil","Wrap","A-line","Prairie","Slit","Layered","Round","Flounce" ,"Don't-know/Other"],
 		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"]
 	},
 	"Outer-Wear":{
@@ -48,7 +48,7 @@ var features={
 		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Full-body","Ankle-length"]
 	},
 	"Shoes":{
-		"category":["Mules","Platforms","Slippers","Boots","Booties","Clogs","Flats","Pumps","Sandals","Sneakers","Loafers","Wedges"],
+		"category":["Mules","Ballerina","Platforms","Flip-flop","Ankle-boots","Western-boots","Boots","Clogs","Flats","Pumps","Sandals","Sneakers","Wedges"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
 			"Color": ["White","Black","Red","Aqua","Nude","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
@@ -59,6 +59,17 @@ var features={
 	}
 };
 var segments = ["Top", "Bottom", "Outer-Wear", "Shoes", "Handbag"];
+var seg_ref = {
+	// "Top": "https://s-media-cache-ak0.pinimg.com/564x/99/55/56/9955561e0a8b9d806d03d4978c482442.jpg",
+	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
+	"Bottom_Pants_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
+	// "Outer-Wear": "https://s-media-cache-ak0.pinimg.com/564x/e2/2e/fa/e22efa4d1e6205bb6d46531d782c6ff0.jpg",
+	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/49/e1/fb/49e1fbecaeaa30371a4bceaff9f1a086.jpg",
+	"Handbag": "https://s-media-cache-ak0.pinimg.com/564x/e6/7d/95/e67d95597fb3ed62a80ea93aaef3dae2.jpg",
+	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
+	"Top_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
+	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
+};
 var references = {
 	"occasion":{
 		"Work":["https://s-media-cache-ak0.pinimg.com/564x/08/aa/9b/08aa9b5f175459550a3770fa748a884b.jpg",
@@ -165,17 +176,59 @@ function setupSegment() {
 	+images+'\">';
 }
 
+function showImage(segment) {
+	var id = '#'+segment+'_ref';
+	var left = $('#'+segment+' a').position().left+20;
+	var top = $('#'+segment+' a').position().top-parseInt($(id).css("height").replace("px",""));
+	$(id).css({
+		'left': left+'px',
+		'top': top+'px',
+		'position': 'absolute',
+		'display': 'block',
+	});
+}
+
+function hideImage(segment) {
+	var id = '#'+segment+'_ref';
+	$(id).css({
+		'position': 'absolute',
+		'display': 'none',
+	});
+}
+
+function changeImage(segment) {
+	var id = '#'+segment+'_ref';
+	if ($(id).css('display') == 'none') {
+		showImage(segment);
+	} else {
+		hideImage(segment);
+	}
+}
+
 function setupItem() {
 	var out = '';
 	
 	for (var segment in features) {
-		var seg_fea = '<div style="float: none;" id="'+ segment
-		+'"><p>If there\'s a '+segment
-		+' in the image, draw a box around the '+ segment
-		+', and then describe this item using the list we offer below. If you are not sure whether there\'s a '+segment
-		+' in the image, click Don\'t Know/Can\'t Tell. If there does not exist a '
-		+segment+ ' in the image, click Not Applicable.</p><legend style="float:none; display:block;">'
-		+segment+'</legend>';
+		var seg_fea= '';
+		if (segment in seg_ref) {
+			seg_fea += '<div style="float: none;" id="'+ segment
+			+'"><p>If there\'s a '+segment
+			+' in the image, draw a box around the '+ segment
+			+', and then describe this item using the list we offer below. If you are not sure whether there\'s a '+segment
+			+' in the image, click Don\'t Know/Can\'t Tell. If there does not exist a '
+			+segment+ ' in the image, click Not Applicable. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
+				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
+		} else {
+			seg_fea += '<div style="float: none;" id="'+ segment
+			+'"><p>If there\'s a '+segment
+			+' in the image, draw a box around the '+ segment
+			+', and then describe this item using the list we offer below. If you are not sure whether there\'s a '+segment
+			+' in the image, click Don\'t Know/Can\'t Tell. If there does not exist a '
+			+segment+ ' in the image, click Not Applicable. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+segment+'</legend>';
+		}
+		
 
 		if (segment != "Handbag") {
 			if (segment != "Top") {
@@ -240,9 +293,20 @@ function appendFeature(item, feature, options) {
 	if (typeof item_feature[item] == "undefined") {
 		item_feature[item] = [];
 	}
-	item_feature[item].push(item+'_'+feature); 
-	var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
+	item_feature[item].push(item+'_'+feature);
+	if (item+'_'+feature in seg_ref) {
+		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
+	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
+	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[item+'_'+feature]+'\"/>?</a></legend><form style="float:none; ">';
+	} else if (feature in seg_ref) {
+		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
+	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
+	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[feature]+'\"/>?</a></legend><form style="float:none; ">';
+	} else {
+		var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
 	+'</legend><form style="float:none; ">';
+	}
+	
 	for (var i = 0; i < options.length; i++) {
 		var id = item+'_'+feature+'_'+options[i];
 		if (radios.indexOf(feature)>=0) {
