@@ -54,6 +54,20 @@ a:hover { color: #eee; }
   float:left;
 }
 
+a {
+  display: inline-block;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: #fff;
+  line-height: 18px;
+  z-index: 9;
+  border-radius: 50%;
+  background-color: black;
+  margin-left: 5px;
+}
+
 fieldset {
   margin-top: 20px;
   width:300px;
@@ -236,6 +250,17 @@ button {
     z-index: 9;
     border-radius: 50%;
     background-color: black;
+}
+
+.queMark {
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  color: #fff;
+  line-height: 18px;
+  z-index: 9;
+  border-radius: 50%;
+  background-color: black;
 }
 
 #segment {
