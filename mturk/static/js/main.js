@@ -10,48 +10,48 @@ var inity=false;
 var boxNum = 0;
 var tags = ["occasion", "style", "season", "ethnicity", "body-shape"];
 var global_feature = {
-	"Color": ["White","Black","Red","Aqua","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Nude","Brown","Taupe","Yellow","Don't-know/Other"],
-	"Material": ["Cotton","Chiffon","Silk","Woolen","Denim","Leather","Lace","Satin","Sequin","Velvet","Don't-know/Other"],
-	"Pattern": ["Block","Solid","Graphics","Stripe-vertical","Plaid/Checks","Stripe-horizontal","Animal-Prints","Camouflage","Floral","Dots","Don't-know/Other"],
+	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
+	"Material": ["Cotton","Chiffon","Denim","Leather","Lace","Satin","Sequin","Silk","Woolen","Velvet","Don't-know/Other"],
+	"Pattern": ["Animal-Prints","Block","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Don't-know/Other"],
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
 var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
-		"category":["Dress","Jumpsuit","Blouse","Buttoned-Shirt","T-Shirt","Suit-Jacket","Tank-top","Sweaters","Sweat-Shirt","Tunic","Camisole","Polo-Shirt","Halter-top"],
+		"category":["Blouse","Buttoned-Shirt","Camisole","Dress","Halter-top","Jumpsuit","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
 			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
-			"Neckline": ["Round","Strapless","V-neck","Crew","Boat","Halter","Cowl","Turtleneck","Mock-turtle","Pussy-bow","Off-the-shoulder","Scoop","Spaghetti","Square","Grecian","Asymmetric","Don't-know/Other"]
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Don't-know/Other"]
 		},
 		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"],
-		"Dress-style":["Ball-Gown","A-line","Sheath","Tent","Empire","Strapless","Halter-dress","One-shoulder","Qi-Pao","Bodycon","Maxi","Shift","Shirt-dress","Low-high","Baby-Doll", "Don't-know/Other"]
+		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown","Don't-know/Other"]
 	},
 	"Bottom":{
-		"category": ["Jeans","Pants","Suit-Pant","Suit-Skirt","Leggings/Tights","Skirts","Capris","Shorts"],
+		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirts","Suit-Pant","Suit-Skirt"],
 		"feature": {},
-		"Pants-style": ["Skinny","Straight","Flare","Boot-cut","Wild-leg", "Don't-know/Other"],
-		"Jeans-style": ["Skinny","Straight","Flare","Boot-cut","Wild-leg", "Don't-know/Other"],
-		"Skirts-style": ["Straight","Pleat","Pencil","Wrap","A-line","Prairie","Slit","Layered","Round","Flounce" ,"Don't-know/Other"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"]
+		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
+		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
+		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Don't-know/Other"],
+		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"]
 	},
 	"Outer-Wear":{
-		"category":["Suit-Jacket","Vest","Cape","Blazer","Jacket","Coat","Sweaters","Cardigan"],
+		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"]
 		},
-		"Jacket-length":["Waist-length","Hip-length","Knee-length","Full-body","Ankle-length"],
-		"Coat-length":["Waist-length","Hip-length","Knee-length","Full-body","Ankle-length"],
-		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Full-body","Ankle-length"]
+		"Jacket-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
+		"Coat-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
+		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"]
 	},
 	"Shoes":{
-		"category":["Mules","Ballerina","Platforms","Flip-flop","Ankle-boots","Western-boots","Boots","Clogs","Flats","Pumps","Sandals","Sneakers","Wedges"],
+		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
-			"Color": ["White","Black","Red","Aqua","Nude","Blue","Green","Purple","Teal","Pink","Peach","Grey","Coral/Orange","Brown","Taupe","Yellow","Don't-know/Other"],
+			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
 		}
 	},
 	"Handbag":{
