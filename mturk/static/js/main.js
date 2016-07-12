@@ -65,7 +65,7 @@ var seg_ref = {
 	"Bottom_Pants_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
 	// "Outer-Wear": "https://s-media-cache-ak0.pinimg.com/564x/e2/2e/fa/e22efa4d1e6205bb6d46531d782c6ff0.jpg",
 	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/49/e1/fb/49e1fbecaeaa30371a4bceaff9f1a086.jpg",
-	"Handbag": "https://s-media-cache-ak0.pinimg.com/564x/e6/7d/95/e67d95597fb3ed62a80ea93aaef3dae2.jpg",
+	// "Handbag": "https://s-media-cache-ak0.pinimg.com/564x/e6/7d/95/e67d95597fb3ed62a80ea93aaef3dae2.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
 	"Top_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
 	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
