@@ -178,6 +178,7 @@ function reject() {
 	}
 	str_result += (" reject\n"+images);
 	window.scrollTo(0, 0);
+	location.reload();
 }
 
 function setupSegment() {

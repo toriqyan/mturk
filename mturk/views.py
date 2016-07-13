@@ -39,9 +39,10 @@ def index(request):
     #     pass
     
     db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-    i = -1
-    if (len(db_rows) > 0):
-        i = db_rows[len(db_rows)-1].image_index
+    # i = -1
+    # if (len(db_rows) > 0):
+    #     i = db_rows[len(db_rows)-1].image_index
+    i = len(db_rows)-1
     #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
     #     assignmentId = request.GET.get("assignmentId", ""),
     #     image_index=0)
