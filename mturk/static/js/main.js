@@ -382,6 +382,13 @@ function nextstep() {
 			// 	alert("Please accept the HIT before proceeding!");
 			// 	return;
 			// }
+			var ran = parseInt(document.getElementById("image_index").value);
+			if (isNaN(ran)) {
+			    ran = 0;
+			}
+			alert("image decision!");
+			console.log(ran);
+			var images=urls[ran];
 			str_result+=("workerId: "+$('#workerId').val()+"\n");
 			str_result+=("assignmentId: "+$('#assignmentId').val()+"\n");
 			str_result+=("hitId: "+$('#hitId').val()+"\n");
