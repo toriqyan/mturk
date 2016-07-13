@@ -141,7 +141,7 @@ $(document).ready(function() {
 });
 
 function setup() {
-	if (document.getElementById("image_index").value == null) {
+	if (document.getElementById("image_index") == null) {
 		ran = 0;
 	} else {
 		ran = parseInt(document.getElementById("image_index").value);
