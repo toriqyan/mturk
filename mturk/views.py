@@ -37,29 +37,31 @@ def index(request):
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
-    
-    db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-    # i = -1
-    # if (len(db_rows) > 0):
-    #     i = db_rows[len(db_rows)-1].image_index
-    i = len(db_rows)-1
-    #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-    #     assignmentId = request.GET.get("assignmentId", ""),
-    #     image_index=0)
-    # else :
-    #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-    #     assignmentId = request.GET.get("assignmentId", "")
-    #     image_index=0)
-    if (request.GET.get("imageIndex", "") == ''): 
-        print('nothing for imageIndex')
-        image_index = 0
+    if (worker_id != ""):
+        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
+        # i = -1
+        # if (len(db_rows) > 0):
+        #     i = db_rows[len(db_rows)-1].image_index
+        i = len(db_rows)-1
+        #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
+        #     assignmentId = request.GET.get("assignmentId", ""),
+        #     image_index=0)
+        # else :
+        #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
+        #     assignmentId = request.GET.get("assignmentId", "")
+        #     image_index=0)
+        if (request.GET.get("imageIndex", "") == ''): 
+            print('nothing for imageIndex')
+            image_index = 0
+        else:
+            image_index=int(request.GET.get("imageIndex", ""))
+        Task.objects.create(workerId = request.GET.get("workerId", ""), 
+            assignmentId = request.GET.get("assignmentId", ""),
+            image_index=image_index)
+        print(image_index)
+        print(worker_id)
     else:
-        image_index=int(request.GET.get("imageIndex", ""))
-    Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        assignmentId = request.GET.get("assignmentId", ""),
-        image_index=image_index)
-    print(image_index)
-    print(worker_id)
+        i = -1
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
