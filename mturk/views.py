@@ -11,7 +11,22 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("imageIndex"):
+    if (request.GET.get("reject")!=""):
+        Task.objects.create(workerId = request.GET.get("workerId", ""), 
+            assignmentId = request.GET.get("assignmentId", ""),
+            # result = request.GET.get("user-input", "")
+            image_index = int(request.GET.get("image_index", "")))
+        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
+        render_data = {
+            "worker_id": request.GET.get("workerId", ""),
+            "assignment_id": request.GET.get("assignmentId", ""),
+            "amazon_host": AMAZON_HOST,
+            "hit_id": request.GET.get("hitId", ""),
+            "image_index": str(len(db_rows)),
+            "reject": ""
+        }
+        print('database')
+    else: 
         if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
             # worker hasn't accepted the HIT (task) yet
             pass
@@ -60,21 +75,6 @@ def index(request):
             "image_index": str(i+1),
             "reject": ""
         }
-    else:
-        Task.objects.create(workerId = request.GET.get("workerId", ""), 
-            assignmentId = request.GET.get("assignmentId", ""), 
-            # result = request.GET.get("user-input", "")
-            image_index = 0)
-        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-        render_data = {
-            "worker_id": request.GET.get("workerId", ""),
-            "assignment_id": request.GET.get("assignmentId", ""),
-            "amazon_host": AMAZON_HOST,
-            "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(len(db_rows)),
-            "reject": ""
-        }
-        print('database')
 
     response = render_to_response("index.html", render_data)
     # without this header, your iFrame will not render in Amazon

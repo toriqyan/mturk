@@ -183,6 +183,7 @@ function reject() {
 	// }
 	
 	// window.scrollTo(0, 0);
+	document.getElementById("segment").value = "reject";
 	$('#database').submit();
 	location.reload();
 }
