@@ -44,6 +44,7 @@ def index(request):
     #     # you might want to guard against this case somehow
     #     pass
     print(request.GET.get("imageIndex", ""))
+    print(worker_id)
     db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
     i = -1
     if (len(db_rows) > 0):
