@@ -19,7 +19,7 @@ def index(request):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
             # result = request.GET.get("user-input", "")
-            image_index = 0)
+            )
         db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
         render_data = {
             "worker_id": request.GET.get("workerId", ""),
@@ -55,18 +55,12 @@ def index(request):
             #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
             #     assignmentId = request.GET.get("assignmentId", "")
             #     image_index=0)
-            if (request.GET.get("imageIndex", "") == ''): 
-                print('nothing for imageIndex')
-                image_index = 0
-            else:
-                image_index=int(request.GET.get("imageIndex", ""))
+            
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
             # if (len(assig) < 0):
             Task.objects.create(workerId = request.GET.get("workerId", ""), 
-                assignmentId = request.GET.get("assignmentId", ""),
-                image_index=image_index)
-            print(image_index)
+                assignmentId = request.GET.get("assignmentId", ""))
             print(worker_id)
         else:
             i = -1
