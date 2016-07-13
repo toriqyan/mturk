@@ -10080,5 +10080,6 @@ var len = urls.length;
 // document.getElementById("images").innerHTML = out;
 
 // var ran = Math.floor(Math.random() * len);
-var ran = parseInt(document.getElementById("image_index").value);
+var ran = 0;
+ran = parseInt(document.getElementById("image_index").value);
 var images=urls[ran];
