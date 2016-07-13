@@ -27,7 +27,6 @@ def index(request):
             "amazon_host": AMAZON_HOST,
             "hit_id": request.GET.get("hitId", ""),
             "image_index": str(len(db_rows)),
-            "reject": ""
         }
         print('database')
     else: 
