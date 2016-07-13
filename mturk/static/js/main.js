@@ -18,7 +18,7 @@ var global_feature = {
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
-var radios = ["Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
+var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
 		"category":["Blouse","Buttoned-Shirt","Camisole","Dress","Halter-top","Jumpsuit","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
@@ -29,7 +29,7 @@ var features={
 			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Don't-know/Other"]
 		},
 		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length","Don't-know/Other"],
-		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown","Don't-know/Other"]
+		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown/Evening-Dress","Don't-know/Other"]
 	},
 	"Bottom":{
 		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirts","Suit-Pant","Suit-Skirt"],
@@ -50,7 +50,7 @@ var features={
 		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"]
 	},
 	"Shoes":{
-		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots"],
+		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots","Oxford"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
 			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
