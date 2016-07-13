@@ -12,7 +12,7 @@ var tags = ["occasion", "style", "season", "ethnicity", "body-shape"];
 var global_feature = {
 	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
 	"Material": ["Cotton","Chiffon","Denim","Leather","Lace","Satin","Sequin","Silk","Woolen","Velvet","Don't-know/Other"],
-	"Pattern": ["Animal-Prints","Block","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Don't-know/Other"],
+	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Don't-know/Other"],
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
@@ -26,7 +26,7 @@ var features={
 			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
 			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Don't-know/Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-skirt", "Don't-know/Other"],
+		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"],
 		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown","Don't-know/Other"]
 	},
 	"Bottom":{
@@ -66,6 +66,7 @@ var seg_ref = {
 	// "Outer-Wear": "https://s-media-cache-ak0.pinimg.com/564x/e2/2e/fa/e22efa4d1e6205bb6d46531d782c6ff0.jpg",
 	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/49/e1/fb/49e1fbecaeaa30371a4bceaff9f1a086.jpg",
 	// "Handbag": "https://s-media-cache-ak0.pinimg.com/564x/e6/7d/95/e67d95597fb3ed62a80ea93aaef3dae2.jpg",
+	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
 	"Top_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
 	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
@@ -210,7 +211,13 @@ function setupItem() {
 	
 	for (var segment in features) {
 		var seg_fea= '';
-		if (segment in seg_ref) {
+		if (segment == 'Top') {
+			seg_fea += '<div style="float: none;" id="'+ segment
+			+'"><p>If there is a Top in the image, draw a box around the Top, and then describe the item using the list we offer below.  Sometimes an outfit has a Top AND an Outer-wear (jacket, coat or a sweater), select the Top in this step for now, you can select the Outer-wear later. If you are not sure whether there\'s a '+segment
+			+' in the image, click Don\'t Know/Can\'t Tell. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+segment+'</legend>';
+		}
+		else if (segment in seg_ref) {
 			seg_fea += '<div style="float: none;" id="'+ segment
 			+'"><p>If there\'s a '+segment
 			+' in the image, draw a box around the '+ segment
