@@ -484,9 +484,9 @@ function clearBox() {
 		$('.gen_box_' + boxNum).remove();
 		boxNum -= 1;
 	}
-	$('#items input:checked').each(function(){
-		$(this).prop('checked', false);
-	});
+	// $('#items input:checked').each(function(){
+	// 	$(this).prop('checked', false);
+	// });
 }
 
 function boundingBox() {
