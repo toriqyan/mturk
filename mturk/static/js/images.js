@@ -10080,10 +10080,3 @@ var len = urls.length;
 // document.getElementById("images").innerHTML = out;
 
 // var ran = Math.floor(Math.random() * len);
-var ran = parseInt(document.getElementById("image_index").value);
-if (isNaN(ran)) {
-    ran = 0;
-}
-alert("image decision!");
-console.log(ran);
-var images=urls[ran];
