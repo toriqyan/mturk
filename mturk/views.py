@@ -44,7 +44,7 @@ def index(request):
         "assignment_id": request.GET.get("assignmentId", ""),
         "amazon_host": AMAZON_HOST,
         "hit_id": request.GET.get("hitId", ""),
-        "image_index": str(len(db_rows))
+        "image_index": str(len(db_rows)-1)
     }
 
     response = render_to_response("index.html", render_data)
