@@ -13,6 +13,7 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 def index(request):
     print(request.GET.get("reject",""))
     print(request.GET.get("imageIndex",""))
+    print(request.GET.get("user-input",""))
     if (request.GET.get("reject","")!=""):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
@@ -61,10 +62,10 @@ def index(request):
                 image_index=int(request.GET.get("imageIndex", ""))
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
-            if (len(assig) < 0):
-                Task.objects.create(workerId = request.GET.get("workerId", ""), 
-                    assignmentId = request.GET.get("assignmentId", ""),
-                    image_index=image_index)
+            # if (len(assig) < 0):
+            Task.objects.create(workerId = request.GET.get("workerId", ""), 
+                assignmentId = request.GET.get("assignmentId", ""),
+                image_index=image_index)
             print(image_index)
             print(worker_id)
         else:
