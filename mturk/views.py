@@ -38,7 +38,7 @@ def index(request):
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
-
+    db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
