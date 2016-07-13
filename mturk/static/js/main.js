@@ -26,7 +26,7 @@ var features={
 			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
 			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Don't-know/Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"],
+		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length","Don't-know/Other"],
 		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown","Don't-know/Other"]
 	},
 	"Bottom":{
@@ -35,7 +35,7 @@ var features={
 		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
 		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
 		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Don't-know/Other"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Don't-know/Other"]
+		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length", "Don't-know/Other"]
 	},
 	"Outer-Wear":{
 		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
@@ -60,7 +60,7 @@ var features={
 };
 var segments = ["Top", "Bottom", "Outer-Wear", "Shoes", "Handbag"];
 var seg_ref = {
-	// "Top": "https://s-media-cache-ak0.pinimg.com/564x/99/55/56/9955561e0a8b9d806d03d4978c482442.jpg",
+	"Top": "https://s-media-cache-ak0.pinimg.com/564x/6e/5c/e1/6e5ce1af24fcc1cf4f0722ea3164e38b.jpg",
 	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
 	"Bottom_Pants_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
 	// "Outer-Wear": "https://s-media-cache-ak0.pinimg.com/564x/e2/2e/fa/e22efa4d1e6205bb6d46531d782c6ff0.jpg",
