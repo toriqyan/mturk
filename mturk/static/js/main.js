@@ -141,11 +141,7 @@ $(document).ready(function() {
 });
 
 function setup() {
-	if (document.getElementById("imageIndex") == null) {
-		ran = 0;
-	} else {
-		ran = parseInt(document.getElementById("imageIndex").value);
-	}
+	ran = parseInt(document.getElementById("imageIndex").value);
 	
 	if (isNaN(ran)) {
 	    ran = 0;
