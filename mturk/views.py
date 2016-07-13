@@ -22,7 +22,8 @@ def index(request):
             "assignment_id": request.GET.get("assignmentId", ""),
             "amazon_host": AMAZON_HOST,
             "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(len(db_rows))
+            "image_index": str(len(db_rows)),
+            "reject": ""
         }
         print('database')
     else: 
@@ -71,7 +72,8 @@ def index(request):
             "assignment_id": request.GET.get("assignmentId", ""),
             "amazon_host": AMAZON_HOST,
             "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(i+1)
+            "image_index": str(i+1),
+            "reject": ""
         }
 
     response = render_to_response("index.html", render_data)

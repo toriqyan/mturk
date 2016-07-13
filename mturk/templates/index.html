@@ -26,13 +26,13 @@
       <input type="hidden" id="imageIndex" value="{{ image_index }}" name="imageIndex"/>
       <input type="submit">
   </form>
-  <form id="database" action="#" method="POST" style="display:none;">
+  <form id="database" action="#" method="GET" style="display:none;">
       <textarea type = "hidden" rows="4" cols="50" name="user-input" id="result2"></textarea>
       <input type="hidden" id="user-input2" name="user-input"/>
       <input type="hidden" id="assignmentId" value="{{ assignment_id }}" name="assignmentId"/>
       <input type="hidden" id="workerId" value="{{ worker_id }}" name="workerId"/>
       <input type="hidden" id="hitId" value="{{ hit_id }}" name="hitId"/>
-      <input type="hidden" id="reject" value="{{ image_index }}" name="reject"/>
+      <input type="hidden" id="reject" value="{{ reject }}" name="reject"/>
       <input type="submit">
    </form>
    <div id="wrap">
