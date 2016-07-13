@@ -14,6 +14,7 @@ def index(request):
     print(request.GET.get("reject",""))
     print(request.GET.get("imageIndex",""))
     print(request.GET.get("user-input",""))
+    print(request)
     if (request.GET.get("reject")):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
