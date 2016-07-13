@@ -39,7 +39,7 @@ def index(request):
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
-    print(request.GET.get("imageIndex", "")))
+    print(request.GET.get("imageIndex", ""))
     db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
     i = -1
     if (len(db_rows) > 0):
