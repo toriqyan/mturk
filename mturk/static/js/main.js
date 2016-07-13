@@ -146,7 +146,7 @@ function setup() {
 	}
 	alert("image decision!");
 	console.log(ran);
-	var images=urls[ran];
+	images=urls[ran];
 	setupTag();
 	setupItem();
 	setupSegment();
