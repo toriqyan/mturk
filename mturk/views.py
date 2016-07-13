@@ -33,9 +33,13 @@ def index(request):
         pass
 
     worker_id = request.GET.get("workerId", "")
+    if (request.GET.get("imageIndex", "") == ''): 
+        image_index = 0
+    else:
+        image_index=int(request.GET.get("imageIndex", ""))
     Task.objects.create(workerId = request.GET.get("workerId", ""), 
         assignmentId = request.GET.get("assignmentId", ""),
-        image_index=int(request.GET.get("imageIndex", "")))
+        image_index=image_index)
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
