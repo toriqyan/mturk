@@ -1,4 +1,5 @@
 var step = -1;
+var images = "";
 var tagNum = 0;
 var result = [];
 var str_result = "";
