@@ -1,4 +1,4 @@
-var step = -1;
+var step = 0;
 var images = "";
 var ran = 0;
 var tagNum = 0;
@@ -158,7 +158,7 @@ function setup() {
 	$('#items').hide();
 	$('.segment').hide();
 	$('#task').hide();
-	$('#rejection').hide();
+	// $('#rejection').hide();
 	$('#description').show();
 }
 
@@ -167,6 +167,11 @@ function setupReject() {
 }
 
 function reject() {
+	if($('#workerId').val() == "") {
+		alert("Please accept the HIT before proceeding!");
+		return;
+	}
+	str_result += (images+" reject\n");
 	ran += 1;
 	images=urls[ran];
 	document.getElementById("target").src = images;
@@ -176,8 +181,8 @@ function reject() {
 			$(this).children('img').attr('src', images);
 		});
 	}
-	str_result += (" reject\n"+images);
-	window.scrollTo(0, 0);
+	
+	// window.scrollTo(0, 0);
 	location.reload();
 }
 
@@ -386,7 +391,7 @@ function setupTag() {
 
 function nextstep() {
 	$('#next').click(function() {
-		if (step == -1) {
+		if (step == 0) {
 			if($('#workerId').val() == "") {
 				alert("Please accept the HIT before proceeding!");
 				return;
@@ -397,8 +402,6 @@ function nextstep() {
 			str_result+=("hitId: "+$('#hitId').val()+"\n");
 			str_result+=images+"";
 			$('#description').hide();
-			$('#rejection').show();
-		} else if (step == 0) {
 			$('#rejection').hide();
 			$('#task').show();
 			$('#next').hide();
