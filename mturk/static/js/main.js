@@ -152,6 +152,7 @@ function setup() {
 	$('#task').hide();
 	$('#rejection').hide();
 	$('#description').show();
+	console.log(document.getElementById("image_index").value);
 }
 
 function setupReject() {
