@@ -141,10 +141,10 @@ $(document).ready(function() {
 });
 
 function setup() {
-	if (document.getElementById("image_index") == null) {
+	if (document.getElementById("imageIndex") == null) {
 		ran = 0;
 	} else {
-		ran = parseInt(document.getElementById("image_index").value);
+		ran = parseInt(document.getElementById("imageIndex").value);
 	}
 	
 	if (isNaN(ran)) {
@@ -407,7 +407,7 @@ function nextstep() {
 			$('#task').show();
 			$('#next').hide();
 			$('#tag1').show();
-			document.getElementById('image_index') = ran;
+			document.getElementById('imageIndex') = ran;
 			var i = 2;
 			for (i = 2; i <= tags.length; i++) {
 				$('#tag'+i).hide();
