@@ -1,5 +1,6 @@
 var step = -1;
 var images = "";
+var ran = 0;
 var tagNum = 0;
 var result = [];
 var str_result = "";
@@ -140,7 +141,7 @@ $(document).ready(function() {
 });
 
 function setup() {
-	var ran = parseInt(document.getElementById("image_index").value);
+	ran = parseInt(document.getElementById("image_index").value);
 	if (isNaN(ran)) {
 	    ran = 0;
 	}
@@ -166,7 +167,7 @@ function setupReject() {
 }
 
 function reject() {
-	ran = Math.floor(Math.random() * len);
+	ran += 1;
 	images=urls[ran];
 	document.getElementById("target").src = images;
 	document.getElementById("Canvas").src = images;
@@ -401,6 +402,7 @@ function nextstep() {
 			$('#task').show();
 			$('#next').hide();
 			$('#tag1').show();
+			document.getElementById('image_index') = ran;
 			var i = 2;
 			for (i = 2; i <= tags.length; i++) {
 				$('#tag'+i).hide();

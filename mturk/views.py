@@ -34,17 +34,21 @@ def index(request):
 
     worker_id = request.GET.get("workerId", "")
     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        assignmentId = request.GET.get("assignmentId", ""))
+        assignmentId = request.GET.get("assignmentId", ""),
+        image_index=request.GET.get("assignmentId", ""))
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
     db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
+    i = -1
+    if (len(db_rows) > 0):
+        i = db_rows[len(db_rows)-1].image_index
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
         "amazon_host": AMAZON_HOST,
         "hit_id": request.GET.get("hitId", ""),
-        "image_index": str(len(db_rows)-1)
+        "image_index": i+1
     }
 
     response = render_to_response("index.html", render_data)
