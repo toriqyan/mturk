@@ -49,8 +49,8 @@ def index(request):
         image_index=0)
     else :
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        assignmentId = request.GET.get("assignmentId", ""),
-        image_index=int(request.GET.get("imageIndex", "")))
+        assignmentId = request.GET.get("assignmentId", ""))
+        # image_index=int(request.GET.get("imageIndex", "")))
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
