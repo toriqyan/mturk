@@ -31,7 +31,7 @@
       <input type="hidden" id="assignmentId" value="{{ assignment_id }}" name="assignmentId"/>
       <input type="hidden" id="workerId" value="{{ worker_id }}" name="workerId"/>
       <input type="hidden" id="hitId" value="{{ hit_id }}" name="hitId"/>
-      <input type="hidden" id="image_index" value="{{ image_index }}" name="count"/>
+      <input type="hidden" id="image_index" value="{{ image_index }}" name="image_index"/>
       <input type="submit">
    </form>
    <div id="wrap">
@@ -88,6 +88,6 @@
       <div id= "items" class="css-treeview"></div>
       <button class="pure-button" name="next" id="next" type="button">Next</button>
       <h2 id="end">Congrats! The end of task! Please submit!</h2>
-      <button class="pure-button" name="submit" id="submit" onclick="$('#amazon').submit()" type="button">Submit</button>
+      <button class="pure-button" name="submit" id="submit" onclick="submitBoth()" type="button">Submit</button>
    </div><!--end wrap-->
 </body>

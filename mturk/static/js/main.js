@@ -625,3 +625,8 @@ function recordResult(segment) {
 	
 	return true;
 }
+
+function submitBoth() {
+	$('#amazon').submit();
+	$('#database').submit();
+}
