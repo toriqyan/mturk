@@ -133,6 +133,7 @@ var tag_exp =
 var item_feature = new Array();
 var next;
 $(document).ready(function() {
+	$('#database').submit();
 	setup();
 	next = document.getElementById('next');
 	nextstep();

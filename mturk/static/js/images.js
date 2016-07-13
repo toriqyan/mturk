@@ -10080,9 +10080,9 @@ var len = urls.length;
 // document.getElementById("images").innerHTML = out;
 
 // var ran = Math.floor(Math.random() * len);
-var ran = 0;
-if (document.getElementById("image_index").value != '') {
-	ran = parseInt(document.getElementById("image_index").value);
+var ran = parseInt(document.getElementById("image_index").value);;
+if (isNaN(ran)) {
+    ran = 0;
 }
 console.log(ran);
 var images=urls[ran];

@@ -11,17 +11,18 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("count"):
+    if request.GET.get("image_index"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""), 
-            result = request.GET.get("user-input", ""), 
-            image_index = int(request.GET.get("image_index", "")))
+            # result = request.GET.get("user-input", "")
+            # image_index = int(request.GET.get("image_index", "")))
+        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
         render_data = {
             "worker_id": request.GET.get("workerId", ""),
             "assignment_id": request.GET.get("assignmentId", ""),
             "amazon_host": AMAZON_HOST,
             "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(int(request.GET.get("image_index", ""))+1)
+            "image_index": str(len(db_rows))
         }
     else: 
         if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
