@@ -407,7 +407,7 @@ function nextstep() {
 			$('#task').show();
 			$('#next').hide();
 			$('#tag1').show();
-			document.getElementById('imageIndex') = ran;
+			document.getElementById('imageIndex').value = ran;
 			var i = 2;
 			for (i = 2; i <= tags.length; i++) {
 				$('#tag'+i).hide();
