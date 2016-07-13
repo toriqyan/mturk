@@ -11,67 +11,67 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    # if request.GET.get("image_index"):
-    #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-    #         assignmentId = request.GET.get("assignmentId", "")) 
-    #         # result = request.GET.get("user-input", "")
-    #         # image_index = int(request.GET.get("image_index", "")))
-    #     db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-    #     render_data = {
-    #         "worker_id": request.GET.get("workerId", ""),
-    #         "assignment_id": request.GET.get("assignmentId", ""),
-    #         "amazon_host": AMAZON_HOST,
-    #         "hit_id": request.GET.get("hitId", ""),
-    #         "image_index": str(len(db_rows))
-    #     }
-    # else: 
-    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
-        # worker hasn't accepted the HIT (task) yet
-        pass
-    else:
-        # worked accepted the task
-        pass
-
-    worker_id = request.GET.get("workerId", "")
-    
-    # if worker_id in get_worker_ids_past_tasks():
-    #     # you might want to guard against this case somehow
-    #     pass
-    if (worker_id != ""):
-        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-        # i = -1
-        # if (len(db_rows) > 0):
-        #     i = db_rows[len(db_rows)-1].image_index
-        i = len(db_rows)-1
-        #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        #     assignmentId = request.GET.get("assignmentId", ""),
-        #     image_index=0)
-        # else :
-        #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        #     assignmentId = request.GET.get("assignmentId", "")
-        #     image_index=0)
-        if (request.GET.get("imageIndex", "") == ''): 
-            print('nothing for imageIndex')
-            image_index = 0
-        else:
-            image_index=int(request.GET.get("imageIndex", ""))
-        assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
-                                    assignmentId = request.GET.get("assignmentId", ""))
-        # if (len(assig) < 0):
+    if request.GET.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
-            assignmentId = request.GET.get("assignmentId", ""),
-            image_index=image_index)
-        print(image_index)
-        print(worker_id)
-    else:
-        i = -1
-    render_data = {
-        "worker_id": request.GET.get("workerId", ""),
-        "assignment_id": request.GET.get("assignmentId", ""),
-        "amazon_host": AMAZON_HOST,
-        "hit_id": request.GET.get("hitId", ""),
-        "image_index": str(i+1)
-    }
+            assignmentId = request.GET.get("assignmentId", ""),) 
+            # result = request.GET.get("user-input", "")
+            # image_index = int(request.GET.get("image_index", "")))
+        db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
+        render_data = {
+            "worker_id": request.GET.get("workerId", ""),
+            "assignment_id": request.GET.get("assignmentId", ""),
+            "amazon_host": AMAZON_HOST,
+            "hit_id": request.GET.get("hitId", ""),
+            "image_index": str(len(db_rows))
+        }
+    else: 
+        if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
+            # worker hasn't accepted the HIT (task) yet
+            pass
+        else:
+            # worked accepted the task
+            pass
+
+        worker_id = request.GET.get("workerId", "")
+        
+        # if worker_id in get_worker_ids_past_tasks():
+        #     # you might want to guard against this case somehow
+        #     pass
+        if (worker_id != ""):
+            db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
+            # i = -1
+            # if (len(db_rows) > 0):
+            #     i = db_rows[len(db_rows)-1].image_index
+            i = len(db_rows)-1
+            #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
+            #     assignmentId = request.GET.get("assignmentId", ""),
+            #     image_index=0)
+            # else :
+            #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
+            #     assignmentId = request.GET.get("assignmentId", "")
+            #     image_index=0)
+            if (request.GET.get("imageIndex", "") == ''): 
+                print('nothing for imageIndex')
+                image_index = 0
+            else:
+                image_index=int(request.GET.get("imageIndex", ""))
+            assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
+                                        assignmentId = request.GET.get("assignmentId", ""))
+            if (len(assig) < 0):
+                Task.objects.create(workerId = request.GET.get("workerId", ""), 
+                    assignmentId = request.GET.get("assignmentId", ""),
+                    image_index=image_index)
+            print(image_index)
+            print(worker_id)
+        else:
+            i = -1
+        render_data = {
+            "worker_id": request.GET.get("workerId", ""),
+            "assignment_id": request.GET.get("assignmentId", ""),
+            "amazon_host": AMAZON_HOST,
+            "hit_id": request.GET.get("hitId", ""),
+            "image_index": str(i+1)
+        }
 
     response = render_to_response("index.html", render_data)
     # without this header, your iFrame will not render in Amazon
