@@ -33,9 +33,9 @@ def index(request):
         pass
 
     worker_id = request.GET.get("workerId", "")
-    Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        assignmentId = request.GET.get("assignmentId", ""),
-        image_index=int(request.GET.get("imageIndex", "")))
+    # Task.objects.create(workerId = request.GET.get("workerId", ""), 
+    #     assignmentId = request.GET.get("assignmentId", ""),
+    #     image_index=int(request.GET.get("imageIndex", "")))
     # if worker_id in get_worker_ids_past_tasks():
     #     # you might want to guard against this case somehow
     #     pass
@@ -43,13 +43,13 @@ def index(request):
     i = -1
     if (len(db_rows) > 0):
         i = db_rows[len(db_rows)-1].image_index
-        # Task.objects.create(workerId = request.GET.get("workerId", ""), 
-        # assignmentId = request.GET.get("assignmentId", ""),
-        # image_index=0)
-    # else :
-    #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-    #     assignmentId = request.GET.get("assignmentId", ""),
-    #     image_index=request.GET.get("imageIndex", ""))
+        Task.objects.create(workerId = request.GET.get("workerId", ""), 
+        assignmentId = request.GET.get("assignmentId", ""),
+        image_index=0)
+    else :
+        Task.objects.create(workerId = request.GET.get("workerId", ""), 
+        assignmentId = request.GET.get("assignmentId", ""),
+        image_index=int(request.GET.get("imageIndex", "")))
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
