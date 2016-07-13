@@ -144,7 +144,6 @@ function setup() {
 	if (isNaN(ran)) {
 	    ran = 0;
 	}
-	alert("image decision!");
 	console.log(ran);
 	images=urls[ran];
 	setupTag();
@@ -386,10 +385,10 @@ function setupTag() {
 function nextstep() {
 	$('#next').click(function() {
 		if (step == -1) {
-			// if($('#workerId').val() == "") {
-			// 	alert("Please accept the HIT before proceeding!");
-			// 	return;
-			// }
+			if($('#workerId').val() == "") {
+				alert("Please accept the HIT before proceeding!");
+				return;
+			}
 			
 			str_result+=("workerId: "+$('#workerId').val()+"\n");
 			str_result+=("assignmentId: "+$('#assignmentId').val()+"\n");
