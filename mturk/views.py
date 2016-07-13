@@ -24,6 +24,7 @@ def index(request):
             "hit_id": request.GET.get("hitId", ""),
             "image_index": str(len(db_rows))
         }
+        print('database')
     else: 
         if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE":
             # worker hasn't accepted the HIT (task) yet
