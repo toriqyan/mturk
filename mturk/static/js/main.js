@@ -183,7 +183,8 @@ function reject() {
 	// }
 	
 	// window.scrollTo(0, 0);
-	location.reload();
+	$('#database').submit();
+	// location.reload();
 }
 
 function setupSegment() {
