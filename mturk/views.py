@@ -11,7 +11,7 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("reject"):
+    if request.POST.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),) 
             # result = request.GET.get("user-input", "")
