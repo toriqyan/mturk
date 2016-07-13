@@ -142,7 +142,6 @@ $(document).ready(function() {
 
 function setup() {
 	ran = parseInt(document.getElementById("imageIndex").value);
-	
 	if (isNaN(ran)) {
 	    ran = 0;
 	}

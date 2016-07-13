@@ -50,6 +50,7 @@ def index(request):
     #     assignmentId = request.GET.get("assignmentId", "")
     #     image_index=0)
     if (request.GET.get("imageIndex", "") == ''): 
+        print('nothing for imageIndex')
         image_index = 0
     else:
         image_index=int(request.GET.get("imageIndex", ""))
@@ -58,7 +59,6 @@ def index(request):
         image_index=image_index)
     print(image_index)
     print(worker_id)
-    
     render_data = {
         "worker_id": request.GET.get("workerId", ""),
         "assignment_id": request.GET.get("assignmentId", ""),
