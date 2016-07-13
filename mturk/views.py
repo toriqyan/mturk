@@ -57,10 +57,10 @@ def index(request):
             image_index=int(request.GET.get("imageIndex", ""))
         assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                     assignmentId = request.GET.get("assignmentId", ""))
-        if (len(assig) < 0):
-            Task.objects.create(workerId = request.GET.get("workerId", ""), 
-                assignmentId = request.GET.get("assignmentId", ""),
-                image_index=image_index)
+        # if (len(assig) < 0):
+        Task.objects.create(workerId = request.GET.get("workerId", ""), 
+            assignmentId = request.GET.get("assignmentId", ""),
+            image_index=image_index)
         print(image_index)
         print(worker_id)
     else:
