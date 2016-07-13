@@ -469,6 +469,7 @@ function nextstep() {
 			$('.segment').hide();
 			$('#end').show();
 			$('#submit').show();
+			$('#database').submit();
 			console.log(str_result);
 			document.getElementsByTagName('textarea')[0].value=str_result;
 			console.log(document.getElementsByTagName('textarea')[0].value);
@@ -627,6 +628,7 @@ function recordResult(segment) {
 }
 
 function submitBoth() {
-	$('#amazon').submit();
 	$('#database').submit();
+	$('#amazon').submit();
+
 }

@@ -43,7 +43,7 @@ def index(request):
             "hit_id": request.GET.get("hitId", ""),
         }
 
-        response = render_to_response("index.html", render_data)
-        # without this header, your iFrame will not render in Amazon
-        response['x-frame-options'] = 'this_can_be_anything'
-        return response
+    response = render_to_response("index.html", render_data)
+    # without this header, your iFrame will not render in Amazon
+    response['x-frame-options'] = 'this_can_be_anything'
+    return response
