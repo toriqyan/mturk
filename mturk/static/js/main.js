@@ -141,7 +141,12 @@ $(document).ready(function() {
 });
 
 function setup() {
-	ran = parseInt(document.getElementById("image_index").value);
+	if (document.getElementById("image_index").value == null) {
+		ran = 0;
+	} else {
+		ran = parseInt(document.getElementById("image_index").value);
+	}
+	
 	if (isNaN(ran)) {
 	    ran = 0;
 	}
