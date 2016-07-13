@@ -172,15 +172,15 @@ function reject() {
 		return;
 	}
 	str_result += (images+" reject\n");
-	ran += 1;
-	images=urls[ran];
-	document.getElementById("target").src = images;
-	document.getElementById("Canvas").src = images;
-	for (var i = 1; i <= tagNum; i++) {
-		$('#images'+i).each(function() {
-			$(this).children('img').attr('src', images);
-		});
-	}
+	// ran += 1;
+	// images=urls[ran];
+	// document.getElementById("target").src = images;
+	// document.getElementById("Canvas").src = images;
+	// for (var i = 1; i <= tagNum; i++) {
+	// 	$('#images'+i).each(function() {
+	// 		$(this).children('img').attr('src', images);
+	// 	});
+	// }
 	
 	// window.scrollTo(0, 0);
 	location.reload();
