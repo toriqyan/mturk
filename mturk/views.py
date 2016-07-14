@@ -12,8 +12,6 @@ AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 @csrf_exempt
 def index(request):
     print(request.GET.get("reject",""))
-    # print(request.GET.get("imageIndex",""))
-    # print(request.GET.get("user-input",""))
     print(request)
     if request.GET.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
@@ -38,23 +36,9 @@ def index(request):
             pass
 
         worker_id = request.GET.get("workerId", "")
-        
-        # if worker_id in get_worker_ids_past_tasks():
-        #     # you might want to guard against this case somehow
-        #     pass
         if (worker_id != ""):
             db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-            # i = -1
-            # if (len(db_rows) > 0):
-            #     i = db_rows[len(db_rows)-1].image_index
             i = len(db_rows)
-            #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-            #     assignmentId = request.GET.get("assignmentId", ""),
-            #     image_index=0)
-            # else :
-            #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
-            #     assignmentId = request.GET.get("assignmentId", "")
-            #     image_index=0)
             
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
