@@ -16,7 +16,7 @@ def index(request):
     if request.GET.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
-            result = "reject"
+            result = request.GET.get("reject","")
             )
         db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
         render_data = {
