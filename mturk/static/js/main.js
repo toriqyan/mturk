@@ -487,6 +487,7 @@ function nextstep() {
 			$('#submit').show();
 			console.log(str_result);
 			document.getElementsByTagName('textarea')[0].value=str_result;
+			document.getElementsByTagName('textarea')[1].value=str_result;
 			console.log(document.getElementsByTagName('textarea')[0].value);
 			// $("#amazon").submit();
 		}
