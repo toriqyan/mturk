@@ -42,10 +42,10 @@ def index(request):
             
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
-            # if (len(assig) < 0):
-            Task.objects.create(workerId = request.GET.get("workerId", ""), 
-                assignmentId = request.GET.get("assignmentId", ""))
-            print(worker_id)
+            if (len(assig) < 0):
+                Task.objects.create(workerId = request.GET.get("workerId", ""), 
+                    assignmentId = request.GET.get("assignmentId", ""))
+            # print(worker_id)
         else:
             i = 0
         render_data = {
