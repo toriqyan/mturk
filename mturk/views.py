@@ -42,7 +42,7 @@ def index(request):
             
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
-            if (len(assig) < 0):
+            if (len(assig) == 0):
                 Task.objects.create(workerId = request.GET.get("workerId", ""), 
                     assignmentId = request.GET.get("assignmentId", ""),
                     result = request.GET.get("user-input", ""))
