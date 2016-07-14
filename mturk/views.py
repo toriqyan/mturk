@@ -38,7 +38,6 @@ def index(request):
         worker_id = request.GET.get("workerId", "")
         if (worker_id != ""):
             db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
-            i = len(db_rows)
             
             assig = Task.objects.filter(workerId = request.GET.get("workerId", ""),
                                         assignmentId = request.GET.get("assignmentId", ""))
@@ -47,6 +46,7 @@ def index(request):
                     assignmentId = request.GET.get("assignmentId", ""),
                     result = request.GET.get("user-input", ""))
             # print(worker_id)
+            i = len(db_rows)
         else:
             i = 0
         render_data = {
