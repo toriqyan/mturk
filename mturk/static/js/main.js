@@ -231,7 +231,8 @@ function setupItem() {
 			seg_fea += '<div style="float: none;" id="'+ segment
 			+'"><p>If there is a Top in the image, draw a box around the Top, and then describe the item using the list we offer below.  Sometimes an outfit has a Top AND an Outer-wear (jacket, coat or a sweater), select the Top in this step for now, you can select the Outer-wear later. If you are not sure whether there\'s a '+segment
 			+' in the image, click Don\'t Know/Can\'t Tell. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
-			+segment+'</legend>';
+			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
+				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
 		}
 		else if (segment in seg_ref) {
 			seg_fea += '<div style="float: none;" id="'+ segment
