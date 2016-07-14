@@ -14,8 +14,8 @@ def index(request):
     print(request.GET.get("reject",""))
     # print(request.GET.get("imageIndex",""))
     # print(request.GET.get("user-input",""))
-    print(request.POST)
-    if (request.GET.get("reject")):
+    print(request)
+    if request.GET.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
             # result = request.GET.get("user-input", "")
@@ -47,7 +47,7 @@ def index(request):
             # i = -1
             # if (len(db_rows) > 0):
             #     i = db_rows[len(db_rows)-1].image_index
-            i = len(db_rows)-1
+            i = len(db_rows)
             #     Task.objects.create(workerId = request.GET.get("workerId", ""), 
             #     assignmentId = request.GET.get("assignmentId", ""),
             #     image_index=0)
@@ -63,13 +63,13 @@ def index(request):
                 assignmentId = request.GET.get("assignmentId", ""))
             print(worker_id)
         else:
-            i = -1
+            i = 0
         render_data = {
             "worker_id": request.GET.get("workerId", ""),
             "assignment_id": request.GET.get("assignmentId", ""),
             "amazon_host": AMAZON_HOST,
             "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(i+1),
+            "image_index": str(i),
         }
 
     response = render_to_response("index.html", render_data)

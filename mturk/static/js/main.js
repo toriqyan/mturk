@@ -185,7 +185,7 @@ function reject() {
 	// window.scrollTo(0, 0);
 	document.getElementById("reject").value = "reject";
 	$('#database').submit();
-	location.reload();
+	// location.reload();
 }
 
 function setupSegment() {
