@@ -130,7 +130,12 @@ var tag_exp =
     "Dramatic": "a theatric style, bold color, patterns and accessories",
     "Feminine": "a \"lady-like\" style, floral prints, full skirts, lace, bows and ruffles",
     "Punk-Rock": "a \"rock star\" style, leather, studs, and ripped jeans"
-}
+};
+var reject_set = {
+"http://cdn12.lbstatic.nu/files/looks/medium/2015/09/09/4662919_photo_1.jpg?1441805926":"Not in standing position",
+"http://cdn11.lbstatic.nu/files/looks/medium/2015/07/16/4580682_apricot_lookbook.jpg?1437066959":"Two figures in one picture",
+"https://s-media-cache-ak0.pinimg.com/564x/88/89/27/888927cbc00447967a9c0d21611ac7c3.jpg": "Cannot see the entire bottom",
+};
 var item_feature = new Array();
 var next;
 $(document).ready(function() {
@@ -162,6 +167,12 @@ function setup() {
 }
 
 function setupReject() {
+	var out = "<p>The following 3 images should be REJECTed: </p><ul>"
+	for (var reject_url in reject_set) {
+		out+='<li><legend >'+reject_set[reject_url]+'</legend><img src="'+reject_url+'"/></li>';
+	}
+	out+="</ul>";
+	document.getElementById("rej_ref").innerHTML = out;
 	document.getElementById("target").src = images;
 }
 

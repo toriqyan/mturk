@@ -58,6 +58,22 @@ a:hover { color: #eee; }
   float:left;
 }
 
+#rej_ref img {
+  height:200px;
+  display: inline-block;
+  vertical-align: center;
+}
+
+#rej_ref ul {
+   list-style-type: none;
+   display: inline-block;
+}
+#rej_ref li {
+   display: inline;
+   float:left;
+   margin-right: 20px;
+}
+
 a {
   display: inline-block;
   cursor: pointer;
