@@ -16,7 +16,8 @@ def index(request):
     if request.GET.get("reject"):
         Task.objects.create(workerId = request.GET.get("workerId", ""), 
             assignmentId = request.GET.get("assignmentId", ""),
-            result = request.GET.get("reject","")
+            result = request.GET.get("reject",""),
+            reject = "yes"
             )
         db_rows = Task.objects.filter(workerId = request.GET.get("workerId", ""))
         render_data = {
@@ -44,9 +45,11 @@ def index(request):
             if (len(assig) == 0):
                 Task.objects.create(workerId = request.GET.get("workerId", ""), 
                     assignmentId = request.GET.get("assignmentId", ""),
-                    result = request.GET.get("user-input", ""))
+                    result = request.GET.get("user-input", ""),
+                    reject = "no"
+                    )
             # print(worker_id)
-            i = len(db_rows)
+            i = len(db_rows)-1
         else:
             i = 0
         render_data = {
