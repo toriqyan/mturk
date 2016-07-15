@@ -167,9 +167,9 @@ function setup() {
 }
 
 function setupReject() {
-	var out = "<p>The following 3 images should be REJECTed: </p><ul>"
+	var out = "<p>The following 3 images should be REJECTed: </p><ul style=\"list-style-type:none; display:inline-block;\">"
 	for (var reject_url in reject_set) {
-		out+='<li><legend >'+reject_set[reject_url]+'</legend><img src="'+reject_url+'"/></li>';
+		out+='<li style="display: inline; float:left; margin-right: 20px;"><legend>'+reject_set[reject_url]+'</legend><img style="height:200px; display: inline-block; vertical-align: center;" src="'+reject_url+'"/></li>';
 	}
 	out+="</ul>";
 	document.getElementById("rej_ref").innerHTML = out;

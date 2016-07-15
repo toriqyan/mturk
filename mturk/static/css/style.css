@@ -45,6 +45,10 @@ a:hover { color: #eee; }
    display: none;
 }
 
+#database {
+   display: none;
+}
+
 #target {
   width:500px;
   display: block;
