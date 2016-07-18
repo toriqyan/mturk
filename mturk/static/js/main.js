@@ -149,6 +149,10 @@ function setup() {
 	if (isNaN(ran)) {
 	    ran = 0;
 	}
+	if (ran == -1) {
+		alert("You have done this task before so we are not gonna ask you to do it again. Please return the hit. Thank you!");
+		return;
+	}
 	console.log(ran);
 	images=urls[ran];
 	setupTag();
