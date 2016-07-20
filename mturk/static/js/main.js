@@ -1,19 +1,19 @@
 var test = true;
-var target = "occasion";
+var target = "Occasion";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
-var str_result = "";
-var tags = ["occasion", "style", "season", "ethnicity", "body-shape"];
+var str_result = target;
+var tags = ["Occasion", "Style", "Season", "Ethnicity", "Body-shape"];
 var references = {
-	"occasion":{
+	"Occasion":{
 		"Professional-Work":[], 
 		"Night-Out":[],
 	    "Casual-Outing":[],
 	    "Special-Occasions": []
 	}, 
-	"style":{
+	"Style":{
 		"Classic":["https://s-media-cache-ak0.pinimg.com/564x/dc/97/c9/dc97c90e37192f14b7a29ecdde08c269.jpg",
 				   "https://s-media-cache-ak0.pinimg.com/564x/62/48/04/624804309174b5ac2f3793b208a2cfdb.jpg"], 
 		"Trendy":["https://s-media-cache-ak0.pinimg.com/564x/7d/80/9c/7d809cae57df2645963e7d4b93e93a85.jpg",
@@ -28,18 +28,18 @@ var references = {
 				"https://s-media-cache-ak0.pinimg.com/564x/fa/86/26/fa8626c0d15e88ef71bcdde9b8699fd8.jpg"],
 		"Don't-Know/Other":[]
 	}, 
-	"season":
+	"Season":
 		{"Spring":[], 
 		"Summer":[],
 		"Fall":[],
 		"Winter":[]},
-	"ethnicity":
+	"Ethnicity":
 		{"Caucasian":[],
 		"African American":[],
 		"Latino":[],
 		"Asian":[],
 		"Other":[]},
-	"body-shape":
+	"Body-shape":
 		{"Slim":["https://i2.wp.com/chicstreetstyle.me/wp-content/uploads/2016/06/IMG_0571.jpg?resize=683%2C1024"],
 		"Full":["http://i246.photobucket.com/albums/gg111/jadorecoutureblog/jadorecoutureblog005/jadore-couture-sleeveless-vest-dress.jpg~original"],
 		"Plus":["https://s-media-cache-ak0.pinimg.com/564x/bc/c6/96/bcc696467a3b588b8e8897ed0c483001.jpg"]}
