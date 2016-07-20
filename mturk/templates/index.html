@@ -17,8 +17,7 @@
 </head>
 <body>
    <form id="amazon" action="{{ amazon_host }}" method="POST">
-      <textarea rows="4" cols="50" name="user-input">
-      </textarea>
+      <input type="hidden" id="user-input" value="" name="user-input"/>
       <input type="hidden" id="assignmentId" value="{{ assignment_id }}" name="assignmentId"/>
       <br/>
       <input type="hidden" id="workerId" value="{{ worker_id }}" name="workerId"/>
