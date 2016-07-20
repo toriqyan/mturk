@@ -209,7 +209,7 @@ function nextstep() {
 		} else {
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
 				var result = i;
-				$('#images'+i+' input[name="'+target+'Answer"]:checked').each(function() {
+				$('#images'+i+' input:checked').each(function() {
 					var cur_tag = $(this).val();
 					result+=" "+cur_tag+"\n";
 				});
