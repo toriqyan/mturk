@@ -5,7 +5,8 @@ from django.db import models
 # Create your models here.
 
 class Task(models.Model):
-	assignmentId = models.CharField(max_length = 30)
-	result = models.CharField(max_length = 10000)
-	workerId = models.CharField(max_length = 30)
-	reject = models.CharField(max_length = 30)
+	occasion = models.IntegerField()
+	season = models.IntegerField()
+	style = models.IntegerField()
+	ethnicity = models.IntegerField()
+	body_shape = models.IntegerField()
