@@ -5,6 +5,7 @@ from django.db import models
 # Create your models here.
 
 class Task(models.Model):
+	none = models.IntegerField()
 	# occasion = models.IntegerField(default=0)
 	# season = models.IntegerField(default=0)
 	# style = models.IntegerField(default=0)
