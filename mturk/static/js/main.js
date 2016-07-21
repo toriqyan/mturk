@@ -1,5 +1,5 @@
 var test = true;
-var target = "Occasion";
+var target = "Season";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
@@ -117,15 +117,15 @@ function setupTag() {
 		for (var option in references[category]) {
 			// console.log(option);
 			// if (references[category][option].length != 0) {
-			if (!(option in tag_exp)) {
-				out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
-			} else {
+			if ((option in tag_exp)) {
+				// out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
+			// } else {
 				out+='<ul class=\"imagewrap\"><legend style="width:300px;">'+option+': '+tag_exp[option]+'</legend>';
 			}
 			
-			for (var reference in references[category][option]) {
-				out+='<li><img src=\"'+ references[category][option][reference] +'\"></li>';
-			}
+			// for (var reference in references[category][option]) {
+			// 	out+='<li><img src=\"'+ references[category][option][reference] +'\"></li>';
+			// }
 			out+='</ul>';
 			// }
 			// if (category == "ethnicity" ||category =="body-shape") {
