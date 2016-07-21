@@ -1,5 +1,5 @@
 var test = true;
-var target = "Season";
+var target = "Ethnicity";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
