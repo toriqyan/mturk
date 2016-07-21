@@ -4,7 +4,7 @@ var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
-var str_result = target;
+var str_result = target+'\n';
 var tags = ["Occasion", "Style", "Season", "Ethnicity", "Body-shape"];
 var references = {
 	"Occasion":{
