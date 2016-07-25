@@ -1,11 +1,11 @@
 var test = true;
-var target = "Occasion";
+var target = "Temperature";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
 var str_result = target+'\n';
-var tags = ["Occasion", "Style", "Season", "Ethnicity", "Body-shape"];
+var tags = ["Occasion", "Style", "Temperature", "Ethnicity", "Body-shape"];
 var references = {
 	"Occasion":{
 		"Professional-Work":[], 
@@ -28,11 +28,11 @@ var references = {
 				"https://s-media-cache-ak0.pinimg.com/564x/fa/86/26/fa8626c0d15e88ef71bcdde9b8699fd8.jpg"],
 		"Don't-Know/Other":[]
 	}, 
-	"Season":
-		{"Spring":[], 
-		"Summer":[],
-		"Fall":[],
-		"Winter":[]},
+	"Temperature":
+		{"70°s+":[], 
+		"60°s":[],
+		"50°s":[],
+		"40°s-":[]},
 	"Ethnicity":
 		{"Caucasian":[],
 		"African American":[],
@@ -48,7 +48,7 @@ var inst =
 {
 	"Occasion":"Please tag which occasion(s) this outfit is appropriate for: Work, Special Occasion, Weekend Casual, or Date night/Dining out. Select all that applies.",
 	"Style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Dramatic, Feminine, Punk Rock or Other. Select all that applies.",
-	"Season":"Please tag which season(s) this outfit is good for: Spring, Summer, Fall or Winter. Select all that applies.",
+	"Temperature":"Please tag which temperature this outfit is good for: 70°s+, 60°s, 50°s or 40°s-.",
 	"Ethnicity":"Please tag the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian or Other.",
 	"Body-shape":"Please tag the model’s body size: Slim, Full or Plus.",
 };
@@ -63,7 +63,11 @@ var tag_exp =
     "Casual-Outing": "outfit typically includes casual shoes like flats, sneakers, walking shoes.",
 	"Night-Out": "dressier outfits, shoes typically have heels.",
 	"Professional-Work": "outfits don’t show too much skin, suitable for work",
-	"Special-Occasions": "formal outfits for black tie, weddings, etc."
+	"Special-Occasions": "formal outfits for black tie, weddings, etc.",
+	"70°s+": "Hot summer days. Suitable clothing involves short sleeves, shorts, short skirts, sandals. Lots of skin exposure.",
+	"60°s": "Cooler spring/summer days. Suitable clothing involves medium/long sleeves, medium/long pants/skirts/dresses, maybe a thin layer of cardigan, sweatshirt and a scarf, open shoes. Some skin exposure.",
+	"50°s": "Chilly Fall weather. Arms and legs all covered up. Suitable clothing involves long sleeves, warm tops or thicker layer of jackets/sweaters, closed-toe shoes. No skin exposure.",
+	"40°s-": "Cold Winter days. Suitable clothing involves coats, scarfs, boots. No skin exposure."
 };
 var image_index;
 
