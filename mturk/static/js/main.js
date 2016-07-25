@@ -1,13 +1,15 @@
 var test = true;
-var PAGES = 2;
+var PAGES = 3;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
 var str_result = "";
 var tag_exp = 
 {
-	"One-piece": "May involve dress, jumper, romper etc.",
-	"Separate": "Involve a top and a bottom."
+	"One-piece": "Dresses or jumpsuits.",
+	"Separate": " Outfit with a top AND a bottom.  Examples include shirts + jeans, blouses + skirts.",
+	"Outerwear": "Outfit with an outer layer on top like jackets, coats, sweaters or vests.",
+	"Bags": "clutches, handbags or backpacks."
 };
 var image_index;
 
@@ -17,12 +19,19 @@ $(document).ready(function() {
 				"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
 				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
 				"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
+				"https://s-media-cache-ak0.pinimg.com/564x/cd/35/81/cd35817ba5f6cd0ccb68964603f26aa8.jpg",
+				"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329",
 				"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
 				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
+				"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
 				"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
 				"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
+				"http://cdn10.lbstatic.nu/files/looks/large/2016/01/31/4822713_pazhalabirodriguez-fashion-blog-skinny-jeans-snake-boots-01.jpg?1454262093",
 				"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
-				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"]
+				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368",
+				"https://s-media-cache-ak0.pinimg.com/564x/b8/1a/bb/b81abba60aa58de8a8992a7af967609d.jpg",
+
+				]
 	}
 	setup();
 	
@@ -31,7 +40,7 @@ $(document).ready(function() {
 });
 
 var radio = ["One-piece", "Separate"];
-var checkbox = ["Outerwear","Handbag"];
+var checkbox = ["Outerwear","Bags"];
 
 function setup() {
 	image_index = parseInt(document.getElementById("imageIndex").value);
@@ -101,6 +110,7 @@ function nextstep() {
 			$('#task').show();
 			$('#page0').show();
 			$('#page1').hide();
+			$('#page2').hide();
 		} else if(step < PAGES) {
 			var out = "";
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
