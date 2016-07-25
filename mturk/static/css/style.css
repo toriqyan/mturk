@@ -142,7 +142,7 @@ button {
    display: inline;
    float:left;
    margin: 10px;
-   height: 450px;
+   /*height: 450px;*/
    /*padding-right: 100px;*/
 }
 
