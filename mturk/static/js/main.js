@@ -11,9 +11,10 @@ var global_feature = {
 	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
 var limits = {
-	"Neckline": ["Blouse", "T-Shirt", "Tunic", "Sweaters"],
-	"Hood": ["Blouse","Buttoned-Shirt","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","T-Shirt","Tunic"],
-	"Collar": ["Blouse","Buttoned-Shirt","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","T-Shirt","Tunic"]
+	"Neckline": ["Buttoned-Shirt","Camisole","Halter-top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
+	"Hood": ["Tank-top", "Camisole", "Halter-top"],
+	"Collar": ["Tank-top", "Camisole", "Halter-top"],
+	"Special-Material": ["Jeans"]
 }
 var features={
 	"Top":{
@@ -26,12 +27,12 @@ var features={
 		},
 	},
 	"Bottom":{
-		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirts","Suit-Pant","Suit-Skirt"],
+		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt"],
 		"feature": {},
 		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
 		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
-		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Other"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length", "Other"]
+		"Skirt-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Other"],
+		"Skirt-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length", "Other"]
 	},
 	"One-piece": {
 		"category": ["Dress","Jumpsuit"],
@@ -74,7 +75,7 @@ var seg_ref = {
 	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
 	"One-piece_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
-	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
+	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
 };
 var test_pic = {
 	"Top": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
@@ -116,8 +117,8 @@ var test_pic = {
 };
 var image_index;
 var item_feature = [];
-var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
-var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
+var extra_style = ["Dress", "Jeans", "Pants", "Skirt"];
+var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirt"];
 var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 
 $(document).ready(function() {
@@ -198,7 +199,7 @@ function setupItem() {
 					if (feature in limits) {
 						console.log(feature);
 						console.log(item);
-						if (limits[feature].indexOf(item) != -1) {
+						if (limits[feature].indexOf(item) == -1) {
 							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
 						}
 					} else {
