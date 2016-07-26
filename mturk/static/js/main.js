@@ -10,7 +10,11 @@ var global_feature = {
 	"Special-Material": ["Denim","Leather","Lace","Sequin","Velvet","N/A"],
 	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
-var neckline = ["Blouse", "T-Shirt", "Tunic", "Sweaters"]
+var limits = {
+	"Neckline": ["Blouse", "T-Shirt", "Tunic", "Sweaters"],
+	"Hood": ["Blouse","Buttoned-Shirt","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","T-Shirt","Tunic"],
+	"Collar": ["Blouse","Buttoned-Shirt","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","T-Shirt","Tunic"]
+}
 var features={
 	"Top":{
 		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
@@ -149,7 +153,6 @@ function setup() {
 function setupSegment() {
 	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'
 	+urls[image_index]+'\">';
-	$('#segment').css('top', $('#segment').position().top+'px');
 }
 
 function setupItem() {
@@ -192,10 +195,10 @@ function setupItem() {
 				}
 				for (var feature in features[segment]['feature']) {
 
-					if (feature == 'Neckline') {
+					if (feature in limits) {
 						console.log(feature);
 						console.log(item);
-						if (neckline.indexOf(item) != -1) {
+						if (limits[feature].indexOf(item) != -1) {
 							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
 						}
 					} else {
@@ -276,11 +279,17 @@ function appendFeature(item, feature, options) {
 
 function showImage(segment) {
 	var id = '#'+segment+'_ref';
+	var height = parseInt($(id).css("height").replace("px",""));
 	var left = $('#'+segment+' a').position().left+20;
-	var top = $('#'+segment+' a').position().top-parseInt($(id).css("height").replace("px",""));
+	var top = $('#'+segment+' a').position().top-height;
+	if (top < 0) {
+		// height = $('#'+segment+' a').position().top;
+		top = 0;
+	}
 	$(id).css({
 		'left': left+'px',
 		'top': top+'px',
+		// 'height': height+'px',
 		'position': 'absolute',
 		'display': 'block',
 	});

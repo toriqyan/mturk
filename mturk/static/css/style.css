@@ -276,18 +276,19 @@ button {
 }
 
 #segment {
-  width:300px;
+  width:35%;
   margin-right: 10px;
   display: inline-block;
 }
 
 #Canvas {
+  max-width: 100%;
   display: inline-block;
-  width:300px;
+  width:auto;
 }
 
 #items {
   display: inline-block;
-  width:550px;
+  width:60%;
   clear:both;
 }
