@@ -1,5 +1,5 @@
 var test = true;
-var target = "Bottom";
+var target = "One-piece";
 var PAGES = 5;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
@@ -93,8 +93,8 @@ var test_pic = {
 	"One-piece": ["https://s-media-cache-ak0.pinimg.com/564x/cd/35/81/cd35817ba5f6cd0ccb68964603f26aa8.jpg",
 				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368",
 				"https://s-media-cache-ak0.pinimg.com/564x/b8/1a/bb/b81abba60aa58de8a8992a7af967609d.jpg",
-				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg"
-				],
+				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
+				"http://images0.chictopia.com/photos/mowmigaba/6161671273/dark-brown-lakini-boots-white-the-great-beyond-dress_400.jpg"],
 	"Bags": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
 			"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
 			"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
