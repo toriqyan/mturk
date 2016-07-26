@@ -191,7 +191,14 @@ function setupItem() {
 				+'\" >'+item+'</label><ul>';
 				if(segment != "Shoes") {
 					for (var feature in global_feature) {
-						seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+						if (feature in limits) {
+							if (limits[feature].indexOf(item) == -1) {
+								seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+							}
+						} else {
+							seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+						}
+						
 					}
 				}
 				for (var feature in features[segment]['feature']) {
