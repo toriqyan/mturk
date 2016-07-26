@@ -6,29 +6,39 @@ var TOTAL = PAGES*ELENUM;
 var step = 0;
 var str_result = target+'\n';
 var global_feature = {
-	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
-	"Material": ["Cotton","Chiffon","Denim","Leather","Lace","Satin","Sequin","Silk","Woolen","Velvet","Don't-know/Other"],
-	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Don't-know/Other"],
+	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
+	"Special-Material": ["Denim","Leather","Lace","Sequin","Velvet","N/A"],
+	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
+var neckline = ["Blouse", "T-Shirt", "Tunic", "Sweaters"]
 var features={
 	"Top":{
-		"category":["Blouse","Buttoned-Shirt","Camisole","Dress","Halter-top","Jumpsuit","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
+		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
-			"Sleeve": ["None","Short","Medium","Long","Don't-know/Other"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Don't-know/Other"]
+			"Sleeve": ["None","Short","Medium","Long","Other"],
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length","Don't-know/Other"],
-		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown/Evening-Dress","Don't-know/Other"]
 	},
 	"Bottom":{
 		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirts","Suit-Pant","Suit-Skirt"],
 		"feature": {},
-		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
-		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Don't-know/Other"],
-		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Don't-know/Other"],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length", "Don't-know/Other"]
+		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
+		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
+		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Other"],
+		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length", "Other"]
+	},
+	"One-piece": {
+		"category": ["Dress","Jumpsuit"],
+		"feature":{
+			"Collar":["Yes", "No"], 
+			"Hood": ["Yes", "No"],
+			"Sleeve": ["None","Short","Medium","Long","Other"],
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
+		},
+		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length","Other"],
+		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown/Evening-Dress","Other"]
 	},
 	"Outerwear":{
 		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
@@ -44,7 +54,7 @@ var features={
 		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots","Oxford"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
-			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Don't-know/Other"],
+			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
 		}
 	},
 	"Bags":{
@@ -59,7 +69,7 @@ var seg_ref = {
 	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/0b/36/d0/0b36d0615f4bee87ee3054d816e38534.jpg",
 	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
-	"Top_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
+	"One-piece_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
 	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
 };
 var test_pic = {
@@ -111,8 +121,7 @@ $(document).ready(function() {
 		urls = test_pic[target];
 	}
 	setup();
-	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'
-	+urls[image_index]+'\">';
+	
 	
 	next = document.getElementById('next');
 	nextstep();
@@ -128,12 +137,19 @@ function setup() {
 		image_index = 0;
 	}
 	setupItem();
+	setupSegment();
 
 	$('#end').hide();
 	$('#submit').hide();
 	$('#items').hide();
 	$('#segment').hide();
 	$('#description').show();
+}
+
+function setupSegment() {
+	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'
+	+urls[image_index]+'\">';
+	$('#segment').css('top', $('#segment').position().top+'px');
 }
 
 function setupItem() {
@@ -150,9 +166,7 @@ function setupItem() {
 		} else {
 			seg_fea += '<div style="float: none;" id="'+ segment
 			+'"><p>Describe the '+ segment
-			+' in the image using the list we offer below. If you are not sure whether there\'s a '+segment
-			+' in the image, click Don\'t Know/Can\'t Tell. If there does not exist a '
-			+segment+ ' in the image, click Not Applicable. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+' in the image using the list we offer below. If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
 			+segment+'</legend>';
 		}
 		
@@ -177,7 +191,17 @@ function setupItem() {
 					}
 				}
 				for (var feature in features[segment]['feature']) {
-					seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+
+					if (feature == 'Neckline') {
+						console.log(feature);
+						console.log(item);
+						if (neckline.indexOf(item) != -1) {
+							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+						}
+					} else {
+						seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+					}
+					
 				}
 				if (extra_style.indexOf(item) >= 0) {
 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
@@ -292,8 +316,8 @@ function nextstep() {
 			str_result+=("hitId: "+$('#hitId').val()+"\n");
 			str_result+=image_index+' ';
 			$('#description').hide();
-			$('#items').show();
-			$('#segment').show();
+			$('#items').css('display', 'inline-block');
+			$('#segment').css('display', 'inline-block');
 			for (var segment in features) {
 				if (segment!= target) {
 					$('#'+segment).hide();
