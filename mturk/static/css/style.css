@@ -108,6 +108,10 @@ button {
    vertical-align: center;
 }
 
+#task li {
+
+}
+
 .imagewrap {
    /*top: 400px;
    left: 450px ;*/
@@ -142,8 +146,6 @@ button {
    display: inline;
    float:left;
    margin: 10px;
-   height: 430px;
-   /*padding-right: 100px;*/
 }
 
 
@@ -279,11 +281,11 @@ button {
 
 #segment {
   margin-bottom: 50px;
-  width:500px;
+  width:300px;
   display: inline-block;
 }
 
 #Canvas {
   display: inline-block;
-  width:500px;
+  width:300px;
 }
