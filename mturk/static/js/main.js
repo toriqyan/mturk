@@ -1,6 +1,6 @@
 var test = true;
-var target = "One-piece";
-var PAGES = 5;
+var target = "Bags";
+var PAGES = 10;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
@@ -114,7 +114,12 @@ var test_pic = {
 					"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
 					"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
 					"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"
-					]
+					],
+	"Shoes": ["http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
+			"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329",
+			"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
+			"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
+					"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg"]
 };
 var image_index;
 var item_feature = [];
@@ -126,7 +131,7 @@ var tag_instr = {
 	'Bottom':'Describe the bottom you see in the outfit.',
 	'One-piece': 'Describe the one piece (dress or jumpsuit) you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task. For dress length,<br> Very-short: mini-skirt length, way above the knee<br> Knee-length: Around or at knee-length<br> Midi: below the knee<br> Full-body: at ankle or floor length<br>',
 	'Outerwear':'Describe the outerwear you see in the outfit. The outfit will have an inner layer, but ignore that for this task. For garment length,<br> Cropped: very short, above or at waist<br> Normal: above or at hip length<br> Long: above or at thig/knee length<br> Very long: below the knee length<br>',
-	'Bags':'Describe the bag you see in the outfit. Sometimes a tote can be worn as a shoulder bag as well, label it as a tote if the model is holding the bag by hand.',
+	'Bags':'Describe the bag you see in the outfit. <br>Clutch: a bag with no handles, no straps.<br>Shoulder bag: a bag with long shoulder straps and no handles.<br>Tote: a bag with handles or really short straps, may or may not have shoulder straps.<br>',
 	'Shoes':'Describe the shoes you see in the outfit.'
 }
 $(document).ready(function() {
