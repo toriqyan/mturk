@@ -1,5 +1,5 @@
 var test = true;
-var target = "Dress";
+var target = "One-piece";
 var PAGES = 5;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
