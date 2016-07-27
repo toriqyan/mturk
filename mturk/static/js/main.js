@@ -1,5 +1,5 @@
 var test = true;
-var target = "Outerwear";
+var target = "Bags";
 var PAGES = 5;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
@@ -11,14 +11,14 @@ var global_feature = {
 	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
 var limits = {
-	"Neckline": ["Buttoned-Shirt","Camisole","Halter-top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
-	"Hood": ["Tank-top", "Camisole", "Halter-top"],
-	"Collar": ["Tank-top", "Camisole", "Halter-top"],
+	"Neckline": ["Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
+	"Hood": ["Tank-top", "Camisole", "Halter-Top"],
+	"Collar": ["Tank-top", "Camisole", "Halter-Top"],
 	"Special-Material": ["Jeans"]
 }
 var features={
 	"Top":{
-		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
+		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
@@ -63,7 +63,7 @@ var features={
 		}
 	},
 	"Bags":{
-		"Size":["Small", "Medium", "Large"]
+		"category":["Backpack", "Crossbody", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 	}
 };
 var seg_ref = {
@@ -75,7 +75,8 @@ var seg_ref = {
 	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
 	"One-piece_Dress_Style": "https://s-media-cache-ak0.pinimg.com/originals/5d/7d/67/5d7d6716244435ee4d17b7bce0398b86.png",
-	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
+	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg",
+	"Bags": "https://s-media-cache-ak0.pinimg.com/564x/d1/2e/d2/d12ed22e2f94e9fb67bbae88145e9dd2.jpg"
 };
 var test_pic = {
 	"Top": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
@@ -170,17 +171,17 @@ function setupItem() {
 		var seg_fea= '';
 		if (segment in seg_ref) {
 			seg_fea += '<div style="float: none;" id="'+ segment
-			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it. Another click on it would hide the reference picture.</p><legend style="float:none; display:block;">'
 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
 				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
 		} else {
 			seg_fea += '<div style="float: none;" id="'+ segment
-			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it.</p><legend style="float:none; display:block;">'
+			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it. Another click on it would hide the reference picture.</p><legend style="float:none; display:block;">'
 			+segment+'</legend>';
 		}
 		
 
-		if (segment != "Bags") {
+		// if (segment != "Bags") {
 			// if (segment != "Top") {
 			// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 			// 		+'\" id=\"'+segment+'_NA'
@@ -232,21 +233,21 @@ function setupItem() {
 			// 	+'\" id=\"'+segment+'_DK'
 			// 	+'\" value=\"DK\" /><label for=\"'+segment
 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		} else {
+		// } else {
 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 			// 	+'\" id=\"'+segment+'_NA'
 			// 	+'\" value=\"NA\" /><label for=\"'
 			// 	+segment+'_NA\" >Not Applicable</label></div>';
-			seg_fea+='<ul>';
-			seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
-			seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
-			seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
-			seg_fea+='</ul>';
+			// seg_fea+='<ul>';
+			// seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
+			// seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
+			// seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
+			// seg_fea+='</ul>';
 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 			// 	+'\" id=\"'+segment+'_DK'
 			// 	+'\" value=\"DK\" /><label for=\"'+segment
 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		}
+		// }
 		seg_fea+='</ul></div>';
 		out+=seg_fea;
 	}
@@ -375,7 +376,7 @@ function nextstep() {
 
 function recordResult(segment) {
 	var res = "";
-	if (target != 'Bags') {
+	// if (target != 'Bags') {
 		var item = $('input[name="'+segment+'"]:checked').val();
 		if (typeof item == 'undefined') {
 			alert('Please tag the item before proceed!');
@@ -399,21 +400,21 @@ function recordResult(segment) {
 		// 	alert("Please select Don't Know/Can't Tell if you are not sure about the item you marked!");
 		// 	return false;
 		// }
-	} else {
+	// } else {
 		// res+=(", ");
-		for (var i = 0; i < item_feature[segment].length; i++) {
-			var item_fea=item_feature[segment][i].replace(segment+'_', '')+":";
-			$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-				item_fea+=(' '+$(this).val().replace(item_feature[segment][i]+'_', ''));
-				console.log(item_fea);
-			});
-			if (item_fea=="") {
-				alert("Please tag "+item_feature[segment][i]+"!");
-				return false;
-			}
-			res+=item_fea;
-		}
-	}
+	// 	for (var i = 0; i < item_feature[segment].length; i++) {
+	// 		var item_fea=item_feature[segment][i].replace(segment+'_', '')+":";
+	// 		$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
+	// 			item_fea+=(' '+$(this).val().replace(item_feature[segment][i]+'_', ''));
+	// 			console.log(item_fea);
+	// 		});
+	// 		if (item_fea=="") {
+	// 			alert("Please tag "+item_feature[segment][i]+"!");
+	// 			return false;
+	// 		}
+	// 		res+=item_fea;
+	// 	}
+	// }
 	str_result+=res+"\n";
 	return true;
 }
