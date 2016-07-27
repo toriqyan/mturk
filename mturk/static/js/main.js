@@ -51,9 +51,9 @@ var features={
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"]
 		},
-		"Jacket-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
-		"Coat-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
-		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"]
+		"Jacket-length":["Waist-length","Hip-length","Knee-length","Ankle-length"],
+		"Coat-length":["Waist-length","Hip-length","Knee-length","Ankle-length"],
+		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Ankle-length"]
 	},
 	"Shoes":{
 		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots","Oxford"],
@@ -119,7 +119,7 @@ var image_index;
 var item_feature = [];
 var extra_style = ["Dress", "Jeans", "Pants", "Skirt"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirt"];
-var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
+var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length", "Garment-Length"];
 var tag_instr = {
 	'Top':'Describe the top you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task.',
 	'Bottom':'Describe the bottom you see in the outfit.',
@@ -223,7 +223,7 @@ function setupItem() {
 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
 				}
 				if (extra_length.indexOf(item) >= 0) {
-					seg_fea+=appendFeature(segment+'_'+item, "Length", features[segment][item+'-length']);
+					seg_fea+=appendFeature(segment+'_'+item, "Garment-Length", features[segment][item+'-length']);
 				}
 				seg_fea+='</ul></div></li>';
 			}
