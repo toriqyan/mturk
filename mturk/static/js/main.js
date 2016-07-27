@@ -14,7 +14,7 @@ var limits = {
 	"Neckline": ["Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
 	"Hood": ["Tank-top", "Camisole", "Halter-Top"],
 	"Collar": ["Tank-top", "Camisole", "Halter-Top"],
-	"Special-Material": ["Jeans","Backpack", "Crossbody", "Clutch", "Shoulder-Bag", "Tote", "Other"]
+	"Special-Material": ["Jeans","Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 }
 var features={
 	"Top":{
@@ -63,7 +63,7 @@ var features={
 		}
 	},
 	"Bags":{
-		"category":["Backpack", "Crossbody", "Clutch", "Shoulder-Bag", "Tote", "Other"]
+		"category":["Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 	}
 };
 var seg_ref = {
