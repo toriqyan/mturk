@@ -120,7 +120,7 @@ var image_index;
 var item_feature = [];
 var extra_style = ["Dress", "Jeans", "Pants", "Skirt"];
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirt"];
-var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length", "Garment-Length"];
+var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length", "Garment-Length", "Style"];
 var tag_instr = {
 	'Top':'Describe the top you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task.',
 	'Bottom':'Describe the bottom you see in the outfit.',
@@ -224,6 +224,7 @@ function setupItem() {
 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
 				}
 				if (extra_length.indexOf(item) >= 0) {
+
 					seg_fea+=appendFeature(segment+'_'+item, "Garment-Length", features[segment][item+'-length']);
 				}
 				seg_fea+='</ul></div></li>';
