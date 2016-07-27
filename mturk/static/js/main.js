@@ -1,6 +1,6 @@
 var test = true;
 var target = "Bags";
-var PAGES = 5;
+var PAGES = 10;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
@@ -76,7 +76,7 @@ var seg_ref = {
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
 	"One-piece_Dress_Style": "https://s-media-cache-ak0.pinimg.com/originals/5d/7d/67/5d7d6716244435ee4d17b7bce0398b86.png",
 	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg",
-	"Bags": "https://s-media-cache-ak0.pinimg.com/564x/d1/2e/d2/d12ed22e2f94e9fb67bbae88145e9dd2.jpg"
+	"Bags": "https://s-media-cache-ak0.pinimg.com/564x/89/c8/a9/89c8a98f16abb5ad621b9eabd5de8019.jpg"
 };
 var test_pic = {
 	"Top": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
@@ -126,7 +126,7 @@ var tag_instr = {
 	'Bottom':'Describe the bottom you see in the outfit.',
 	'One-piece': 'Describe the one piece (dress or jumpsuit) you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task.',
 	'Outerwear':'Describe the outerwear you see in the outfit. The outfit will have an inner layer, but ignore that for this task.',
-	'Bags':'Describe the bag you see in the outfit.',
+	'Bags':'Describe the bag you see in the outfit. Sometimes a tote can be worn as a shoulder bag as well, label it as a tote if the model is holding the bag by hand.',
 	'Shoes':'Describe the shoes you see in the outfit.'
 }
 $(document).ready(function() {
