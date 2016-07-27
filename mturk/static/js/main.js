@@ -23,7 +23,7 @@ var features={
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
 			"Sleeve": ["None","Short","Medium","Long","Other"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
 		},
 	},
 	"Bottom":{
@@ -40,7 +40,7 @@ var features={
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
 			"Sleeve": ["None","Short","Medium","Long","Other"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
 		},
 		"Dress-length":["Very-short", "Knee-length", "Midi", "Full-body"],
 		"Dress-style":["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"]
