@@ -6,6 +6,19 @@ var TOTAL = PAGES*ELENUM;
 var step = 0;
 var str_result = target+'\n';
 var tags = ["Occasion", "Style", "Temperature", "Ethnicity", "Body-shape"];
+var spam_c = ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
+				"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
+				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
+				"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
+				"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
+				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
+				"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
+				"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
+				"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
+				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"];
+var spam_i;
+var spam_img_i;
+var spam_p;
 var references = {
 	"Occasion":{
 		"Professional-Work":[], 
@@ -73,18 +86,15 @@ var image_index;
 
 $(document).ready(function() {
 	if (test) {
-		urls = ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-				"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
-				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-				"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-				"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
-				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
-				"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
-				"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
-				"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
-				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"]
+		urls = spam_c
 	}
+	spam_i = Math.floor((Math.random() * TOTAL));
+	spam_p = Math.floor(spam_i / ELENUM)+1;
+	spam_img_i = Math.floor((Math.random() * spam_c.length));
 	setup();
+	console.log(spam_p);
+	console.log(spam_i);
+	console.log(spam_img_i);
 	
 	next = document.getElementById('next');
 	nextstep();
@@ -157,6 +167,16 @@ function setupTag() {
 					temp_button = '<fieldset class="images'+image_index+'">' + temp_button;
 					out+= '<li><div class="images" id="images'+image_index+'"><img src=\"'+urls[image_index]+'\">'+temp_button+'</div></li>';
 					image_index++;
+					if (j*ELENUM+i == spam_i) {
+						var temp_button = button_sec;
+						var old = '';
+						while (old != temp_button) {
+							old = temp_button;
+							temp_button = temp_button.replace('<input name=\"'+category+'Answer\"', '<input name="spam_checker"');
+						}
+						temp_button = '<fieldset class="spam_checker">' + temp_button;
+						out+= '<li><div class="images" id="spam_checker"><img src=\"'+spam_c[spam_img_i]+'\">'+temp_button+'</div></li>';
+					}
 				}
 				// out+='<button style="float: right;" name="next" onclick="$(\'#next\').click()" type="button">Next</button></fieldset>';
 				out+='</ul>';
@@ -200,7 +220,19 @@ function nextstep() {
 					result+=i+" "+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images");
+					return;
+				}
+				out+=result;
+			}
+			if (spam_p==step) {
+				var result = "";
+				$('#spam_checker input:checked').each(function() {
+					var cur_tag = $(this).val();
+					result+="spam_c "+spam_img_i+" "+cur_tag+"\n";
+				});
+				if (result == "") {
+					alert("You have to select a tag for all images");
 					return;
 				}
 				out+=result;
@@ -211,6 +243,7 @@ function nextstep() {
 			$('#'+target+step).show();
 			$('#'+target+(step-1)).hide();
 		} else {
+			var out = ""
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
 				var result = "";
 				$('#images'+i+' input:checked').each(function() {
@@ -218,11 +251,24 @@ function nextstep() {
 					result+=i+" "+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images");
 					return;
 				}
-				str_result+=result;
+				out+=result;
 			}
+			if (spam_p==step) {
+				var result = "";
+				$('#spam_checker input:checked').each(function() {
+					var cur_tag = $(this).val();
+					result+="spam_c "+spam_img_i+" "+cur_tag+"\n";
+				});
+				if (result == "") {
+					alert("You have to select a tag for all images");
+					return;
+				}
+				out+=result;
+			}
+			str_result+=out;
 			window.scrollTo(0, 0);
 			$('#task').hide();
 			$('#next').hide();
@@ -231,6 +277,6 @@ function nextstep() {
 			document.getElementById('user-input').value = str_result;
 		} 
 		step++;
-		console.log(str_result);
+		// console.log(str_result);
 	});
 }
