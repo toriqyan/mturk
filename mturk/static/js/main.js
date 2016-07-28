@@ -92,11 +92,11 @@ $(document).ready(function() {
 
 function setup() {
 	image_index = parseInt(document.getElementById("imageIndex").value);
+	console.log(image_index);
 
-	if (isNaN(image_index)) {
+	if (isNaN(image_index) || test) {
 	    image_index = 0;
 	}
-	image_index = 0;
 	setupTag();
 
 	$('#end').hide();
