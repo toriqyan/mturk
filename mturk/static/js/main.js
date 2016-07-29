@@ -21,7 +21,7 @@ var spam_img_i;
 var spam_p;
 var references = {
 	"Occasion":{
-		"Professional-Work":[], 
+		"Work":[], 
 		"Night-Out":[],
 	    "Casual-Outing":[],
 	    "Special-Occasions": []
@@ -75,7 +75,7 @@ var tag_exp =
     "Punk-Rock": "A \"rock star\" style, leather, studs, and ripped jeans",
     "Casual-Outing": "outfit typically includes casual shoes like flats, sneakers, walking shoes.",
 	"Night-Out": "dressier outfits, shoes typically have heels.",
-	"Professional-Work": "outfits don’t show too much skin, suitable for work",
+	"Work": "outfits don’t show too much skin, suitable for work",
 	"Special-Occasions": "formal outfits for black tie, weddings, etc.",
 	"70°s+": "Hot summer days. Suitable clothing involves short sleeves, shorts, short skirts, sandals. Lots of skin exposure.",
 	"60°s": "Cooler spring/summer days. Suitable clothing involves medium/long sleeves, medium/long pants/skirts/dresses, maybe a thin layer of cardigan, sweatshirt and a scarf, open shoes. Some skin exposure.",
