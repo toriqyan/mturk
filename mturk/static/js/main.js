@@ -86,7 +86,7 @@ var image_index;
 
 $(document).ready(function() {
 	if (test) {
-		urls = spam_c
+		urls = spam_c;
 	}
 	spam_i = Math.floor((Math.random() * TOTAL));
 	spam_p = Math.floor(spam_i / ELENUM)+1;
