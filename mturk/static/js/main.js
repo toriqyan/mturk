@@ -178,7 +178,7 @@ function nextstep() {
 			var out=""
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
 				var result = "";
-				$('#images'+i+' input:checked').each(function() {
+				$('#images'+i+' input[type="radio"]:checked').each(function() {
 					var cur_tag = $(this).val();
 					result+=i+" "+cur_tag+"\n";
 				});
@@ -186,6 +186,10 @@ function nextstep() {
 					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
 					return;
 				}
+				$('#images'+i+' input[type="checkbox"]:checked').each(function() {
+					var cur_tag = $(this).val();
+					result+=i+" "+cur_tag+"\n";
+				});
 				out+=result;
 			}
 			if (spam_p==step) {
