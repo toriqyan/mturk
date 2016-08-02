@@ -143,7 +143,7 @@ function nextstep() {
 					result+=i+" "+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images";
 					return;
 				}
 				$('#images'+i+' input[type="checkbox"]:checked').each(function() {
@@ -159,7 +159,7 @@ function nextstep() {
 					result+="spam_c "+(spam_img_i)+' '+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images";
 					return;
 				}
 				$('#spam_checker input[type="checkbox"]:checked').each(function() {
@@ -183,7 +183,7 @@ function nextstep() {
 					result+=i+" "+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images";
 					return;
 				}
 				$('#images'+i+' input[type="checkbox"]:checked').each(function() {
@@ -199,7 +199,7 @@ function nextstep() {
 					result+="spam_c "+(spam_img_i)+' '+cur_tag+"\n";
 				});
 				if (result == "") {
-					alert("You have to select a tag for image" + (i-image_index+TOTAL-(step-1)*ELENUM+1));
+					alert("You have to select a tag for all images";
 					return;
 				}
 				$('#spam_checker input[type="checkbox"]:checked').each(function() {
