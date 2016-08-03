@@ -23,11 +23,13 @@ var spam_c =
 "https://s-media-cache-ak0.pinimg.com/564x/b8/1a/bb/b81abba60aa58de8a8992a7af967609d.jpg"
 ];
 var tag_exp = 
-{
+{	
+	"": "Select one option among One-piece Dress, Separate and N/A. Select all that apply among Outerwear, Bags, NO shoes, and Sitting position.",
 	"One-piece Dress": "Outfit with a one-piece dress",
-	"Separate": " Outfit with a top AND a bottom.  Examples include shirts + jeans, blouses + skirts.",
-	"Outerwear": "Outfit with an outer layer on top like jackets, coats, sweaters or vests.",
+	"Separate": " Outfit with a top AND a bottom. Examples include shirts + jeans, blouses + skirts.",
+	"Outerwear": "Outfit with an outer layer on top like jackets, coats, sweaters or vests. An outerwear does not have to be worn on top. ",
 	"Bags": "clutches, handbags or backpacks.",
+	"No Shoes": "No shoes in the photo",
 	"Sitting-position": "The model is not in standing position. "
 };
 var image_index;
@@ -35,7 +37,7 @@ var spam_i;
 var spam_p;
 var spam_img_i;
 var radio = ["One-piece_Dress", "Separate", "N/A"];
-var checkbox = ["Outerwear","Bags", "Shoes", "Sitting-position"];
+var checkbox = ["Outerwear","Bags", "NO_Shoes", "Sitting-position"];
 
 $(document).ready(function() {
 	if (test) {
@@ -70,8 +72,12 @@ function setupTask() {
 	var i = 0;
 	var out = "<div class=\"reference\">";
 	for (e in tag_exp) {
-		out+='<p>'
-		+e+': '+tag_exp[e]+'</p>';
+		if (e == "") {
+			out+='<p>'+tag_exp[e]+'</p>';
+		} else {
+			out+='<p>'
+			+e+': '+tag_exp[e]+'</p>';
+		}
 	}
 	out+="</div>";
 
@@ -90,7 +96,7 @@ function setupTask() {
 			for (e in checkbox) {
 				checkbox_button += '<label><input name=\"images'
 				+image_index+'\" type=\"checkbox\" value=\"'+checkbox[e]
-				+'\" />With '+checkbox[e]+'</label>';
+				+'\" />With '+checkbox[e].replace('_', ' ')+'</label>';
 			}
 			checkbox_button+='</div>';
 			out+= '<li><div class="images" id="images'+image_index+'"><img src=\"'+urls[image_index]+'\">'+radio_button+checkbox_button+'</div></li>';
