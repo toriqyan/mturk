@@ -3,7 +3,7 @@ var PAGES = 3;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
-var str_result = "Sort";
+var str_result = "Sort\n";
 
 var spam_c = 
 ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
