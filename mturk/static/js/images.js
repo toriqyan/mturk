@@ -84,7 +84,7 @@ urls=
 "http://images0.chictopia.com/photos/annabel/5411930464/5411930464_400.jpg",
 "http://images2.chictopia.com/photos/MEGHNAT/3291318700/blue-bag-mustard-accessories-blue-heels_400.jpg",
 "http://images2.chictopia.com/photos/poziomka/8231483903/local-store-dress-marypaz-heels_400.jpg",
-"http://images0.chictopia.com/photos/stylecroissant/9861841791/senso-boots-gap-sweater-urban-outfitters-skirt_400.jpg",
+"https://s-media-cache-ak0.pinimg.com/564x/5c/ee/6a/5cee6a1119a8791286e2730b1ca4a656.jpg",
 "http://cdn12.lbstatic.nu/files/looks/large/2015/10/18/4714623_IMG_5917.jpg?1445210519",
 "https://s-media-cache-ak0.pinimg.com/564x/58/33/0c/58330cd6c9c70c6740c0e673d49673b3.jpg",
 "http://cdn9.lbstatic.nu/files/looks/large/2015/06/30/4555648_Picture_1602.jpg?1435634464",
