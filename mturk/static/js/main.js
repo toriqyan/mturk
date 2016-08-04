@@ -60,7 +60,7 @@ var references = {
 var inst = 
 {
 	"Occasion":"Please tag which occasion(s) this outfit is appropriate for: Work, Special Occasion, Weekend Casual, or Date night/Dining out. Select all that applies.",
-	"Style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Bold/Striking, Feminine, Punk Rock or Other. Select all that applies.",
+	"Style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Bold/Striking, Feminine, Punk Rock or Other. Select at most 3 options that applies.",
 	"Temperature":"Please tag which temperature this outfit is good for: 70°s+, 60°s, 50°s or 40°s-.",
 	"Ethnicity":"Please tag the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian or Other.",
 	"Body-shape":"Please tag the model’s body size: Slim, Full or Plus.",
@@ -212,10 +212,16 @@ function nextstep() {
 			var out = "";
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
 				var result = "";
+				var c = 0;
 				$('#images'+i+' input:checked').each(function() {
 					var cur_tag = $(this).val();
 					result+=i+" "+cur_tag+" "+urls[i]+"\n";
+					c+=1;
 				});
+				if (c > 3) {
+					alert("Please select no more than 3 options for an image");
+					return;
+				}
 				if (result == "") {
 					alert("You have to select a tag for all images");
 					return;
@@ -243,10 +249,16 @@ function nextstep() {
 			var out = ""
 			for (var i = image_index-TOTAL+(step-1)*ELENUM; i < image_index-TOTAL+step*ELENUM; i++) {
 				var result = "";
+				var c =0;
 				$('#images'+i+' input:checked').each(function() {
 					var cur_tag = $(this).val();
 					result+=i+" "+cur_tag+" "+urls[i]+"\n";
+					c+=1;
 				});
+				if (c > 3) {
+					alert("Please select no more than 3 options for an image");
+					return;
+				}
 				if (result == "") {
 					alert("You have to select a tag for all images");
 					return;
