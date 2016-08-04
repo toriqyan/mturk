@@ -12,7 +12,7 @@ AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("hitId") =="":
+    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("hitId","") =="":
         render_data = {
             "worker_id": request.GET.get("workerId", ""),
             "assignment_id": request.GET.get("assignmentId", ""),
