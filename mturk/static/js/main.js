@@ -39,7 +39,7 @@ var references = {
 					"https://s-media-cache-ak0.pinimg.com/564x/9c/8b/8f/9c8b8ffa2441c1184eed2a3c9d33522a.jpg"], 
 		"Punk-Rock":["https://s-media-cache-ak0.pinimg.com/564x/ff/dc/09/ffdc099b20c4876a5a12722d6a0e5e4b.jpg",
 				"https://s-media-cache-ak0.pinimg.com/564x/fa/86/26/fa8626c0d15e88ef71bcdde9b8699fd8.jpg"],
-		"Don't-Know/Other":[]
+		"Other":[]
 	}, 
 	"Temperature":
 		{"70°s+":[], 
@@ -123,9 +123,6 @@ function setupTag() {
 		out+='<div class="tag" id="'+category
 			+'"><div class="reference"><p>'+ inst[category] 
 			+'</p>';
-		if (references[category].length >0) {
-			// out+='<h3>For reference: </h3>';
-		}
 		// var button_sec = '<fieldset class=\"'+category +'\">';
 		var button_sec = ''
 		for (var option in references[category]) {
