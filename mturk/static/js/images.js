@@ -8,7 +8,6 @@ urls=
 "http://images0.chictopia.com/photos/venkavision/10742370396/black-ankle-boots-river-island-boots-ruby-red-coat-black-crop-top-h-m-top_400.jpg",
 "https://s-media-cache-ak0.pinimg.com/564x/93/39/f7/9339f772983937711a57c7cd968f974e.jpg",
 "http://cdn12.lbstatic.nu/files/looks/large/2016/01/28/4819835_image.jpg?1453990904",
-"https://s-media-cache-ak0.pinimg.com/564x/b3/e6/1c/b3e61cbaea5fa645d003e610d22f2e4b.jpg",
 "http://images0.chictopia.com/photos/mochaccinoland/2445574616/coral-lace-h-m-dress-dark-brown-lids-hat-brown-alexa-mini-mulberry-bag_400.jpg",
 "http://cdn10.lbstatic.nu/files/looks/large/2015/07/04/4562501_DSC_1479.jpg?1436038014",
 "http://images0.chictopia.com/photos/ila23/6765147462/navy-acne-dress-navy-aldo-heels_400.jpg",
