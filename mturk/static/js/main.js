@@ -134,7 +134,7 @@ function setupTag() {
 			if ((option in tag_exp)) {
 				// out+='<ul class=\"imagewrap\"><legend>'+option+': </legend>';
 			// } else {
-				out+='<ul class=\"imagewrap\"><legend style="width:300px;">'+option+': '+tag_exp[option]+'</legend>';
+				out+='<ul class=\"imagewrap\"><legend>'+option+': '+tag_exp[option]+'</legend>';
 			}
 			
 			// for (var reference in references[category][option]) {

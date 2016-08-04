@@ -117,9 +117,10 @@ button {
    left: 450px ;*/
    /*border:2px solid #CCC;*/
    margin: 10px;
+   font-size:18px ;
    /*height: 200px;*/
    /*width: 300px;*/
-   padding: 20px;
+   /*padding: 20px;*/
    /*float: left;*/
    display: inline-block;
    /*overflow-y: auto;*/
