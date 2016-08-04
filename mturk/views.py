@@ -5,14 +5,14 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from mturk.models import Task
 from django.views.decorators.csrf import csrf_exempt
-NUM = 15
+NUM = 10
 
 # AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
 AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("hitId", "") =="":
+    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("assignmentId") =="":
         render_data = {
             "worker_id": request.GET.get("workerId", ""),
             "assignment_id": request.GET.get("assignmentId", ""),
