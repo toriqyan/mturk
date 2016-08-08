@@ -1,11 +1,11 @@
 var test = false;
-var target = "Style";
+var target = "Ethnicity";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
 var step = 0;
 var str_result = target+'\n';
-var tags = ["Occasion", "Style", "Temperature", "Ethnicity", "Body-shape"];
+var tags = ["Occasion", "Style", "Temperature", "Ethnicity", "Body-size"];
 var spam_c = ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
 				"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
 				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
@@ -52,7 +52,7 @@ var references = {
 		"Latino":[],
 		"Asian":[],
 		"Other":[]},
-	"Body-shape":
+	"Body-size":
 		{"Slim":["https://i2.wp.com/chicstreetstyle.me/wp-content/uploads/2016/06/IMG_0571.jpg?resize=683%2C1024"],
 		"Full":["http://i246.photobucket.com/albums/gg111/jadorecoutureblog/jadorecoutureblog005/jadore-couture-sleeveless-vest-dress.jpg~original"],
 		"Plus":["https://s-media-cache-ak0.pinimg.com/564x/bc/c6/96/bcc696467a3b588b8e8897ed0c483001.jpg"]}
@@ -63,7 +63,7 @@ var inst =
 	"Style":"Please tag which style(s) this outfit is: Classic, Trendy, Bohemian, Bold/Striking, Feminine, Punk Rock or Other. Select at most 3 options that applies.",
 	"Temperature":"Please tag which temperature this outfit is good for: 70°s+, 60°s, 50°s or 40°s-.",
 	"Ethnicity":"Please tag the ethnicity of the model in the picture: Caucasian, African American, Latino, Asian or Other.",
-	"Body-shape":"Please tag the model’s body size: Slim, Full or Plus.",
+	"Body-size":"Please tag the model’s body size: Slim, Full or Plus.",
 };
 var tag_exp = 
 {
@@ -83,6 +83,7 @@ var tag_exp =
 	"40°s-": "Cold Winter days. Suitable clothing involves coats, scarfs, boots. No skin exposure."
 };
 var image_index;
+var radio = ["Temperature", "Ethnicity", "Body-size"]
 
 $(document).ready(function() {
 	if (test) {
@@ -139,15 +140,16 @@ function setupTag() {
 			// }
 			out+='</ul>';
 			// }
-			// if (category == "ethnicity" ||category =="body-shape") {
-			button_sec+='<div class="checkbox"><label><input name=\"'
-				+category+'Answer\" type=\"checkbox\" value=\"'+option
-				+'\" />'+option+'</label></div>';
-			// } else {
-				// button_sec+='<div class="checkbox"><label><input name=\"'
-				// 	+category+'Answer\" type=\"checkbox\" value=\"'+option
-				// 	+'\" />'+option+'</label></div>';
-			// }
+			// console.log(category);
+			if (radio.indexOf(category) > -1) {
+				button_sec+='<div class="radio"><label><input name=\"'
+					+category+'Answer\" type=\"radio\" value=\"'+option
+					+'\" />'+option+'</label></div>';
+			} else {
+				button_sec+='<div class="checkbox"><label><input name=\"'
+					+category+'Answer\" type=\"checkbox\" value=\"'+option
+					+'\" />'+option+'</label></div>';
+			}
 		}
 		out+='</div>';
 		if (category == target) {
