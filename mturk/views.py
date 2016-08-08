@@ -6,8 +6,8 @@ from django.shortcuts import render_to_response
 from mturk.models import Task
 from django.views.decorators.csrf import csrf_exempt
 from boto.mturk.connection import MTurkConnection
-AWS_ACCESS_KEY_ID = 'AKIAJJ5WX43A4CZYUXPQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
 # HOST = 'mechanicalturk.amazonaws.com'
 HOST = 'mechanicalturk.sandbox.amazonaws.com'
 connection = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,
