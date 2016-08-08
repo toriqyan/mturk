@@ -108,6 +108,10 @@ function setup() {
 	if (isNaN(image_index) || test) {
 	    image_index = 0;
 	}
+	if (image_index == -1){
+		alert("You have been blocked due to failing the previous qualification. Please return the hit.");
+		return;
+	}
 	setupTag();
 
 	$('#end').hide();
