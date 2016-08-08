@@ -23,7 +23,7 @@ def index(request):
             "image_index": "0",
         }
     else:
-        if ((request.GET.get("workerId", "") in blocked): 
+        if (request.GET.get("workerId", "") in blocked): 
             render_data = {
                 "worker_id": request.GET.get("workerId", ""),
                 "assignment_id": request.GET.get("assignmentId", ""),
