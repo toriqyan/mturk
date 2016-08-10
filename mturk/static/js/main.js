@@ -1,5 +1,5 @@
 var test = false;
-var target = "Ethnicity";
+var target = "Body-size";
 var PAGES = 2;
 var ELENUM = 5;
 var TOTAL = PAGES*ELENUM;
@@ -7,15 +7,15 @@ var step = 0;
 var str_result = target+'\n';
 var tags = ["Occasion", "Style", "Temperature", "Ethnicity", "Body-size"];
 var spam_c = ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-				"http://images2.chictopia.com/photos/Chelseabird/7449059676/cream-ruche-dress-gold-kate-spade-bracelet-burnt-orange-kate-spade-bracelet_400.jpg",
-				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-				"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-				"http://cdn10.lbstatic.nu/files/looks/large/2016/05/20/4925741_2016-05-18_work-attire.jpg?1463756080",
-				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
-				"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
-				"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
-				"http://cdn10.lbstatic.nu/files/looks/large/2015/12/28/4787789_theulifestyle-blog-de-moda-look-outfit-invierno-christmas-day-look-style-streetstyle-kiabi-dress-blode-girl-madrid-french-bulldog-3.jpg?1451302939",
-				"http://images2.chictopia.com/photos/Cocobolinho/6649838590/tan-macys-boots-light-pink-maxi-chiffon-pull-bear-skirt-ivory-mango-t-shirt_400.jpg"];
+			"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
+			"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
+			"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
+			"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
+			"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
+			"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
+			"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
+			"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
+			"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"];
 var spam_i;
 var spam_img_i;
 var spam_p;
