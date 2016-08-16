@@ -1,5 +1,5 @@
 var test = false;
-var target = "Top";
+var target = "Bottom";
 var PAGES = 5;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
