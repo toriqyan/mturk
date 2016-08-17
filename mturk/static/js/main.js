@@ -1,5 +1,5 @@
 var test = false;
-var target = "Bottom";
+var target = "Outerwear";
 var PAGES = 5;
 var ELENUM = 1;
 var TOTAL = PAGES*ELENUM;
@@ -124,8 +124,6 @@ var spam_c = {
 					"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
 					"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
 					"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
-					"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
-					"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368"
 					],
 	"Shoes": ["http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
 			"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329",
