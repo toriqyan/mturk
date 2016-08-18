@@ -9,16 +9,17 @@ from boto.mturk.connection import MTurkConnection
 
 NUM = 5
 
-# AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
-AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
+AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
+# AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 
-# HOST = 'mechanicalturk.sandbox.amazonaws.com'
-HOST = 'mechanicalturk.amazonaws.com'
+HOST = 'mechanicalturk.sandbox.amazonaws.com'
 connection = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,
                              aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                              host=HOST)
+print(connection.get_account_balance())
+
 @csrf_exempt
 def index(request):
     if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("hitId","") =="":
