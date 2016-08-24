@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 @csrf_exempt
-print(request)
 def index(request):
     if (request.GET.get("response", "") != ""):
         return display(request)
