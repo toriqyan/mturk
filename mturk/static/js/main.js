@@ -69,6 +69,7 @@ function get_input () {
             callback(xmlHttp.responseText);
     }
     xmlHttp.open("GET", 'https://wix5uh8vve.execute-api.us-west-2.amazonaws.com/prod/clueless/get-profile-by-id', true); // true for asynchronous 
+    alert(xmlHttp);
     xmlHttp.send(test);
 
     // $.ajax({
