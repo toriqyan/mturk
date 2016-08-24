@@ -3,7 +3,6 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-from mturk.models import Task
 from django.views.decorators.csrf import csrf_exempt
 import json
 
