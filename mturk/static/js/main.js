@@ -68,7 +68,7 @@ function get_input () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", 'https://wix5uh8vve.execute-api.us-west-2.amazonaws.com/prod//clueless/get-profile-by-id', true); // true for asynchronous 
+    xmlHttp.open("GET", 'https://wix5uh8vve.execute-api.us-west-2.amazonaws.com/prod/clueless/get-profile-by-id', true); // true for asynchronous 
     xmlHttp.send(test);
 
     // $.ajax({
