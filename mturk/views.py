@@ -8,6 +8,7 @@ import json
 
 @csrf_exempt
 def index(request):
+    print(request.GET)
     if (request.GET.get("response", "") != ""):
         return display(request)
     print("index")
