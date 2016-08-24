@@ -1,464 +1,190 @@
-var test = false;
-var target = "Outerwear";
-var PAGES = 5;
-var ELENUM = 1;
-var TOTAL = PAGES*ELENUM;
-var step = 0;
-var spam_p;
-var spam_i;
-var str_result = target+'\n';
-var global_feature = {
+var cb = {
+	"occasion":["Work","Special-Occassion","Weekend-Casual","Date-Night"], 
+	"style":["Classic","Trendy","Bohemian","Dramatic","Feminine","Punk-Rock","Don't-Know/Other"],
+	"temperature":[40,50,60,70],
+	"ethnicity":["Caucasian","African American","Latino","Asian","Other"],
+	"body_size":["Slim","Full","Plus"],
+};
+
+var features = {
 	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
-	"Special-Material": ["Denim","Leather","Lace","Sequin","Velvet","N/A"],
 	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
-var limits = {
-	"Neckline": ["Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
-	"Hood": ["Tank-top", "Camisole", "Halter-Top"],
-	"Collar": ["Tank-top", "Camisole", "Halter-Top"],
-	"Special-Material": ["Jeans","Backpack", "Clutch", "Shoulder-Bag", "Tote"]
-}
-var features={
-	"Top":{
-		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
-		"feature":{
-			"Collar":["Yes", "No"], 
-			"Hood": ["Yes", "No"],
-			"Sleeve": ["None","Short","Medium","Long","Other"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
-		},
-	},
-	"Bottom":{
-		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt"],
-		"feature": {},
-		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
-		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
-		"Skirt-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Other"],
-		"Skirt-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Floor-length", "Other"]
-	},
-	"Dress": {
-		"category": ["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"],
-		"feature":{
-			"Collar":["Yes", "No"], 
-			"Hood": ["Yes", "No"],
-			"Sleeve": ["None","Short","Medium","Long","Other"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"],
-			"Length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Floor-length", "Other"]
-		},
-	},
-	// "One-piece": {
-	// 	"category": ["Dress","Jumpsuit"],
-	// 	"feature":{
-	// 		"Collar":["Yes", "No"], 
-	// 		"Hood": ["Yes", "No"],
-	// 		"Sleeve": ["None","Short","Medium","Long","Other"],
-	// 		"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
-	// 	},
-	// 	"Dress-length":["Very-short", "Knee-length", "Midi", "Full-body"],
-	// 	"Dress-style":["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"]
-	// },
-	"Outerwear":{
-		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
-		"feature":{
-			"Collar":["Yes", "No"], 
-			"Hood": ["Yes", "No"]
-		},
-		"Jacket-length":["Cropped","Normal","Long","Very-long"],
-		"Coat-length":["Cropped","Normal","Long","Very-long"],
-		"Cardigan-length":["Cropped","Normal","Long","Very-long"]
-	},
-	"Shoes":{
-		"category":["Pumps","Sandals(Open-toe)","Mules","Clogs","Flats","Loafers/Oxford","Sneakers","Ankle-boots","Boots"],
-		"feature":{
-			"Heel":["Flat", "Low", "High"],
-			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
-		}
-	},
-	"Bags":{
-		"category":["Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
-	}
+var txt={
+	"top":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
+	"bottom":["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt"],
+	"dress": ["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"],
+	"outerwear":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
 };
-var seg_ref = {
-	"Top": "https://s-media-cache-ak0.pinimg.com/564x/ad/44/c4/ad44c4b48a20222cdb7285c8e5ceedbc.jpg",
-	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
-	"Bottom_Pants_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
-	"Outerwear": "https://s-media-cache-ak0.pinimg.com/564x/f0/ef/d2/f0efd2ffd628861cd0f966a8e635ac65.jpg",
-	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/e0/84/26/e08426e924c421145a66bcc7fc9cdeed.jpg",
-	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
-	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
-	"Dress": "https://s-media-cache-ak0.pinimg.com/564x/02/3b/96/023b96f16a5d4ce5c91f2ce7c3d2daf7.jpg",
-	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg",
-	"Bags": "https://s-media-cache-ak0.pinimg.com/564x/89/c8/a9/89c8a98f16abb5ad621b9eabd5de8019.jpg"
-};
-var spam_c = {
-	"Top": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-			"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
-			"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-			"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-			"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329"
-			],
-	"Bottom": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-				"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
-				"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-				"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-				"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329"
-				],
-	"Dress": ["https://s-media-cache-ak0.pinimg.com/564x/cd/35/81/cd35817ba5f6cd0ccb68964603f26aa8.jpg",
-				"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368",
-				"https://s-media-cache-ak0.pinimg.com/564x/b8/1a/bb/b81abba60aa58de8a8992a7af967609d.jpg",
-				"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
-				"http://images0.chictopia.com/photos/mowmigaba/6161671273/dark-brown-lakini-boots-white-the-great-beyond-dress_400.jpg"],
-	"Bags": ["http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-			"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
-			"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-			"http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-			"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329",
-			"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
-			"http://cdn12.lbstatic.nu/files/looks/large/2016/01/18/4808615_feline.jpg?1453124230",
-			"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832",
-			"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368",
-			"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg"
-			],
-	"Outerwear": ["http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-					"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
-					"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
-					"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
-					"http://images0.chictopia.com/photos/Janeisha/11078936344/11078936344_400.jpg",
-					],
-	"Shoes": ["http://images0.chictopia.com/photos/OliviaL/3107109207/3107109207_400.jpg",
-			"http://cdn11.lbstatic.nu/files/looks/large/2015/10/29/4727970_IMG_8129.jpg?1446133329",
-			"http://cdn11.lbstatic.nu/files/looks/large/2015/12/11/4773122_Looks_oficina_(15).jpg?1449838359",
-			"http://images2.chictopia.com/photos/falling4u/1782302674/sky-blue-jeans-army-green-thrifted-jacket-black-striped-forever-21-t-shirt_400.jpg",
-			"http://images0.chictopia.com/photos/Myblondegal/9328375659/blue-korean-dress-beige-forever-21-jacket-beige-miss-nabi-bag_400.jpg",
-			"http://images0.chictopia.com/photos/jamour/7500394172/jeffrey-campbell-boots-printed-zara-scarf-black-tote-drew-melie-bianco-bag_400.jpg",
-			"http://images0.chictopia.com/photos/FrancescaPenko/9918850709/light-brown-wedge-forever-21-boots-white-cargo-skinny-currentelliott-jeans_400.jpg",
-			"http://images2.chictopia.com/photos/sonyasjukebox/2326232580/navy-pleated-forever-21-shirt-red-impo-heels-31-phillip-lim-sweatshirt_400.jpg",
-			"http://cdn11.lbstatic.nu/files/looks/large/2016/03/16/4866766_Leather_Stripes.jpg?1458160368",
-			"http://cdn9.lbstatic.nu/files/looks/large/2015/10/14/4709076_Asilio-Long-Grey-Coat-Boyfriend-Jeans-Proenza-Schouler-Ps11-5-copy.jpg?1444829832"
-			]
-};
-var image_index;
-var item_feature = [];
-var extra_style = ["Dress", "Jeans", "Pants", "Skirt"];
-var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirt"];
-var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length", "Garment-Length", "Style"];
-var tag_instr = {
-	'Top':'Describe the top you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task.',
-	'Bottom':'Describe the bottom you see in the outfit.',
-	'Dress': 'Describe the dress you see in the outfit. The outfit may have a sweater or jacket outer layer, but ignore that for this task. ',
-	'Outerwear':'Describe the outerwear you see in the outfit. The outfit will have an inner layer, but ignore that for this task. For garment length,<br> Cropped: very short, above or at waist<br> Normal: above or at hip length<br> Long: above or at thig/knee length<br> Very long: below the knee length<br>',
-	'Bags':'Describe the bag you see in the outfit. <br>Clutch: a bag with no handles, no straps.<br>Shoulder bag: a bag with long shoulder straps and no handles.<br>Tote: a bag with handles or really short straps, may or may not have shoulder straps.<br>',
-	'Shoes':'Describe the shoes you see in the outfit.'
-}
+// var frm;
+
 $(document).ready(function() {
-	if (test) {
-		urls = spam_c[target];
-	}
-	setup();
-	
-	next = document.getElementById('next');
-	nextstep();
+	setupItem();
+	setupTag();
 });
 
-function setup() {
-	image_index = parseInt(document.getElementById("imageIndex").value);
-
-	if (isNaN(image_index) || test) {
-	    image_index = 0;
+function get_input () {
+	alert("submit");
+	result = {
+		"occasion1": $('input[name=occasion]:checked').val().replace('-','_'),
+		"occasion2": $('input[name=occasion]:checked').val().replace('-','_'),
+		"style1": $('input[name=style]:checked').val().replace('-','_'),
+		"style2": $('input[name=style]:checked').val().replace('-','_'),
+		"style3": $('input[name=style]:checked').val().replace('-','_'),
+		"body_size": $('input[name=body_size]:checked').val().replace('-','_'),
+		"temperature": $('input[name=temperature]:checked').val().replace('-','_'),
+		"ethnicity": $('input[name=ethnicity]:checked').val().replace('-','_'),
+		"items":[]
+	};
+	for (var item in txt) {
+		// console.log($('#'+item+' input:checked').val())
+		if (typeof $('#'+item+' input:checked').val() !== 'undefined') {
+			result["items"].push({
+				"item_class": item,
+				"item_subclass": $('input[name='+item+'_item'+']:checked').val().split('_')[2].replace('-','_'), 
+				"color1": $('input[name='+item+'_Color'+']:checked').val().split('_')[2].replace('-','_'), 
+				"color2": $('input[name='+item+'_Color'+']:checked').val().split('_')[2].replace('-','_'),
+				"pattern1": $('input[name='+item+'_Pattern'+']:checked').val().split('_')[2].replace('-','_'),
+				"pattern2": $('input[name='+item+'_Pattern'+']:checked').val().split('_')[2].replace('-','_'),
+				"special_material1": "", 
+				"special_material2": "", 
+				"neckline": null, 
+				"collar": null, 
+				"hood": null, 
+				"style": null, 
+				"sleeve": null, 
+				"length": null, 
+			});
+		}
 	}
-	spam_p = Math.floor(Math.random() * TOTAL)+1;
-	console.log(spam_p);
-	PAGES+=1;
-	spam_i = Math.floor((Math.random() * spam_c[target].length));
-	console.log(spam_i);
-	setupItem();
-	setupSegment();
+	test = {
+		'key1':'val1',
+		'key2':'val2',
+		'key3':'val3'
+	}
+	console.log(result);
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", 'https://wix5uh8vve.execute-api.us-west-2.amazonaws.com/prod//clueless/get-profile-by-id', true); // true for asynchronous 
+    xmlHttp.send(test);
 
-	$('#end').hide();
-	$('#submit').hide();
-	$('#items').hide();
-	$('#segment').hide();
-	$('#description').show();
-}
-
-function setupSegment() {
-	document.getElementById("segment").innerHTML = '<img id=\"Canvas\" src=\"'
-	+urls[image_index]+'\">';
+    // $.ajax({
+    //     type: 'GET',
+    //     url: '[url to the wepAPI]',
+    //     contentType : 'application/json',
+    //     data: JSON.stringify(result),
+    //     success: function (data) {
+    //         if(data.errorMessage)
+    //             alert('' + data.errorMessage);
+    //         else      
+    //             alert('' + data);
+    //     },
+    //     error: function (data) {
+    //         alert('error:' + data.errorMessage );
+    //     }
+    // });
+    // ev.preventDefault();
 }
 
 function setupItem() {
 	var out = '';
 	
-	for (var segment in features) {
+	for (var segment in txt) {
 		var seg_fea= '';
-		if (segment in seg_ref) {
-			seg_fea += '<div style="float: none;" id="'+ segment
-			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it. Another click on it would hide the reference picture.</p><legend style="float:none; display:block;">'
-			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
-				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
-		} else {
-			seg_fea += '<div style="float: none;" id="'+ segment
-			+'"><p>'+tag_instr[segment]+' If you see ?, you can get some references by clicking on it. Another click on it would hide the reference picture.</p><legend style="float:none; display:block;">'
-			+segment+'</legend>';
-		}
-		
-
-		// if (segment != "Bags") {
-			// if (segment != "Top") {
-			// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 		+'\" id=\"'+segment+'_NA'
-			// 		+'\" value=\"NA\" /><label for=\"'
-			// 		+segment+'_NA\" >Not Applicable</label></div>';
-			// 	}
-			for (var i= 0; i < features[segment]['category'].length; i++) {
-				var item = features[segment]['category'][i];				
-				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-				+'\" id=\"'+segment+'_'+item
-				+'\" value=\"'+segment+'_'+item
-				+'\" /><label for=\"'+segment+'_'+item
-				+'\" >'+item+'</label><ul>';
-				if(segment != "Shoes") {
-					for (var feature in global_feature) {
-						if (feature in limits) {
-							if (limits[feature].indexOf(item) == -1) {
-								seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
-							}
-						} else {
-							seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
-						}
-						
-					}
-				}
-				for (var feature in features[segment]['feature']) {
-
-					if (feature in limits) {
-						if (limits[feature].indexOf(item) == -1) {
-							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
-						}
-					} else {
-						seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
-					}
-					
-				}
-				if (extra_style.indexOf(item) >= 0) {
-					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
-				}
-				if (extra_length.indexOf(item) >= 0) {
-
-					seg_fea+=appendFeature(segment+'_'+item, "Garment-Length", features[segment][item+'-length']);
-				}
-				seg_fea+='</ul></div></li>';
+		seg_fea += '<div style="float: none; margin: 10px; border: 1px red solid; " id="'+ segment
+			+'"><legend style="float:none; display:block;">'+segment+'</legend>';
+		// for (var i= 0; i < txt[segment].length; i++) {
+		// 	var item = txt[segment][i];				
+		// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+		// 	+'\" id=\"'+segment+'_'+item
+		// 	+'\" value=\"'+segment+'_'+item
+		// 	+'\" /><label for=\"'+segment+'_'+item
+		// 	+'\" >'+item+'</label><ul>';
+			for (var feature in features) {
+				seg_fea+=appendFeature(segment, feature, features[feature]);
 			}
-			
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_DK'
-			// 	+'\" value=\"DK\" /><label for=\"'+segment
-			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		// } else {
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_NA'
-			// 	+'\" value=\"NA\" /><label for=\"'
-			// 	+segment+'_NA\" >Not Applicable</label></div>';
-			// seg_fea+='<ul>';
-			// seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
-			// seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
-			// seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
-			// seg_fea+='</ul>';
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_DK'
-			// 	+'\" value=\"DK\" /><label for=\"'+segment
-			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
+			seg_fea+=appendFeature(segment, 'item', txt[segment]);
+		// 	seg_fea+='</ul></div>';
 		// }
-		seg_fea+='</ul></div>';
+
+		seg_fea+='</div>';
 		out+=seg_fea;
 	}
-	// out+='';
 	document.getElementById("items").innerHTML = out;
 }
 
 // item: string; feature: string; options: list
 // example: item: Top_Blouse, feature: Color, options: ["White", "Red",...]
 function appendFeature(item, feature, options) {
-	if (typeof item_feature[item] == "undefined") {
-		item_feature[item] = [];
-	}
-	item_feature[item].push(item+'_'+feature);
-	if (item+'_'+feature in seg_ref) {
-		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
-	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
-	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[item+'_'+feature]+'\"/>?</a></legend><form style="float:none; ">';
-	} else if (feature in seg_ref) {
-		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
-	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
-	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[feature]+'\"/>?</a></legend><form style="float:none; ">';
-	} else {
-		var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
+	var res = '<li style="float:none; "><legend style="float:none; display:block;">'+feature
 	+'</legend><form style="float:none; ">';
-	}
 	
 	for (var i = 0; i < options.length; i++) {
 		var id = item+'_'+feature+'_'+options[i];
-		if (radios.indexOf(feature)>=0) {
-			res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
-			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-			+'</label></div>';
-		} else {
-			res+='<div style="display:inline-block;"><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
-			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-			+'</label></div>';
-		}
+
+		res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
+		+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+		+'</label></div>';
 	}
 	res+='</form></li>';
 	return res;
 }
 
-function showImage(segment) {
-	var id = '#'+segment+'_ref';
-	var height = parseInt($(id).css("height").replace("px",""));
-	var left = $('#'+segment+' a').position().left+20;
-	var top = $('#'+segment+' a').position().top-height;
-	if (top < 0) {
-		// height = $('#'+segment+' a').position().top;
-		top = 0;
-	}
-	$(id).css({
-		'left': left+'px',
-		'top': top+'px',
-		// 'height': height+'px',
-		'position': 'absolute',
-		'display': 'block',
-	});
-}
+function setupTag() {
+	var i = 0;
+	var out = "";
+	tagNum = 0;
+	for (var category in cb) {
+		tagNum++;
+		out+='<div class="tag">';
+		var button_sec = '<fieldset class=\"'+category +'\"><legend style="float:none; display:block;">'+category+'</legend>';
 
-function hideImage(segment) {
-	var id = '#'+segment+'_ref';
-	$(id).css({
-		'position': 'absolute',
-		'display': 'none',
-	});
-}
-
-function changeImage(segment) {
-	var id = '#'+segment+'_ref';
-	if ($(id).css('display') == 'none') {
-		showImage(segment);
-	} else {
-		hideImage(segment);
-	}
-}
-
-function nextstep() {
-	$('#next').click(function() {
-		if (step == 0) {
-			if($('#workerId').val() == "") {
-				alert("Please accept the HIT before proceeding!");
-				return;
-			}
-			
-			str_result+=("workerId: "+$('#workerId').val()+"\n");
-			str_result+=("assignmentId: "+$('#assignmentId').val()+"\n");
-			str_result+=("hitId: "+$('#hitId').val()+"\n");
-			// str_result+=image_index+' ';
-			$('#description').hide();
-			$('#items').css('display', 'inline-block');
-			$('#segment').css('display', 'inline-block');
-			for (var segment in features) {
-				if (segment!= target) {
-					$('#'+segment).hide();
-				}
-			}
-			if (step == spam_p) {
-				str_result+='spam_c '+spam_i+' ('+spam_c[target][spam_i]+') ';
-				
-				document.getElementById("Canvas").src = spam_c[target][spam_i];
-			} else {
-				str_result+=image_index+' ('+urls[image_index]+') ';
-				document.getElementById("Canvas").src = urls[image_index];
-				image_index++;
-			}
-		} else if(step < PAGES) {
-			if (!recordResult(target)) {
-				return;
-			}
-			clear();
-			window.scrollTo(0, 0);
-			
-			
-			if (step == spam_p) {
-				str_result+='spam_c '+spam_i+' ('+spam_c[target][spam_i]+') ';
-				
-				document.getElementById("Canvas").src = spam_c[target][spam_i];
-			} else {
-				
-				str_result+=image_index+' ('+urls[image_index]+') ';
-				document.getElementById("Canvas").src = urls[image_index];
-				image_index++;
-			}
-		} else {
-			if (!recordResult(target)) {
-				return;
-			}
-			clear();
-			window.scrollTo(0, 0);
-			$('#items').hide();
-			$('#segment').hide();
-			$('#next').hide();
-			$('#end').show();
-			$('#submit').show();
-			document.getElementById('user-input').value = str_result;
-		} 
-		step++;
-		console.log(str_result);
-	});
-}
-
-function recordResult(segment) {
-	var res = "";
-	// if (target != 'Bags') {
-		var item = $('input[name="'+segment+'"]:checked').val();
-		if (typeof item == 'undefined') {
-			alert('Please tag the item before proceed!');
-			return false;
+		for (var option in cb[category]) {
+			button_sec+='<div class="radio"><label><input name=\"'
+				+category+'\" type=\"radio\" value=\"'+cb[category][option]
+				+'\" />'+cb[category][option]+'</label></div>';
 		}
-		res+=("Item: "+item.replace(segment+"_",""));
-		// if (item!='DK' && item!='NA') {
-			for (var i = 0; i < item_feature[item].length; i++) {
-				// console.log(item_feature[item][i]);
-				var item_fea=", "+item_feature[item][i].replace(item+"_", "")+":";
-				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-					item_fea+=(' '+$(this).val().replace(item_feature[item][i]+"_", ""));
-				});
-				if (item_fea==", "+item_feature[item][i].replace(item+"_", "")+":") {
-					alert("Please tag "+item_feature[item][i]+"!");
-					return false;
-				}
-				res+=item_fea;
-			}
-		// } else if (item=='NA') {
-		// 	alert("Please select Don't Know/Can't Tell if you are not sure about the item you marked!");
-		// 	return false;
-		// }
-	// } else {
-		// res+=(", ");
-	// 	for (var i = 0; i < item_feature[segment].length; i++) {
-	// 		var item_fea=item_feature[segment][i].replace(segment+'_', '')+":";
-	// 		$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-	// 			item_fea+=(' '+$(this).val().replace(item_feature[segment][i]+'_', ''));
-	// 			console.log(item_fea);
-	// 		});
-	// 		if (item_fea=="") {
-	// 			alert("Please tag "+item_feature[segment][i]+"!");
-	// 			return false;
-	// 		}
-	// 		res+=item_fea;
-	// 	}
-	// }
-	str_result+=res+"\n";
-	return true;
+		out+='</div><div class="images">'+button_sec+'</div></div>';
+	}
+	document.getElementById('task').innerHTML = out;
 }
-
-function clear() {
-	$('#items input:checked').each(function(){
-		$(this).prop('checked', false);
-	});
-}
+// function setup() {
+// 	var out = '';
+	
+// 	for (var category in cb) {
+// 		out+='<ul><legend style="float:none; display:block;">'+category+'</legend>';
+// 		for (var tag in cb[category]) {
+// 			out+='<li class="radio" style="float:none; display:inline-block;"><label><input name=\"'+category+'" type=\"radio\" value=\"'+cb[category][tag]
+// 					+'\" />'+cb[category][tag]+'</label></li>';
+// 		}
+// 		out+='</ul>';
+// 	}
+// 	for (var category in txt) {
+// 		out+='<ul class="css-treeview"><label><input name=\"'+category+'" type=\"radio\" value=\"'+category
+// 					+'\" />'+category+'</label>';
+// 		out+='<li><ul><legend style="float:none; display:block;">Item</legend>';
+// 		for (var tag in txt[category]) {
+// 			out+='<li class="radio"><label><input name=\"'+category+'" type=\"radio\" value=\"'+txt[category][tag]
+// 					+'_Item\" />'+txt[category][tag]+'</label></li>';
+// 		}
+// 		out+='</ul></li>';
+// 		out+='<li><ul><legend style="float:none; display:block;">Color</legend>';
+// 		for (var tag in feature['Color']) {
+// 			out+='<li class="radio"><label><input name=\"'+category+'_Color" type=\"radio\" value=\"'+feature['Color'][tag]
+// 					+'\" />'+feature['Color'][tag]+'</label></li>';
+// 		}
+// 		out+='</ul></li>';
+// 		out+='<li><ul><legend style="float:none; display:block;">Pattern</legend>';
+// 		for (var tag in feature['Pattern']) {
+// 			out+='<li class="radio"><label><input name=\"'+category+'_Pttern" type=\"radio\" value=\"'+feature['Pattern'][tag]
+// 					+'\" />'+feature['Pattern'][tag]+'</label></li>';
+// 		}
+// 		out+='</ul></li></ul>';
+		
+// 	}
+// 	out+='<input type="submit">';
+// 	document.getElementById('input').innerHTML = out;
+// }

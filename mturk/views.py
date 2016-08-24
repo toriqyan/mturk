@@ -5,57 +5,25 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from mturk.models import Task
 from django.views.decorators.csrf import csrf_exempt
-from boto.mturk.connection import MTurkConnection
-
-NUM = 5
-
-AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
-# AMAZON_HOST = "https://www.mturk.com/mturk/externalSubmit"
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-
-HOST = 'mechanicalturk.sandbox.amazonaws.com'
-connection = MTurkConnection(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-                             host=HOST)
-print(connection.get_account_balance())
+import json
 
 @csrf_exempt
 def index(request):
-    if request.GET.get("assignmentId") == "ASSIGNMENT_ID_NOT_AVAILABLE" or request.GET.get("hitId","") =="":
-        render_data = {
-            "worker_id": request.GET.get("workerId", ""),
-            "assignment_id": request.GET.get("assignmentId", ""),
-            "amazon_host": AMAZON_HOST,
-            "hit_id": request.GET.get("hitId", ""),
-            "image_index": "0",
-        }
-    else:
-        i = 0
-        a = Task.objects.all()
-        if (len(a) == 0):
-            i = 0
-        else:
-            i = a[len(a)-1].image_index+NUM
-        record = Task.objects.filter(hit_id=request.GET.get("hitId", ""))
-        if (len(record) == 0):
-            Task.objects.create(
-                hit_id=request.GET.get("hitId", ""),
-                image_index=i
-                )
-            imageIndex = i
-        else:
-            imageIndex=record[0].image_index
-        render_data = {
-            "worker_id": request.GET.get("workerId", ""),
-            "assignment_id": request.GET.get("assignmentId", ""),
-            "amazon_host": AMAZON_HOST,
-            "hit_id": request.GET.get("hitId", ""),
-            "image_index": str(imageIndex),
-        }
-        
-
+    if (request.GET.get("response", "") != ""):
+        return display(request)
+    render_data = {}
     response = render_to_response("index.html", render_data)
+    # without this header, your iFrame will not render in Amazon
+    response['x-frame-options'] = 'this_can_be_anything'
+    return response
+
+@csrf_exempt
+def display(request):
+    array = json.loads(request.GET.get("response", ""))
+    render_data = {
+        "images": array,
+    }
+    response = render_to_response("display.html", render_data)
     # without this header, your iFrame will not render in Amazon
     response['x-frame-options'] = 'this_can_be_anything'
     return response
