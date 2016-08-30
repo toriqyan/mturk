@@ -3,13 +3,18 @@ $(document).ready(function() {
 });
 
 function setup() {
-	
-	if (!isNaN(document.getElementById("output"))) {
-		var images = JSON.parse("[" + document.getElementById("output") + "]");
-		var out='';
+// 	if (!isNaN(document.getElementById("output").value)) {
+	   // alert(document.getElementById("output").value);
+	    console.log(document.getElementById("output").value);
+		var images = JSON.parse(document.getElementById("output").value);
+		var out='<ul class="imagewrap">';
 		for (var i in images){
-			out+='<li><img src="'+images[i]+'"/></li>';
+		    var index = images[i].split("/")[2]+'/'+images[i].split("/")[3].replace('.jpg','');
+			out+='<li class"images"><img src="'
+			+translation[images[i]]
+			+'"/><label>'+index+'</label></li>';
 		}
-		document.getElementById("result").innerHTML=out;
-	}
+		out+="</ul>";
+		document.getElementById("task").innerHTML=out;
+// 	}
 }

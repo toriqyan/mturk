@@ -1,20 +1,20 @@
 var cb = {
-	"occasion":["Work","Special-Occassion","Weekend-Casual","Date-Night"], 
-	"style":["Classic","Trendy","Bohemian","Dramatic","Feminine","Punk-Rock","Don't-Know/Other"],
-	"temperature":[40,50,60,70],
-	"ethnicity":["Caucasian","African American","Latino","Asian","Other"],
-	"body_size":["Slim","Full","Plus"],
+	"occasion":["Work","Special-Occassions","Casual-Outing","Night-Out","All"],
+// 	"style":["Classic","Trendy","Bohemian","Dramatic","Feminine","Punk-Rock","All"],
+	"temperature":["40","50","60","70","All"],
+	"ethnicity":["Caucasian","African","Latino","Asian","All"],
+	"body_size":["Slim","Full","Plus","All"],
 };
 
 var features = {
-	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
-	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
+	"Color": ["Aqua","Black","Blue","Brown","Coral_Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","All"],
+	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid_Checks","Solid","Stripe-vertical","Stripe-horizontal","All"],
 };
 var txt={
-	"top":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
-	"bottom":["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt"],
-	"dress": ["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"],
-	"outerwear":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
+	"top":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic","All"],
+	"bottom":["Capris","Jeans","Leggings_Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt","All"],
+	"dress": ["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","All"],
+	"outerwear":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest","All"],
 };
 // var frm;
 
@@ -24,93 +24,133 @@ $(document).ready(function() {
 });
 
 function get_input () {
-	alert("submit");
-	result = {
-		"occasion1": $('input[name=occasion]:checked').val().replace('-','_'),
-		"occasion2": $('input[name=occasion]:checked').val().replace('-','_'),
-		"style1": $('input[name=style]:checked').val().replace('-','_'),
-		"style2": $('input[name=style]:checked').val().replace('-','_'),
-		"style3": $('input[name=style]:checked').val().replace('-','_'),
-		"body_size": $('input[name=body_size]:checked').val().replace('-','_'),
-		"temperature": $('input[name=temperature]:checked').val().replace('-','_'),
-		"ethnicity": $('input[name=ethnicity]:checked').val().replace('-','_'),
-		"items":[]
-	};
+// 	alert("submit");
+	if (typeof $('input[name=occasion]:checked').val() !== 'undefined') {
+		var occasion = $('input[name=occasion]:checked').val().replace('-','_');
+		if (occasion == "All") {
+		    occasion = "";
+		}
+		document.getElementById('occasion1').value=occasion;
+		document.getElementById('occasion2').value=occasion;
+	}
+	if (typeof $('input[name=style]:checked').val() !== 'undefined') {
+		var style = $('input[name=style]:checked').val().replace('-','_');
+		if (style == "All") {
+		    style = "";
+		}
+		document.getElementById('style1').value=style;
+		document.getElementById('style2').value=style;
+		document.getElementById('style3').value=style;
+	}
+	if (typeof $('input[name=ethnicity]:checked').val() !== 'undefined') {
+		var ethnicity = $('input[name=ethnicity]:checked').val().replace('-','_');
+		if (ethnicity == "All") {
+		    ethnicity = "";
+		}
+		document.getElementById('ethnicity').value=ethnicity;
+	}
+	if (typeof $('input[name=body_size]:checked').val() !== 'undefined') {
+		var body_size = $('input[name=body_size]:checked').val().replace('-','_');
+		if (body_size == "All") {
+		    body_size = "";
+		}
+		document.getElementById('body_size').value=body_size;
+	}
+	if (typeof $('input[name=temperature]:checked').val() !== 'undefined') {
+		var temperature = $('input[name=temperature]:checked').val();
+		if (temperature == "All") {
+		    temperature = "-1";
+		}
+		document.getElementById('temperature').value=temperature;
+	}
+// 	result = {
+// 		"occasion1": occasion,
+// 		"occasion2": occasion,
+// 		"style1": style,
+// 		"style2": style,
+// 		"style3": style,
+// 		"body_size": body_size,
+// 		"temperature": temperature,
+// 		"ethnicity": ethnicity,
+// 		"items":[]
+// 	};
+    var items = [];
 	for (var item in txt) {
-		// console.log($('#'+item+' input:checked').val())
-		if (typeof $('#'+item+' input:checked').val() !== 'undefined') {
-			result["items"].push({
+		if (typeof $('input[name='+item+']:checked').val() !== 'undefined') {
+
+			if (typeof $('input[name='+item+'_Color'+']:checked').val() !== 'undefined') {
+			    var color = $('input[name='+item+'_Color'+']:checked').val().split('_')[2].replace('-','_');
+			    if (color == "All") {
+        		    color = "";
+        		}
+			} else {
+			    var color = '';
+			}
+
+			if (typeof $('input[name='+item+'_item'+']:checked').val() !== 'undefined') {
+			    var subclass = $('input[name='+item+'_item'+']:checked').val().split('_')[2].replace('-','_');
+			    if (subclass == "All") {
+        		    subclass = "";
+        		}
+			} else {
+			    var subclass = '';
+			}
+
+			if (typeof $('input[name='+item+'_Pattern'+']:checked').val() !== 'undefined') {
+			    var pattern = $('input[name='+item+'_Pattern'+']:checked').val().split('_')[2].replace('-','_');
+			    if (pattern == "All") {
+        		    pattern = "";
+        		}
+			} else {
+			    var pattern = '';
+			}
+			items.push({
 				"item_class": item,
-				"item_subclass": $('input[name='+item+'_item'+']:checked').val().split('_')[2].replace('-','_'), 
-				"color1": $('input[name='+item+'_Color'+']:checked').val().split('_')[2].replace('-','_'), 
-				"color2": $('input[name='+item+'_Color'+']:checked').val().split('_')[2].replace('-','_'),
-				"pattern1": $('input[name='+item+'_Pattern'+']:checked').val().split('_')[2].replace('-','_'),
-				"pattern2": $('input[name='+item+'_Pattern'+']:checked').val().split('_')[2].replace('-','_'),
-				"special_material1": "", 
-				"special_material2": "", 
-				"neckline": null, 
-				"collar": null, 
-				"hood": null, 
-				"style": null, 
-				"sleeve": null, 
-				"length": null, 
+				"item_subclass": subclass,
+				"color1": color,
+				"color2": color,
+				"pattern1": pattern,
+				"pattern2": pattern,
+				"special_material1": "",
+				"special_material2": "",
+				"neckline": "",
+				"collar": false,
+				"hood": false,
+				"style": "",
+				"sleeve": "",
+				"length": "",
 			});
 		}
 	}
-	test = {
-		'key1':'val1',
-		'key2':'val2',
-		'key3':'val3'
+	var valu = "[";
+	for (var i = 0; i < items.length; i++) {
+	    valu+="{";
+	    for (var e in items[i]) {
+	        valu+='"'+e+'":"'+items[i][e]+'",';
+	    }
+	    valu+="},";
 	}
-	// console.log(result);
-	var xmlHttp = new XMLHttpRequest();
-	alert(xmlHttp);
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", 'https://wix5uh8vve.execute-api.us-west-2.amazonaws.com/prod/clueless/get-profile-by-id', true); // true for asynchronous 
+	valu+="]";
+	document.getElementById('item').value=valu;
+// 	alert(document.getElementById('item').value);
+	$('input_form').submit();
 
-    xmlHttp.send(test);
-
-    // $.ajax({
-    //     type: 'GET',
-    //     url: '[url to the wepAPI]',
-    //     contentType : 'application/json',
-    //     data: JSON.stringify(result),
-    //     success: function (data) {
-    //         if(data.errorMessage)
-    //             alert('' + data.errorMessage);
-    //         else      
-    //             alert('' + data);
-    //     },
-    //     error: function (data) {
-    //         alert('error:' + data.errorMessage );
-    //     }
-    // });
-    // ev.preventDefault();
 }
 
 function setupItem() {
 	var out = '';
-	
+
 	for (var segment in txt) {
 		var seg_fea= '';
-		seg_fea += '<div style="float: none; margin: 10px; border: 1px red solid; " id="'+ segment
-			+'"><legend style="float:none; display:block;">'+segment+'</legend>';
-		// for (var i= 0; i < txt[segment].length; i++) {
-		// 	var item = txt[segment][i];				
-		// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-		// 	+'\" id=\"'+segment+'_'+item
-		// 	+'\" value=\"'+segment+'_'+item
-		// 	+'\" /><label for=\"'+segment+'_'+item
-		// 	+'\" >'+item+'</label><ul>';
+		seg_fea += '<div style="float: none; margin: 10px; border: 1px red solid; "><input type=\"checkbox\" name=\"'+segment
+				+'\" id=\"'+segment
+				+'\" value=\"'+segment
+				+'\" /><label for=\"'+segment
+				+'\" >'+segment+'</label><ul>';
+			seg_fea+=appendFeature(segment, 'item', txt[segment]);
 			for (var feature in features) {
 				seg_fea+=appendFeature(segment, feature, features[feature]);
 			}
-			seg_fea+=appendFeature(segment, 'item', txt[segment]);
-		// 	seg_fea+='</ul></div>';
-		// }
 
 		seg_fea+='</div>';
 		out+=seg_fea;
@@ -123,13 +163,18 @@ function setupItem() {
 function appendFeature(item, feature, options) {
 	var res = '<li style="float:none; "><legend style="float:none; display:block;">'+feature
 	+'</legend><form style="float:none; ">';
-	
+
 	for (var i = 0; i < options.length; i++) {
 		var id = item+'_'+feature+'_'+options[i];
-
-		res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
-		+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-		+'</label></div>';
+        if (options[i] == 'All') {
+            res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
+	    	+'\" name=\"'+item+'_'+feature+'\" checked/><label for=\"'+id+'\" >'+options[i]
+	    	+'</label></div>';
+        } else {
+    		res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
+    		+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+    		+'</label></div>';
+        }
 	}
 	res+='</form></li>';
 	return res;
@@ -141,52 +186,21 @@ function setupTag() {
 	tagNum = 0;
 	for (var category in cb) {
 		tagNum++;
-		out+='<div class="tag">';
+		out+='';
 		var button_sec = '<fieldset class=\"'+category +'\"><legend style="float:none; display:block;">'+category+'</legend>';
 
 		for (var option in cb[category]) {
-			button_sec+='<div class="radio"><label><input name=\"'
-				+category+'\" type=\"radio\" value=\"'+cb[category][option]
-				+'\" />'+cb[category][option]+'</label></div>';
+		    if (cb[category][option] == 'All') {
+		        button_sec+='<div class="radio"><label><input name=\"'
+				    +category+'\" type=\"radio\" value=\"'+cb[category][option]
+				    +'\" checked/>'+cb[category][option]+'</label></div>';
+		    } else {
+		        button_sec+='<div class="radio"><label><input name=\"'
+    				+category+'\" type=\"radio\" value=\"'+cb[category][option]
+    				+'\" />'+cb[category][option]+'</label></div>';
+		    }
 		}
-		out+='</div><div class="images">'+button_sec+'</div></div>';
+		out+='</div><div class="images">'+button_sec+'</div>';
 	}
 	document.getElementById('task').innerHTML = out;
 }
-// function setup() {
-// 	var out = '';
-	
-// 	for (var category in cb) {
-// 		out+='<ul><legend style="float:none; display:block;">'+category+'</legend>';
-// 		for (var tag in cb[category]) {
-// 			out+='<li class="radio" style="float:none; display:inline-block;"><label><input name=\"'+category+'" type=\"radio\" value=\"'+cb[category][tag]
-// 					+'\" />'+cb[category][tag]+'</label></li>';
-// 		}
-// 		out+='</ul>';
-// 	}
-// 	for (var category in txt) {
-// 		out+='<ul class="css-treeview"><label><input name=\"'+category+'" type=\"radio\" value=\"'+category
-// 					+'\" />'+category+'</label>';
-// 		out+='<li><ul><legend style="float:none; display:block;">Item</legend>';
-// 		for (var tag in txt[category]) {
-// 			out+='<li class="radio"><label><input name=\"'+category+'" type=\"radio\" value=\"'+txt[category][tag]
-// 					+'_Item\" />'+txt[category][tag]+'</label></li>';
-// 		}
-// 		out+='</ul></li>';
-// 		out+='<li><ul><legend style="float:none; display:block;">Color</legend>';
-// 		for (var tag in feature['Color']) {
-// 			out+='<li class="radio"><label><input name=\"'+category+'_Color" type=\"radio\" value=\"'+feature['Color'][tag]
-// 					+'\" />'+feature['Color'][tag]+'</label></li>';
-// 		}
-// 		out+='</ul></li>';
-// 		out+='<li><ul><legend style="float:none; display:block;">Pattern</legend>';
-// 		for (var tag in feature['Pattern']) {
-// 			out+='<li class="radio"><label><input name=\"'+category+'_Pttern" type=\"radio\" value=\"'+feature['Pattern'][tag]
-// 					+'\" />'+feature['Pattern'][tag]+'</label></li>';
-// 		}
-// 		out+='</ul></li></ul>';
-		
-// 	}
-// 	out+='<input type="submit">';
-// 	document.getElementById('input').innerHTML = out;
-// }

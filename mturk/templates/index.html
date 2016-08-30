@@ -10,19 +10,36 @@
     <script type="text/javascript" src="../static/js/main.js"></script>
 
    <link rel="stylesheet" href="../static/css/style.css" />
-   
+
    <title>Stylist Search Tool</title>
 </head>
 <body>
    <div id="wrap">
       <h1 id ="header">Stylist Search Tool</h1>
+      <h3>Instruction:</h3>
+      <p>For all search filters, the default option is 'All', which means if you submit without selecting any options,
+      it'll return all the images in the database. </p>
+      <h3>Note:</h3>
+      <p>Style filter will be available once we get the tagging done. </p>
       <div id = "input">
         <div id='task'></div>
         <div id='items' class="css-treeview"></div>
       </div>
-      <form id ="input_form">
-        <input type="submit" value="submit" onclick="get_input();">         
+      <form id ="input_form" action="#" method="GET">
+        <input type="hidden" id="occasion1" value="" name="occasion1"/>
+        <input type="hidden" id="occasion2" value="" name="occasion2"/>
+        <input type="hidden" id="style1" value="" name="style1"/>
+        <input type="hidden" id="style2" value="" name="style2"/>
+        <input type="hidden" id="style3" value="" name="style3"/>
+        <input type="hidden" id="outfit_key" value="" name="outfit_key"/>
+        <input type="hidden" id="age" value=-1 name="age"/>
+        <input type="hidden" id="temperature" value=-1 name="temperature"/>
+        <input type="hidden" id="body_size" value="" name="body_size"/>
+        <input type="hidden" id="ethnicity" value="" name="ethnicity"/>
+        <input type="hidden" id="item" value="" name="items"/>
+        <input type="submit" value="submit" onclick="get_input();"/>
       </form>
-      
+
    </div><!--end wrap-->
 </body>
+</html>

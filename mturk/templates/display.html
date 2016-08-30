@@ -7,24 +7,24 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js" type="text/javascript"></script>
+   <script type="text/javascript" src="../static/js/data.js"></script>
    <script type="text/javascript" src="../static/js/display.js"></script>
 
    <link rel="stylesheet" href="../static/css/style.css" />
-   
+
    <title>Stylist Search Tool</title>
 </head>
 <body>
    <div id="wrap">
       <h1 id ="header">Stylist Search Tool</h1>
-      <!-- <input id="output" value="{{ images }}" style="display:none;"/> -->
-      {% if images %}
-        <ul class="imagewrap">
-          {% for image in images %}
-          <li>{{ image.name }}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-          <strong>There are no images present.</strong>
-      {% endif %}
+       <input type="hidden" id="output" value="{{ images }}" name="output[]" />
+       <form action="#" method="GET">
+          <input type="submit" value="reset" />
+       </form>
+       <div id="task"></div>
+        <form action="#" method="GET">
+          <input type="submit" value="reset" />
+       </form>
    </div><!--end wrap-->
 </body>
+</html>
