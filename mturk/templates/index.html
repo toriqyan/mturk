@@ -7,39 +7,36 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../static/js/main.js"></script>
+
+   <script type="text/javascript" src="../static/js/images.js"></script>
+   <script type="text/javascript" src="../static/js/main.js"></script>
 
    <link rel="stylesheet" href="../static/css/style.css" />
-
-   <title>Stylist Search Tool</title>
+   
+   <title>Fashion Tags</title>
 </head>
 <body>
+  <form id="database" action="#" method="GET">
+      <textarea type = "hidden" rows="4" cols="50" name="user-input" id="result2"></textarea>
+      <input type="hidden" id="user-input2" name="user-input"/>
+      <input type="hidden" id="imageIndex" value="{{ image_index }}" name="imageIndex"/>
+      <input type="submit">
+   </form>
    <div id="wrap">
-      <h1 id ="header">Stylist Search Tool</h1>
-      <h3>Instruction:</h3>
-      <p>For all search filters, the default option is 'All', which means if you submit without selecting any options,
-      it'll return all the images in the database. </p>
-      <h3>Note:</h3>
-      <p>Style filter will be available once we get the tagging done. </p>
-      <div id = "input">
-        <div id='task'></div>
-        <div id='items' class="css-treeview"></div>
-      </div>
-      <form id ="input_form" action="#" method="GET">
-        <input type="hidden" id="occasion1" value="" name="occasion1"/>
-        <input type="hidden" id="occasion2" value="" name="occasion2"/>
-        <input type="hidden" id="style1" value="" name="style1"/>
-        <input type="hidden" id="style2" value="" name="style2"/>
-        <input type="hidden" id="style3" value="" name="style3"/>
-        <input type="hidden" id="outfit_key" value="" name="outfit_key"/>
-        <input type="hidden" id="age" value=-1 name="age"/>
-        <input type="hidden" id="temperature" value=-1 name="temperature"/>
-        <input type="hidden" id="body_size" value="" name="body_size"/>
-        <input type="hidden" id="ethnicity" value="" name="ethnicity"/>
-        <input type="hidden" id="item" value="" name="items"/>
-        <input type="submit" value="submit" onclick="get_input();"/>
-      </form>
-
+      <h1 id ="header">Tag fashion photos</h1>
+      
+      <!-- <div id= "task"></div> -->
+      <!-- <div id="rejection">
+         <h3>
+            You should see the top and bottom of an outfit on a single figure.  If you don't see the full body of the model or see anything else, please reject the image.
+         </h3>
+         <div id="rej_ref"></div>
+         <img id="target" src="">
+         <button class="pure-button" name="reject" id="reject" type="reject" onClick="reject()">Reject</button>
+      </div> -->
+      <img id="target" src="">
+      <div id= "segment" class="segment col_two"></div>
+      <div id= "items" class="css-treeview"></div>
+      <button class="pure-button" name="submit" id="submit" onclick="nextstep();" type="button">Submit</button>
    </div><!--end wrap-->
 </body>
-</html>

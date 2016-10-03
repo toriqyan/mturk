@@ -4,7 +4,7 @@
 /* -------------------- */
 /* -- General Styles -- */
 /* -------------------- */
-#wrap { width: 80%; margin: 70px auto; font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif; color: #555; border: 1px #eee solid; padding: 70px 70px 20px 70px; -webkit-box-shadow: 0px 0 50px #aaa; -moz-box-shadow: 0px 0 30px #aaa; box-shadow: 0px 0 50px #aaa; background: #fff; background: -moz-linear-gradient(top, #EEEEEE 0%, #FFFFFF 2%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEEEEE), color-stop(2%,#FFFFFF)); }
+#wrap { width: 730px; margin: 70px auto; font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif; color: #555; border: 1px #eee solid; padding: 70px 70px 20px 70px; -webkit-box-shadow: 0px 0 50px #aaa; -moz-box-shadow: 0px 0 30px #aaa; box-shadow: 0px 0 50px #aaa; background: #fff; background: -moz-linear-gradient(top, #EEEEEE 0%, #FFFFFF 2%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#EEEEEE), color-stop(2%,#FFFFFF)); }
 body { font-family: times, serif; background-color: #eee; }
 h1 { font-size: 35px; margin: 0 0 10px 0; letter-spacing: -1px; }
 h2 { font-size: 34px; margin: 0 0 20px 0; }
@@ -20,14 +20,14 @@ a:hover { color: #eee; }
 /* ------------ */
 /* -- Header -- */
 /* ------------ */
-#header { width: 730px; margin: 0 0 30px 0; }
+#header { float: left; width: 730px; margin: 0 0 30px 0; }
 #header #header-content { float: left; width: 450px; }
 #header #header-content h1 { margin: 0 0 2px 0; color: #444; }
 #header #header-content h2 { color: #0b8bbb; font-size: 28px; }
 #header #header-content p { font-size: 15px; margin: 0 0 0 1px; }
 #header #contact-details { float: left; margin: 18px 0 0 0; }
 #header #header-content .contact { font-size: 16px; color: #888; margin: 0; }
-#header #header-content .contact span { color: #444; width: 75px; float: left; }
+#header #header-content .contact span { color: #444; width: 75px; float: left; } 
 #header #header-photo { float: right;  background-color: #eee;  padding: 5px 5px 2px 5px; -webkit-box-shadow: 0px 0 10px #aaa; -moz-box-shadow: 0px 0 10px #aaa; box-shadow: 0px 0 10px #aaa; }
 #header #header-photo img { width: 250px; height: 270px; border: 1px #ddd solid; }
 
@@ -88,6 +88,11 @@ a {
   margin-left: 5px;
 }
 
+fieldset {
+  margin-top: 20px;
+  width:300px;
+}
+
 input[type="radio"]
 {
   margin:10px;
@@ -124,9 +129,9 @@ button {
 }
 
 .imagewrap li img{
-   width:200px;
-   /*height:200px;*/
-   margin-right: 10px;
+   /*width:80px;*/
+   height:200px;
+   margin-left: 10px;
    -webkit-transition: all 1s ease;
    -moz-transition: all 1s ease;
    -o-transition: all 1s ease;
@@ -134,25 +139,18 @@ button {
    transition: all 1s ease;
 }
 
-#task ul {
+.imagewrap ul {
    list-style-type: none;
-   display: inline-block;
+   display: inline;
 }
-#task li {
-   display: inline-block;
+.imagewrap li {
+   display: inline;
    float:left;
-   margin: 10px;
-   width: 30%;
 }
-
-#task label {
-  display: inline-block;
-}
-
 
 .images img {
-   width: 200px;
-   /*padding-right: 20px;*/
+   width: 350px;
+   padding-right: 20px;
    display: inline-block;
    /*float:left;*/
    /*clear: left;*/
@@ -163,13 +161,11 @@ button {
 }
 
 .images fieldset {
-   float: left;
-   margin: 15px;
+   float: right;
 }
 .images {
    list-style-type: none;
-   display: inline-block;
-   width: 20%;
+   /*display: block;*/
 }
 
 .css-treeview ul
@@ -187,10 +183,16 @@ button {
   display:inline;
 }
 
-.css-treeview input + label + ul > li
+.css-treeview input:checked + label + ul > li
 {
   display: inline-block;
   padding: 5px;
+}
+
+.css-treeview input
+{
+   /*position: absolute;*/
+   /*opacity: 0;*/
 }
 
 .css-treeview
