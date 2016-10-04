@@ -3,7 +3,7 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-# from mturk.models import Task
+from mturk.models import Task
 from django.views.decorators.csrf import csrf_exempt
 
 # AMAZON_HOST = "https://workersandbox.mturk.com/mturk/externalSubmit"
@@ -11,12 +11,12 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def index(request):
     print(request)
-    # if (request.GET.get("user-input","") != ""):
-        # Task.objects.create(result=request.GET.get("user-input",""))
-    # db_rows = Task.objects.all()
+    if (request.GET.get("user-input","") != ""):
+        Task.objects.create(result=request.GET.get("user-input",""))
+    db_rows = Task.objects.all()
 
     render_data = {
-        # "image_index": db_rows,
+        "image_index": db_rows,
     }
 
     
