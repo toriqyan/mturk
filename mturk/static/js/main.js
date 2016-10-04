@@ -276,7 +276,7 @@ function nextstep() {
 		step++;
 		console.log(str_result);
 		document.getElementsByTagName('textarea')[0].value=str_result;
-		document.getElementsByTagName('textarea')[1].value=str_result;
+		// document.getElementsByTagName('textarea')[1].value=str_result;
 		$('#database').submit();
 	});
 }
