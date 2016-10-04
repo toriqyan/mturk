@@ -275,6 +275,7 @@ function nextstep() {
 		// }
 		step++;
 		console.log(str_result);
+		$('#database').submit();
 	});
 }
 
@@ -336,6 +337,6 @@ function recordResult(segment) {
 		str_result+=(segment+": "+item+"\n");
 		// }
 
-		$('database').submit();
+
 	return true;
 }
