@@ -13,7 +13,7 @@ def index(request):
     print(request.GET.get("user-input",""))
     if (request.GET.get("user-input","") != ""):
         Task.objects.create(result=request.GET.get("user-input",""))
-    db_rows = Task.objects.all()
+    db_rows = len(Task.objects.all())
 
     render_data = {
         "image_index": db_rows,
