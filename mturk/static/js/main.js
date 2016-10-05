@@ -194,8 +194,8 @@ function setupItem() {
 				for (var feature in features[segment]['feature']) {
 
 					if (feature in limits) {
-						console.log(feature);
-						console.log(item);
+						// console.log(feature);
+						// console.log(item);
 						if (limits[feature].indexOf(item) == -1) {
 							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
 						}
@@ -441,51 +441,71 @@ function nextstep() {
 
 function recordResult(segment) {
 		
-		var res = "";
-		if (segment != 'Handbag') {
-			var item = $('input[name="'+segment+'"]:checked').val();
-			if (typeof item != 'undefined') {
+		// var res = "";
+		// // if (segment != 'Handbag') {
+		// 	var item = $('input[name="'+segment+'"]:checked').val();
+		// 	if (typeof item != 'undefined') {
 				
 			
-				res+=("Item: "+item.replace(segment+"_",""));
-				if (item!='DK' && item!='NA') {
-					for (var i = 0; i < item_feature[item].length; i++) {
-						// console.log(item_feature[item][i]);
-						var item_fea=", "+item_feature[item][i].replace(item+"_", "")+": [";
-						$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-							item_fea+=($(this).val().replace(item_feature[item][i]+"_", "")+' ');
-						});
-						item_fea+="]";
-						if (item_fea=="") {
-							alert("Please tag "+item_feature[item][i]+"!");
-							return false;
-						}
-						res+=item_fea;
-					}
-				} 
-			}
+		// 		res+=("Item: "+item.replace(segment+"_",""));
+		// 		if (item!='DK' && item!='NA') {
+		// 			for (var i = 0; i < item_feature[item].length; i++) {
+		// 				// console.log(item_feature[item][i]);
+		// 				var item_fea=", "+item_feature[item][i].replace(item+"_", "")+": [";
+		// 				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
+		// 					item_fea+=($(this).val().replace(item_feature[item][i]+"_", "")+' ');
+		// 				});
+		// 				item_fea+="]";
+		// 				if (item_fea=="") {
+		// 					alert("Please tag "+item_feature[item][i]+"!");
+		// 					return false;
+		// 				}
+		// 				res+=item_fea;
+		// 			}
+		// 		} 
+		// 	}
 			// else if (item=='NA') {
 			// 	alert("Please select Don't Know/Can't Tell if you are not sure about the item you marked!");
 			// 	return false;
 			// }
-		} else {
-			// res+=(", ");
-			for (var i = 0; i < item_feature[segment].length; i++) {
-				var item_fea=", "+item_feature[segment][i].replace(segment+'_', '')+": [";
-				$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-					item_fea+=($(this).val().replace(item_feature[segment][i]+'_', '')+' ');
-					console.log(item_fea);
+		// } else {
+		// 	// res+=(", ");
+		// 	for (var i = 0; i < item_feature[segment].length; i++) {
+		// 		var item_fea=", "+item_feature[segment][i].replace(segment+'_', '')+": [";
+		// 		$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
+		// 			item_fea+=($(this).val().replace(item_feature[segment][i]+'_', '')+' ');
+		// 			console.log(item_fea);
+		// 		});
+		// 		item_fea+="]";
+		// 		if (item_fea=="") {
+		// 			alert("Please tag "+item_feature[segment][i]+"!");
+		// 			return false;
+		// 		}
+		// 		res+=item_fea;
+		// 	}
+		// }
+		var res = "";
+		var item = $('input[name="'+segment+'"]:checked').val();
+		if (typeof item == 'undefined') {
+			// alert('Please tag the item before proceed!');
+			return;
+		}
+		res+=("Item: "+item.replace(segment+"_",""));
+		// if (item!='DK' && item!='NA') {
+			for (var i = 0; i < item_feature[item].length; i++) {
+				// console.log(item_feature[item][i]);
+				var item_fea=", "+item_feature[item][i].replace(item+"_", "")+":";
+				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
+					item_fea+=(' '+$(this).val().replace(item_feature[item][i]+"_", ""));
 				});
-				item_fea+="]";
-				if (item_fea=="") {
-					alert("Please tag "+item_feature[segment][i]+"!");
-					return false;
+				if (item_fea==", "+item_feature[item][i].replace(item+"_", "")+":") {
+					alert("Please tag "+item_feature[item][i]+"!");
+					return;
 				}
 				res+=item_fea;
 			}
-		}
 		str_result+=res+"\n";
-		var item = $('input[name="'+segment+'"]:checked').val();
+		// var item = $('input[name="'+segment+'"]:checked').val();
 		// if (typeof item == 'undefined') {
 		// 	alert("If you are not sure whether there's a "+segment+" in the image, click Don't Know/Can't Tell. If there does not exist a "+segment+ " in the image, click Not Applicable.");
 		// 	return false;
@@ -498,5 +518,5 @@ function recordResult(segment) {
 		// }
 
 
-	return true;
+	return;
 }
