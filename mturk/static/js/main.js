@@ -9,14 +9,14 @@ var global_feature = {
 	"Special-Material": ["Denim","Leather","Lace","Sequin","Velvet","N/A"],
 	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
-var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
+var extra_style = ["Dress", "Jeans", "Pants", "Skirt"];
 var limits = {
 	"Neckline": ["Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
 	"Hood": ["Tank-top", "Camisole", "Halter-Top"],
 	"Collar": ["Tank-top", "Camisole", "Halter-Top"],
 	"Special-Material": ["Jeans","Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 };
-var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
+var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirt"];
 var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
