@@ -5,11 +5,17 @@ var tagNum = 0;
 var result = [];
 var str_result = "";
 var global_feature = {
-	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow"],
-	"Material": ["Cotton","Chiffon","Denim","Leather","Lace","Satin","Sequin","Silk","Woolen","Velvet"],
-	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal"],
+	"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
+	"Special-Material": ["Denim","Leather","Lace","Sequin","Velvet","N/A"],
+	"Pattern": ["Animal-Prints","Color-Blocking","Camouflage","Dots","Floral","Graphics","Plaid/Checks","Solid","Stripe-vertical","Stripe-horizontal","Other"],
 };
 var extra_style = ["Dress", "Jeans", "Pants", "Skirts"];
+var limits = {
+	"Neckline": ["Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweat-Shirt","Tank-top"],
+	"Hood": ["Tank-top", "Camisole", "Halter-Top"],
+	"Collar": ["Tank-top", "Camisole", "Halter-Top"],
+	"Special-Material": ["Jeans","Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
+};
 var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
 var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
@@ -147,13 +153,7 @@ function setupItem() {
 	
 	for (var segment in features) {
 		var seg_fea= '';
-		if (segment == 'Top') {
-			seg_fea += '<div style="float: none;" id="'+ segment
-			+'"><legend style="float:none; display:block;">'
-			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
-				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
-		}
-		else if (segment in seg_ref) {
+		if (segment in seg_ref) {
 			seg_fea += '<div style="float: none;" id="'+ segment
 			+'"><legend style="float:none; display:block;">'
 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
@@ -163,14 +163,15 @@ function setupItem() {
 			+'"><legend style="float:none; display:block;">'
 			+segment+'</legend>';
 		}
+		
 
-		if (segment != "Handbag") {
+		// if (segment != "Bags") {
 			// if (segment != "Top") {
-			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-				+'\" id=\"'+segment+'_NA'
-				+'\" value=\"NA\" checked/><label for=\"'
-				+segment+'_NA\" >Not Applicable</label></div>';
-				// }
+			// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+			// 		+'\" id=\"'+segment+'_NA'
+			// 		+'\" value=\"NA\" /><label for=\"'
+			// 		+segment+'_NA\" >Not Applicable</label></div>';
+			// 	}
 			for (var i= 0; i < features[segment]['category'].length; i++) {
 				var item = features[segment]['category'][i];				
 				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
@@ -180,17 +181,35 @@ function setupItem() {
 				+'\" >'+item+'</label><ul>';
 				if(segment != "Shoes") {
 					for (var feature in global_feature) {
-						seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+						if (feature in limits) {
+							if (limits[feature].indexOf(item) == -1) {
+								seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+							}
+						} else {
+							seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+						}
+						
 					}
 				}
 				for (var feature in features[segment]['feature']) {
-					seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+
+					if (feature in limits) {
+						console.log(feature);
+						console.log(item);
+						if (limits[feature].indexOf(item) == -1) {
+							seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+						}
+					} else {
+						seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+					}
+					
 				}
 				if (extra_style.indexOf(item) >= 0) {
 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
 				}
 				if (extra_length.indexOf(item) >= 0) {
-					seg_fea+=appendFeature(segment+'_'+item, "Length", features[segment][item+'-length']);
+
+					seg_fea+=appendFeature(segment+'_'+item, "Garment-Length", features[segment][item+'-length']);
 				}
 				seg_fea+='</ul></div></li>';
 			}
@@ -199,21 +218,21 @@ function setupItem() {
 			// 	+'\" id=\"'+segment+'_DK'
 			// 	+'\" value=\"DK\" /><label for=\"'+segment
 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		} else {
-			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-				+'\" id=\"'+segment+'_NA'
-				+'\" value=\"NA\" checked/><label for=\"'
-				+segment+'_NA\" >Not Applicable</label></div>';
-			seg_fea+='<ul>';
-			seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
-			seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
-			seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
-			seg_fea+='</ul>';
+		// } else {
+			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+			// 	+'\" id=\"'+segment+'_NA'
+			// 	+'\" value=\"NA\" /><label for=\"'
+			// 	+segment+'_NA\" >Not Applicable</label></div>';
+			// seg_fea+='<ul>';
+			// seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
+			// seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
+			// seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
+			// seg_fea+='</ul>';
 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
 			// 	+'\" id=\"'+segment+'_DK'
 			// 	+'\" value=\"DK\" /><label for=\"'+segment
 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		}
+		// }
 		seg_fea+='</ul></div>';
 		out+=seg_fea;
 	}
@@ -256,6 +275,121 @@ function appendFeature(item, feature, options) {
 	res+='</form></li>';
 	return res;
 }
+
+// function setupItem() {
+// 	var out = '';
+	
+// 	for (var segment in features) {
+// 		var seg_fea= '';
+// 		if (segment == 'Top') {
+// 			seg_fea += '<div style="float: none;" id="'+ segment
+// 			+'"><legend style="float:none; display:block;">'
+// 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
+// 				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
+// 		}
+// 		else if (segment in seg_ref) {
+// 			seg_fea += '<div style="float: none;" id="'+ segment
+// 			+'"><legend style="float:none; display:block;">'
+// 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
+// 				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
+// 		} else {
+// 			seg_fea += '<div style="float: none;" id="'+ segment
+// 			+'"><legend style="float:none; display:block;">'
+// 			+segment+'</legend>';
+// 		}
+
+// 		if (segment != "Handbag") {
+// 			// if (segment != "Top") {
+// 			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+// 				+'\" id=\"'+segment+'_NA'
+// 				+'\" value=\"NA\" checked/><label for=\"'
+// 				+segment+'_NA\" >Not Applicable</label></div>';
+// 				// }
+// 			for (var i= 0; i < features[segment]['category'].length; i++) {
+// 				var item = features[segment]['category'][i];				
+// 				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+// 				+'\" id=\"'+segment+'_'+item
+// 				+'\" value=\"'+segment+'_'+item
+// 				+'\" /><label for=\"'+segment+'_'+item
+// 				+'\" >'+item+'</label><ul>';
+// 				if(segment != "Shoes") {
+// 					for (var feature in global_feature) {
+// 						seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
+// 					}
+// 				}
+// 				for (var feature in features[segment]['feature']) {
+// 					seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
+// 				}
+// 				if (extra_style.indexOf(item) >= 0) {
+// 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
+// 				}
+// 				if (extra_length.indexOf(item) >= 0) {
+// 					seg_fea+=appendFeature(segment+'_'+item, "Length", features[segment][item+'-length']);
+// 				}
+// 				seg_fea+='</ul></div></li>';
+// 			}
+			
+// 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+// 			// 	+'\" id=\"'+segment+'_DK'
+// 			// 	+'\" value=\"DK\" /><label for=\"'+segment
+// 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
+// 		} else {
+// 			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+// 				+'\" id=\"'+segment+'_NA'
+// 				+'\" value=\"NA\" checked/><label for=\"'
+// 				+segment+'_NA\" >Not Applicable</label></div>';
+// 			seg_fea+='<ul>';
+// 			seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
+// 			seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
+// 			seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
+// 			seg_fea+='</ul>';
+// 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
+// 			// 	+'\" id=\"'+segment+'_DK'
+// 			// 	+'\" value=\"DK\" /><label for=\"'+segment
+// 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
+// 		}
+// 		seg_fea+='</ul></div>';
+// 		out+=seg_fea;
+// 	}
+// 	// out+='';
+// 	document.getElementById("items").innerHTML = out;
+// }
+
+// item: string; feature: string; options: list
+// example: item: Top_Blouse, feature: Color, options: ["White", "Red",...]
+// function appendFeature(item, feature, options) {
+// 	if (typeof item_feature[item] == "undefined") {
+// 		item_feature[item] = [];
+// 	}
+// 	item_feature[item].push(item+'_'+feature);
+// 	if (item+'_'+feature in seg_ref) {
+// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
+// 	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
+// 	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[item+'_'+feature]+'\"/>?</a></legend><form style="float:none; ">';
+// 	} else if (feature in seg_ref) {
+// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
+// 	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
+// 	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[feature]+'\"/>?</a></legend><form style="float:none; ">';
+// 	} else {
+// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
+// 	+'</legend><form style="float:none; ">';
+// 	}
+	
+// 	for (var i = 0; i < options.length; i++) {
+// 		var id = item+'_'+feature+'_'+options[i];
+// 		if (radios.indexOf(feature)>=0) {
+// 			res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
+// 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+// 			+'</label></div>';
+// 		} else {
+// 			res+='<div style="display:inline-block;"><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
+// 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
+// 			+'</label></div>';
+// 		}
+// 	}
+// 	res+='</form></li>';
+// 	return res;
+// }
 
 
 
