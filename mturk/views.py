@@ -10,9 +10,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 def index(request):
-    print(request.GET.get("user-input",""))
-    if (request.GET.get("user-input","") != ""):
-        Task.objects.create(result=request.GET.get("user-input",""))
+    print(request.POST.get("user-input",""))
+    if (request.POST.get("user-input","") != ""):
+        Task.objects.create(result=request.POST.get("user-input",""))
     db_rows = len(Task.objects.all())
 
     render_data = {
