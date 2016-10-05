@@ -14,56 +14,76 @@ var extra_length = ["Jacket","Coat","Cardigan","Dress", "Skirts"];
 var radios = ["Neckline","Collar", "Hood", "Sleeve", "Heel", "Size", "Length"];
 var features={
 	"Top":{
-		"category":["Blouse","Buttoned-Shirt","Camisole","Dress","Halter-top","Jumpsuit","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
+		"category":["Blouse","Buttoned-Shirt","Camisole","Halter-Top","Polo-Shirt","Suit-Jacket","Sweaters","Sweat-Shirt","Tank-top","T-Shirt","Tunic"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"],
-			"Sleeve": ["None","Short","Medium","Long"],
-			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Mock-turtle","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless"]
+			"Sleeve": ["None","Short","Medium","Long","Other"],
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
 		},
-		"Dress-length":["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length"],
-		"Dress-style":["Shift","A-line","Sheath","Bodycon","Tent","Empire","Strapless","Halter-dress","One-shoulder","Slip-dress","Qi-Pao","Shirt-dress","Maxi","Ball-Gown/Evening-Dress"]
 	},
 	"Bottom":{
-		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirts","Suit-Pant","Suit-Skirt"],
+		"category": ["Capris","Jeans","Leggings/Tights","Pants","Shorts","Skirt","Suit-Pants","Suit-Skirt"],
 		"feature": {},
-		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare"],
-		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare"],
-		"Skirts-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ],
-		"Skirts-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Full-length"]
+		"Pants-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
+		"Jeans-style": ["Wide-leg", "Straight","Skinny","Boot-cut","Flare","Other"],
+		"Skirt-style": ["Straight","Pencil","A-line","Slit","Round","Pleat","Wrap","Prairie","Layered","Flounce" ,"Other"],
+		"Skirt-length": ["Very-short/Mini-skirt", "Knee-length", "Midi/Calf-length", "Ankle-length", "Floor-length", "Other"]
 	},
-	"Outer-Wear":{
+	"Dress": {
+		"category": ["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"],
+		"feature":{
+			"Collar":["Yes", "No"], 
+			"Hood": ["Yes", "No"],
+			"Sleeve": ["None","Short","Medium","Long","Other"],
+			"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"],
+			"Length": ["Very-short", "Knee-length", "Midi", "Full-body"]
+		},
+	},
+	// "One-piece": {
+	// 	"category": ["Dress","Jumpsuit"],
+	// 	"feature":{
+	// 		"Collar":["Yes", "No"], 
+	// 		"Hood": ["Yes", "No"],
+	// 		"Sleeve": ["None","Short","Medium","Long","Other"],
+	// 		"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
+	// 	},
+	// 	"Dress-length":["Very-short", "Knee-length", "Midi", "Full-body"],
+	// 	"Dress-style":["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"]
+	// },
+	"Outerwear":{
 		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
 		"feature":{
 			"Collar":["Yes", "No"], 
 			"Hood": ["Yes", "No"]
 		},
-		"Jacket-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
-		"Coat-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"],
-		"Cardigan-length":["Waist-length","Hip-length","Knee-length","Ankle-length","Full-body"]
+		"Jacket-length":["Cropped","Normal","Long","Very-long"],
+		"Coat-length":["Cropped","Normal","Long","Very-long"],
+		"Cardigan-length":["Cropped","Normal","Long","Very-long"]
 	},
 	"Shoes":{
-		"category":["Pumps","Sandals","Mules","Clogs","Ballerina","Espadrille","Loafers","Sneakers","Flip-flop","Ankle-boots","Boots","Western-boots","Oxford"],
+		"category":["Pumps","Sandals(Open-toe)","Mules","Clogs","Flats","Loafers/Oxford","Sneakers","Ankle-boots","Boots"],
 		"feature":{
 			"Heel":["Flat", "Low", "High"],
-			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow"],
+			"Color": ["Aqua","Black","Blue","Brown","Coral/Orange","Green","Grey","Gold","Nude","Pink","Peach","Purple","Red","Silver","Taupe","Teal","White","Yellow","Other"],
 		}
 	},
-	"Handbag":{
-		"Size":["Small", "Medium", "Large"]
+	"Bags":{
+		"category":["Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 	}
 };
 var segments = ["Top", "Bottom", "Outer-Wear", "Shoes", "Handbag"];
 var seg_ref = {
-	"Top": "https://s-media-cache-ak0.pinimg.com/564x/6e/5c/e1/6e5ce1af24fcc1cf4f0722ea3164e38b.jpg",
+	"Top": "https://s-media-cache-ak0.pinimg.com/564x/ad/44/c4/ad44c4b48a20222cdb7285c8e5ceedbc.jpg",
 	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
 	"Bottom_Pants_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
-	"Outer-Wear": "https://s-media-cache-ak0.pinimg.com/564x/f0/ef/d2/f0efd2ffd628861cd0f966a8e635ac65.jpg",
-	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/0b/36/d0/0b36d0615f4bee87ee3054d816e38534.jpg",
+	"Outerwear": "https://s-media-cache-ak0.pinimg.com/564x/f0/ef/d2/f0efd2ffd628861cd0f966a8e635ac65.jpg",
+	"Shoes": "https://s-media-cache-ak0.pinimg.com/564x/e0/84/26/e08426e924c421145a66bcc7fc9cdeed.jpg",
 	"Pattern": "https://s-media-cache-ak0.pinimg.com/564x/cb/32/2e/cb322ed9f98d8f5b7340d308ff168224.jpg",
 	"Neckline": "https://s-media-cache-ak0.pinimg.com/564x/6d/63/30/6d6330a36399a9f230fae05a4184f70f.jpg",
-	"Top_Dress_Style": "https://s-media-cache-ak0.pinimg.com/564x/fe/55/2e/fe552e9a58824d842253369e4201cde9.jpg",
-	"Bottom_Skirts_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg"
+	"Dress": "https://s-media-cache-ak0.pinimg.com/564x/02/3b/96/023b96f16a5d4ce5c91f2ce7c3d2daf7.jpg",
+	"Bottom_Skirt_Style": "https://s-media-cache-ak0.pinimg.com/564x/bf/7f/35/bf7f356f1e67b9f01706514d10f5d059.jpg",
+	"Bags": "https://s-media-cache-ak0.pinimg.com/564x/89/c8/a9/89c8a98f16abb5ad621b9eabd5de8019.jpg"
 };
 
 
