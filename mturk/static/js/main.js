@@ -78,7 +78,7 @@ var features={
 		"category":["Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 	}
 };
-var segments = ["Top", "Bottom", "Outer-Wear", "Shoes", "Handbag"];
+var segments = ["Top", "Bottom","Dress", "OuterWear", "Shoes", "Bags"];
 var seg_ref = {
 	"Top": "https://s-media-cache-ak0.pinimg.com/564x/ad/44/c4/ad44c4b48a20222cdb7285c8e5ceedbc.jpg",
 	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
@@ -96,7 +96,6 @@ var seg_ref = {
 var item_feature = new Array();
 $(document).ready(function() {
 	setup();
-	nextstep();
 });
 
 function setup() {
@@ -276,247 +275,47 @@ function appendFeature(item, feature, options) {
 	return res;
 }
 
-// function setupItem() {
-// 	var out = '';
-	
-// 	for (var segment in features) {
-// 		var seg_fea= '';
-// 		if (segment == 'Top') {
-// 			seg_fea += '<div style="float: none;" id="'+ segment
-// 			+'"><legend style="float:none; display:block;">'
-// 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
-// 				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
-// 		}
-// 		else if (segment in seg_ref) {
-// 			seg_fea += '<div style="float: none;" id="'+ segment
-// 			+'"><legend style="float:none; display:block;">'
-// 			+segment+'<a onclick="changeImage(\''+segment+'\')" ><img id=\"'
-// 				+segment+'_ref\" style="display:none;" src=\"'+seg_ref[segment]+'\"/>?</a></legend>';
-// 		} else {
-// 			seg_fea += '<div style="float: none;" id="'+ segment
-// 			+'"><legend style="float:none; display:block;">'
-// 			+segment+'</legend>';
-// 		}
-
-// 		if (segment != "Handbag") {
-// 			// if (segment != "Top") {
-// 			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-// 				+'\" id=\"'+segment+'_NA'
-// 				+'\" value=\"NA\" checked/><label for=\"'
-// 				+segment+'_NA\" >Not Applicable</label></div>';
-// 				// }
-// 			for (var i= 0; i < features[segment]['category'].length; i++) {
-// 				var item = features[segment]['category'][i];				
-// 				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-// 				+'\" id=\"'+segment+'_'+item
-// 				+'\" value=\"'+segment+'_'+item
-// 				+'\" /><label for=\"'+segment+'_'+item
-// 				+'\" >'+item+'</label><ul>';
-// 				if(segment != "Shoes") {
-// 					for (var feature in global_feature) {
-// 						seg_fea+=appendFeature(segment+'_'+item, feature, global_feature[feature]);
-// 					}
-// 				}
-// 				for (var feature in features[segment]['feature']) {
-// 					seg_fea+=appendFeature(segment+'_'+item, feature, features[segment]['feature'][feature]);
-// 				}
-// 				if (extra_style.indexOf(item) >= 0) {
-// 					seg_fea+=appendFeature(segment+'_'+item, "Style", features[segment][item+'-style']);
-// 				}
-// 				if (extra_length.indexOf(item) >= 0) {
-// 					seg_fea+=appendFeature(segment+'_'+item, "Length", features[segment][item+'-length']);
-// 				}
-// 				seg_fea+='</ul></div></li>';
-// 			}
-			
-// 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-// 			// 	+'\" id=\"'+segment+'_DK'
-// 			// 	+'\" value=\"DK\" /><label for=\"'+segment
-// 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-// 		} else {
-// 			seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-// 				+'\" id=\"'+segment+'_NA'
-// 				+'\" value=\"NA\" checked/><label for=\"'
-// 				+segment+'_NA\" >Not Applicable</label></div>';
-// 			seg_fea+='<ul>';
-// 			seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
-// 			seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
-// 			seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
-// 			seg_fea+='</ul>';
-// 			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-// 			// 	+'\" id=\"'+segment+'_DK'
-// 			// 	+'\" value=\"DK\" /><label for=\"'+segment
-// 			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-// 		}
-// 		seg_fea+='</ul></div>';
-// 		out+=seg_fea;
-// 	}
-// 	// out+='';
-// 	document.getElementById("items").innerHTML = out;
-// }
-
-// item: string; feature: string; options: list
-// example: item: Top_Blouse, feature: Color, options: ["White", "Red",...]
-// function appendFeature(item, feature, options) {
-// 	if (typeof item_feature[item] == "undefined") {
-// 		item_feature[item] = [];
-// 	}
-// 	item_feature[item].push(item+'_'+feature);
-// 	if (item+'_'+feature in seg_ref) {
-// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
-// 	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
-// 	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[item+'_'+feature]+'\"/>?</a></legend><form style="float:none; ">';
-// 	} else if (feature in seg_ref) {
-// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; " id="'+item+'_'+feature+'"><legend style="float:none; display:block;">'+feature
-// 	+'<a onclick="changeImage(\''+item+'_'+feature+'\')" ><img id=\"'
-// 	+item+'_'+feature+'_ref\" style="display:none;" src=\"'+seg_ref[feature]+'\"/>?</a></legend><form style="float:none; ">';
-// 	} else {
-// 		var res = '<li style="float:none; margin: 10px; border: 1px red solid; "><legend style="float:none; display:block;">'+feature
-// 	+'</legend><form style="float:none; ">';
-// 	}
-	
-// 	for (var i = 0; i < options.length; i++) {
-// 		var id = item+'_'+feature+'_'+options[i];
-// 		if (radios.indexOf(feature)>=0) {
-// 			res+='<div style="display:inline-block;"><input type=\"radio\" id=\"'+id+'\" value=\"'+id
-// 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-// 			+'</label></div>';
-// 		} else {
-// 			res+='<div style="display:inline-block;"><input type=\"checkbox\" id=\"'+id+'\" value=\"'+id
-// 			+'\" name=\"'+item+'_'+feature+'\"/><label for=\"'+id+'\" >'+options[i]
-// 			+'</label></div>';
-// 		}
-// 	}
-// 	res+='</form></li>';
-// 	return res;
-// }
-
 
 
 function nextstep() {
-	$('#submit').click(function() {
+	// $('#submit').click(function() {
 		// if (step == 0) {
-		str_result+=images+"\n";
-		var i=0;
-		for (i = 0; i < segments.length; i++) {
-			recordResult(segments[i]);
-			// if (!recordResult(segments[i])) {
-				// alert("Input illegal");
-				// return;
-			// }
-				// $('#'+segments[step-tagNum-2]).hide();
-				// $('#'+segments[step-tagNum-1]).show();
-				// $('input:radio[name="'+segments[step-tagNum-1]+'"]').click(function(){
-				//     if(this.checked){ // if checked - check all parent checkboxes
-				//         $(this).parents('div').find('input').prop('checked',false);
-				//         $(this).prop('checked',true);
-				//     } 
-				// });
-		}
-		// }
-		// else {
-		// 	if (!recordResult(segments[step-tagNum-2])) {
-		// 		// alert("Input illegal");
-		// 		return;
-		// 	}
-		// 	$('#'+segments[step-tagNum-2]).hide();
-		// 	$('#items').hide();
-		// 	$('#next').hide();
-		// 	$('.segment').hide();
-		// 	$('#end').show();
-		// 	$('#submit').show();
-		// 	console.log(str_result);
-		// 	document.getElementsByTagName('textarea')[0].value=str_result;
-		// 	document.getElementsByTagName('textarea')[1].value=str_result;
-		// 	console.log(document.getElementsByTagName('textarea')[0].value);
-		// 	// $("#amazon").submit();
-		// }
-		step++;
-		console.log(str_result);
-		document.getElementsByTagName('textarea')[0].value=str_result;
-		document.getElementById('user-input2').value=str_result;
-		$('#database').submit();
-	});
+	str_result+=images+"\n";
+	var i=0;
+	for (i = 0; i < segments.length; i++) {
+		console.log(segments[i]);
+		recordResult(segments[i]);
+	}
+	// step++;
+	console.log(str_result);
+	document.getElementsByTagName('textarea')[0].value=str_result;
+	document.getElementById('user-input2').value=str_result;
+	$('#database').submit();
+	// });
 }
 
 function recordResult(segment) {
-		
-		// var res = "";
-		// // if (segment != 'Handbag') {
-		// 	var item = $('input[name="'+segment+'"]:checked').val();
-		// 	if (typeof item != 'undefined') {
-				
-			
-		// 		res+=("Item: "+item.replace(segment+"_",""));
-		// 		if (item!='DK' && item!='NA') {
-		// 			for (var i = 0; i < item_feature[item].length; i++) {
-		// 				// console.log(item_feature[item][i]);
-		// 				var item_fea=", "+item_feature[item][i].replace(item+"_", "")+": [";
-		// 				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-		// 					item_fea+=($(this).val().replace(item_feature[item][i]+"_", "")+' ');
-		// 				});
-		// 				item_fea+="]";
-		// 				if (item_fea=="") {
-		// 					alert("Please tag "+item_feature[item][i]+"!");
-		// 					return false;
-		// 				}
-		// 				res+=item_fea;
-		// 			}
-		// 		} 
-		// 	}
-			// else if (item=='NA') {
-			// 	alert("Please select Don't Know/Can't Tell if you are not sure about the item you marked!");
-			// 	return false;
-			// }
-		// } else {
-		// 	// res+=(", ");
-		// 	for (var i = 0; i < item_feature[segment].length; i++) {
-		// 		var item_fea=", "+item_feature[segment][i].replace(segment+'_', '')+": [";
-		// 		$('input[name="'+item_feature[segment][i]+'"]:checked').each(function(){
-		// 			item_fea+=($(this).val().replace(item_feature[segment][i]+'_', '')+' ');
-		// 			console.log(item_fea);
-		// 		});
-		// 		item_fea+="]";
-		// 		if (item_fea=="") {
-		// 			alert("Please tag "+item_feature[segment][i]+"!");
-		// 			return false;
-		// 		}
-		// 		res+=item_fea;
-		// 	}
-		// }
 		var res = "";
 		var item = $('input[name="'+segment+'"]:checked').val();
 		if (typeof item == 'undefined') {
-			// alert('Please tag the item before proceed!');
+			console.log('undefined');
 			return;
 		}
 		res+=("Item: "+item.replace(segment+"_",""));
-		// if (item!='DK' && item!='NA') {
-			for (var i = 0; i < item_feature[item].length; i++) {
-				// console.log(item_feature[item][i]);
-				var item_fea=", "+item_feature[item][i].replace(item+"_", "")+":";
-				$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
-					item_fea+=(' '+$(this).val().replace(item_feature[item][i]+"_", ""));
-				});
-				if (item_fea==", "+item_feature[item][i].replace(item+"_", "")+":") {
-					alert("Please tag "+item_feature[item][i]+"!");
-					return;
-				}
-				res+=item_fea;
+		for (var i = 0; i < item_feature[item].length; i++) {
+			var item_fea=", "+item_feature[item][i].replace(item+"_", "")+":";
+			$('input[name="'+item_feature[item][i]+'"]:checked').each(function(){
+				item_fea+=(' '+$(this).val().replace(item_feature[item][i]+"_", ""));
+			});
+			if (item_fea==", "+item_feature[item][i].replace(item+"_", "")+":") {
+				alert("Please tag "+item_feature[item][i]+"!");
+				return;
 			}
+			res+=item_fea;
+		}
+		console.log(res);
 		str_result+=res+"\n";
-		// var item = $('input[name="'+segment+'"]:checked').val();
-		// if (typeof item == 'undefined') {
-		// 	alert("If you are not sure whether there's a "+segment+" in the image, click Don't Know/Can't Tell. If there does not exist a "+segment+ " in the image, click Not Applicable.");
-		// 	return false;
-		// }
-		// if (item != 'DK' && item !='NA') {
-		// 	alert('Please draw a box around the item you tagged!');
-		// 	return false;
-		// } else {
 		str_result+=(segment+": "+item+"\n");
-		// }
-
 
 	return;
 }
