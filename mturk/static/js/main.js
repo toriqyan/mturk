@@ -46,17 +46,6 @@ var features={
 			"Length": ["Very-short", "Knee-length", "Midi", "Full-body"]
 		},
 	},
-	// "One-piece": {
-	// 	"category": ["Dress","Jumpsuit"],
-	// 	"feature":{
-	// 		"Collar":["Yes", "No"], 
-	// 		"Hood": ["Yes", "No"],
-	// 		"Sleeve": ["None","Short","Medium","Long","Other"],
-	// 		"Neckline": ["Asymmetric","Boat","Cowl","Crew","Round","Grecian","Halter","V-neck","Off-the-shoulder","Pussy-bow","Turtleneck","Scoop","Spaghetti","Square","Strapless","Other"]
-	// 	},
-	// 	"Dress-length":["Very-short", "Knee-length", "Midi", "Full-body"],
-	// 	"Dress-style":["A-line","Body-conscious","High-low","Maxi", "Shirt-dress","Swing-dress","Wrap-dress","Other"]
-	// },
 	"Outerwear":{
 		"category":["Blazer","Cape","Cardigan","Coat","Jacket","Sweaters","Suit-Jacket","Vest"],
 		"feature":{
@@ -163,14 +152,6 @@ function setupItem() {
 			+segment+'</legend>';
 		}
 		
-
-		// if (segment != "Bags") {
-			// if (segment != "Top") {
-			// 	seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 		+'\" id=\"'+segment+'_NA'
-			// 		+'\" value=\"NA\" /><label for=\"'
-			// 		+segment+'_NA\" >Not Applicable</label></div>';
-			// 	}
 			for (var i= 0; i < features[segment]['category'].length; i++) {
 				var item = features[segment]['category'][i];				
 				seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
@@ -213,25 +194,6 @@ function setupItem() {
 				seg_fea+='</ul></div></li>';
 			}
 			
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_DK'
-			// 	+'\" value=\"DK\" /><label for=\"'+segment
-			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		// } else {
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_NA'
-			// 	+'\" value=\"NA\" /><label for=\"'
-			// 	+segment+'_NA\" >Not Applicable</label></div>';
-			// seg_fea+='<ul>';
-			// seg_fea+=appendFeature(segment, "Color", global_feature['Color']);
-			// seg_fea+=appendFeature(segment, "Pattern", global_feature['Pattern']);
-			// seg_fea+=appendFeature(segment, "Size", features[segment]['Size']);
-			// seg_fea+='</ul>';
-			// seg_fea+='<div style="display:inline-block;"><input type=\"radio\" name=\"'+segment
-			// 	+'\" id=\"'+segment+'_DK'
-			// 	+'\" value=\"DK\" /><label for=\"'+segment
-			// 	+'_DK\" >Don\'t Know/Can\'t Tell</label></div>';
-		// }
 		seg_fea+='</ul></div>';
 		out+=seg_fea;
 	}
