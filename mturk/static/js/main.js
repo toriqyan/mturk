@@ -246,7 +246,9 @@ function nextstep() {
 	var i=0;
 	for (i = 0; i < segments.length; i++) {
 		console.log(segments[i]);
-		recordResult(segments[i]);
+		if (!recordResult(segments[i])) {
+			return;
+		}
 	}
 	// step++;
 	console.log(str_result);
@@ -261,7 +263,7 @@ function recordResult(segment) {
 		var item = $('input[name="'+segment+'"]:checked').val();
 		if (typeof item == 'undefined') {
 			console.log('undefined');
-			return;
+			return true;
 		}
 		res+=("Item: "+item.replace(segment+"_",""));
 		for (var i = 0; i < item_feature[item].length; i++) {
@@ -271,7 +273,7 @@ function recordResult(segment) {
 			});
 			if (item_fea==", "+item_feature[item][i].replace(item+"_", "")+":") {
 				alert("Please tag "+item_feature[item][i]+"!");
-				return;
+				return false;
 			}
 			res+=item_fea;
 		}
@@ -279,5 +281,5 @@ function recordResult(segment) {
 		str_result+=res+"\n";
 		str_result+=(segment+": "+item+"\n");
 
-	return;
+	return true;
 }
