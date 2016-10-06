@@ -67,7 +67,7 @@ var features={
 		"category":["Backpack", "Clutch", "Shoulder-Bag", "Tote", "Other"]
 	}
 };
-var segments = ["Top", "Bottom","Dress", "OuterWear", "Shoes", "Bags"];
+var segments = ["Top", "Bottom","Dress", "Outerwear", "Shoes", "Bags"];
 var seg_ref = {
 	"Top": "https://s-media-cache-ak0.pinimg.com/564x/ad/44/c4/ad44c4b48a20222cdb7285c8e5ceedbc.jpg",
 	"Bottom_Jeans_Style": "https://s-media-cache-ak0.pinimg.com/564x/f1/95/60/f19560e706ef2ef3f97983f7a8cad4cd.jpg",
