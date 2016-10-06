@@ -199,7 +199,6 @@ function setupItem() {
 	}
 	// out+='';
 	document.getElementById("items").innerHTML = out;
-	console.log(item_feature);
 }
 
 // item: string; feature: string; options: list
